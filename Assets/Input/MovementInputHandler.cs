@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Input
 {
-    public class InputHandler : MonoBehaviour
+    public class MovementInputHandler : MonoBehaviour
     {
         [HideInInspector] public InputAction moveAction;
         [HideInInspector] public InputAction jumpAction;

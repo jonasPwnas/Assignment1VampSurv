@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 484675253}
   - component: {fileID: 484675252}
   - component: {fileID: 484675251}
+  - component: {fileID: 484675254}
   - component: {fileID: 484675250}
   m_Layer: 0
   m_Name: CameraBase
@@ -414,8 +415,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88eb981663e7604bae734d851ec9e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleCameraBehavior
-  _trackingTarget: {fileID: 1377804144}
-  _trackingSpeed: 5
+  trackingTarget: {fileID: 1377804144}
+  trackingSpeed: 6
+  rotationSpeed: 77
 --- !u!23 &484675251
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -481,13 +483,34 @@ Transform:
   m_GameObject: {fileID: 484675249}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.33}
+  m_LocalPosition: {x: 0, y: 1.12, z: -0.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 330585546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &484675254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484675249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fea241a68b19fe74cbf3983757b4fe39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Input.CameraInputHandler
+  lookAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: bc861c78-2ef0-4bef-a078-d355af397163
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

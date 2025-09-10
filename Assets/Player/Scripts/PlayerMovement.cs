@@ -7,11 +7,18 @@ namespace Player
 { 
     public class PlayerMovement : MonoBehaviour
     {
+        //Editor editable
         [SerializeField] private float movementSpeed = 10f;
+        [SerializeField] private float rotationSpeed = 10f;
+        [SerializeField] private float jumpHeight = 1f;
+        [SerializeField] private float gravityIntensity = 1;
+        [SerializeField] private Camera playerCamera;
         
         //Privates
         private MovementInputHandler _movementInputHandler;
         private CharacterController _characterController;
+        private Vector3 m_playerVelocity;
+        private bool m_groundedPlayer;
         private void OnEnable()
         {
             print("OnEnable");
@@ -22,7 +29,6 @@ namespace Player
             print("OnAwake");
         }
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             print("OnStart");
@@ -30,12 +36,21 @@ namespace Player
             _characterController = GetComponent<CharacterController>();
         }
         
-        // Update is called once per frame
         void Update()
         {
+            Movement();
+        }
+
+        void Movement()
+        {
             Vector2 input = _movementInputHandler.moveAction.ReadValue<Vector2>();
-            Vector3 movement = new Vector3(input.x, 0, input.y);
-            _characterController.Move(movement * (movementSpeed * Time.deltaTime));
+            m_groundedPlayer = _characterController.isGrounded;
+            
+            if (m_groundedPlayer && m_playerVelocity.y < 0f)
+            {
+                //Bla bla bla
+            }
+            
         }
     }
 }

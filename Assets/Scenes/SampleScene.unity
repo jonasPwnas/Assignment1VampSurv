@@ -345,7 +345,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5569358
+      value: 0.25
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -354,7 +354,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.08
+      value: 0.1
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -1021,6 +1021,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMovement
   movementSpeed: 4
   rotationSpeed: 10
+  jumpHeight: 1
+  gravityIntensity: 1
+  playerCamera: {fileID: 0}
 --- !u!143 &1377804140
 CharacterController:
   m_ObjectHideFlags: 0

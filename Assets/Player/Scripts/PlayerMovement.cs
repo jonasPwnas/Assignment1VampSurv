@@ -11,7 +11,7 @@ namespace Player
         [SerializeField] private float movementSpeed = 10f;
         [SerializeField] private float rotationSpeed = 10f;
         [SerializeField] private float jumpHeight = 1f;
-        [SerializeField] private float gravityIntensity = 1;
+        [SerializeField] private float gravityIntensity = -9f;
         [SerializeField] private Camera playerCamera;
         
         //Privates
@@ -19,6 +19,9 @@ namespace Player
         private CharacterController _characterController;
         private Vector3 m_playerVelocity;
         private bool m_groundedPlayer;
+        
+        [HideInInspector] public Vector3 _moveVelocity;
+        
         private void OnEnable()
         {
             print("OnEnable");
@@ -48,9 +51,31 @@ namespace Player
             
             if (m_groundedPlayer && m_playerVelocity.y < 0f)
             {
-                //Bla bla bla
+                m_playerVelocity.y = 0f;
             }
             
+            float horizontalInput = input.x;
+            float verticalInput = input.y;
+            
+            Vector3 movementInput = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(horizontalInput, 0, verticalInput);
+            Vector3 movementDirection = movementInput.normalized;
+            _moveVelocity = movementDirection * (movementSpeed * Time.deltaTime);
+            
+            _characterController.Move(_moveVelocity);
+
+            if (movementDirection != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            }
+
+            if (_movementInputHandler.jumpAction.IsPressed() && m_groundedPlayer)
+            {
+                m_playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityIntensity); //What should I call the magic number?
+            }
+            
+            m_playerVelocity.y += gravityIntensity * Time.deltaTime;
+            _characterController.Move(m_playerVelocity * Time.deltaTime);
         }
     }
 }

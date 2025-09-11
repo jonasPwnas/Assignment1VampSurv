@@ -1,5 +1,6 @@
 using System;
 using Input;
+using Player;
 using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
@@ -11,19 +12,25 @@ public class ThirdPersonCamera : MonoBehaviour
     private float _rotationX;
 
     [SerializeField]
-    private Transform _target;
+    private PlayerMovement _player;
 
     [SerializeField]
-    private float _distanceFromTarget = 3.0f;
-
+    private float _stationaryDistanceFromTarget = 6.0f;
+    [SerializeField]
+    private float _movingDistanceFromTarget = 8.5f;
+    
     private Vector3 _currentRotation;
     private Vector3 _smoothVelocity = Vector3.zero;
+    private float distanceToTarget;
+    private float targetDistanceToTarget;
+    private float nollan;
+    
 
     [SerializeField]
-    private float _smoothTime = 0.2f;
+    private float _distanceSmoothTime = 0.2f;
 
     [SerializeField]
-    private Vector2 _rotationXMinMax = new Vector2(-40, 40);
+    private Vector2 _rotationXMinMax = new Vector2(-20, 40);
     
     [SerializeField]
     AnimationCurve _smoothCurve;
@@ -33,6 +40,7 @@ public class ThirdPersonCamera : MonoBehaviour
     private void Start()
     {
         _cameraInputHandler = GetComponent<CameraInputHandler>();
+        Cursor.visible = false;
     }
 
     void Update()
@@ -51,13 +59,25 @@ public class ThirdPersonCamera : MonoBehaviour
         Vector3 nextRotation = new Vector3(_rotationX, _rotationY);
 
         // Apply damping between rotation changes
-        //_currentRotation = Vector3.SmoothDamp(_currentRotation, nextRotation, ref _smoothVelocity, _smoothTime);
         _currentRotation = Vector3.SmoothDamp(_currentRotation, nextRotation, ref _smoothVelocity, evaluatedSmoothCurve);
-        print("SmoothCurve: " + evaluatedSmoothCurve);
       
         transform.localEulerAngles = _currentRotation;
-
-        // Substract forward vector of the GameObject to point its forward vector to the target
-        transform.position = _target.position - transform.forward * _distanceFromTarget;
+        float distanceMoveVelocity = _player._moveVelocity.normalized.magnitude;
+        
+        if (distanceMoveVelocity > 0.01f)
+        {
+            targetDistanceToTarget = _movingDistanceFromTarget;
+        }
+        else
+        {
+            targetDistanceToTarget = _stationaryDistanceFromTarget;
+        }
+        
+        distanceToTarget = Mathf.SmoothDamp(distanceToTarget, targetDistanceToTarget, ref nollan, _distanceSmoothTime);
+        
+        print("camera distance: " + distanceToTarget);
+        
+        // Subtract the forward vector of the GameObject to point its forward vector to the target
+        transform.position = _player.transform.position - transform.forward * distanceToTarget;
     }
 }

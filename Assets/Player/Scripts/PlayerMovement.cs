@@ -52,8 +52,6 @@ namespace Player
 
         void Attack()
         {
-            m_groundedPlayer = _characterController.isGrounded;
-            
             if (_movementInputHandler.attackAction.IsPressed() && !m_isAttacking)
             {
                 m_animator.SetTrigger(NormalAttack);
@@ -63,16 +61,15 @@ namespace Player
                 m_isAttacking = true;
             }
             
+            m_groundedPlayer = _characterController.isGrounded;
+            
             if (_movementInputHandler.jumpAction.IsPressed() && m_groundedPlayer && !m_isAttacking)
             {
-                print("JUMP INPUT YAAAS");
                 m_animator.SetTrigger(Jump);
-                m_animator.SetBool(Attacking, true);
                 m_accumulatedAttackTime = Time.time;
-                m_attackTimer = m_accumulatedAttackTime + 2.1f; //Don't we just love magic numbers? (approximate anim clip length)
-                m_isAttacking = true;
+                m_attackTimer = m_accumulatedAttackTime + 0.7f; //Don't we just love magic numbers? (approximate anim clip length)
             }
-
+            
             if (m_isAttacking)
             {
                 m_accumulatedAttackTime += Time.deltaTime;
@@ -80,7 +77,6 @@ namespace Player
                 {
                     m_animator.SetBool(Attacking, false);
                     m_isAttacking = false;
-                    print("STOPPED ATTACKING!!!!!!");
                 }
             }
         }
@@ -115,7 +111,6 @@ namespace Player
                 Quaternion targetRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             }
-            
         }
         
         private void OnAnimatorMove()

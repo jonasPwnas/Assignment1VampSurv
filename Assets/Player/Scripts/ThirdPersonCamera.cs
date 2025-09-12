@@ -75,9 +75,7 @@ public class ThirdPersonCamera : MonoBehaviour
         
         distanceToTarget = Mathf.SmoothDamp(distanceToTarget, targetDistanceToTarget, ref nollan, _distanceSmoothTime);
         
-        print("camera distance: " + distanceToTarget);
-        
         // Subtract the forward vector of the GameObject to point its forward vector to the target
-        transform.position = _player.transform.position - transform.forward * distanceToTarget;
+        transform.position = _player.transform.position - transform.forward * distanceToTarget; //Stuttering comes from this FIX IT!!!!
     }
 }

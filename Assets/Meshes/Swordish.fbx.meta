@@ -3,7 +3,32 @@ guid: abdf83869daf1e944bc1188f1eac6e66
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BladeBlack
+    second: {fileID: 2100000, guid: 109a7e93adb07a14f9958378cc9a7fe4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BladeWhite
+    second: {fileID: 2100000, guid: d4f0ebc346b3f874681568ce98629cdc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cloth
+    second: {fileID: 2100000, guid: de28f927085efe04084ee09b81b6504d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: d4f0ebc346b3f874681568ce98629cdc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: handle
+    second: {fileID: 2100000, guid: acfac1d4c85ac4b408b24cd4dbdb3dec, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -91,7 +116,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.001
+    globalScale: 0.1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

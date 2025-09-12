@@ -9,48 +9,39 @@ namespace Player
 { 
     public class PlayerMovement : MonoBehaviour
     {
-        //Animation parameters
-        private static readonly int Slash1 = Animator.StringToHash("Slash1");
-        private static readonly int Speed = Animator.StringToHash("Speed");
-        private static readonly int Sprint = Animator.StringToHash("Sprint");
+        //Animator parameters
+        private static readonly int NormalAttack = Animator.StringToHash("Attack");
+        private static readonly int Attacking = Animator.StringToHash("Attacking");
+        private static readonly int Jump = Animator.StringToHash("Jump");
 
         //Editor editable
         [SerializeField] private float walkSpeed = 6f;
-        [SerializeField] private float sprintSpeed = 9f;
+        [SerializeField] private float gravityIntensity = -6f;
         [SerializeField] private float rotationSpeed = 10f;
-        [SerializeField] private float jumpHeight = 1f;
-        [SerializeField] private float gravityIntensity = -9f;
         [SerializeField] private Camera playerCamera;
-        [SerializeField] private Animator _animator;
-        [SerializeField] private float AttackWaitTime = 1f;
+        //[SerializeField] private float sprintSpeed = 9f;
+        //[SerializeField] private float attackWaitTime = 1f;
         
         //Privates
+        private Animator m_animator;
         private MovementInputHandler _movementInputHandler;
         private CharacterController _characterController;
         private Vector3 m_playerVelocity;
         private bool m_groundedPlayer;
-        private bool m_isAttacking = false;
-        private float m_accumulatedAttackTime = 0f;
+        private bool m_isAttacking;
+        private float m_accumulatedAttackTime;
         private float m_attackTimer;
         private float m_movementMultiplier = 0.5f;
+        private RuntimeAnimatorController m_animatorController;
         
         [HideInInspector] public Vector3 _moveVelocity;
-        
-        private void OnEnable()
-        {
-            print("OnEnable");
-        }
-
-        private void Awake()
-        {
-            print("OnAwake");
-        }
 
         void Start()
         {
-            print("OnStart");
             _movementInputHandler = GetComponent<MovementInputHandler>();
             _characterController = GetComponent<CharacterController>();
+            m_animator = GetComponent<Animator>();
+            //m_animatorController = animator.runtimeAnimatorController;
         }
         
         void Update()
@@ -61,14 +52,25 @@ namespace Player
 
         void Attack()
         {
+            m_groundedPlayer = _characterController.isGrounded;
+            
             if (_movementInputHandler.attackAction.IsPressed() && !m_isAttacking)
             {
-                _animator.applyRootMotion = true;
-                m_isAttacking = true;
-                _animator.SetTrigger("Slash1");
-                _animator.SetBool("Attacking", true);
+                m_animator.SetTrigger(NormalAttack);
+                m_animator.SetBool(Attacking, true);
                 m_accumulatedAttackTime = Time.time;
-                m_attackTimer = m_accumulatedAttackTime + AttackWaitTime;
+                m_attackTimer = m_accumulatedAttackTime + 1.4f; //Don't we just love magic numbers? (approximate anim clip length)
+                m_isAttacking = true;
+            }
+            
+            if (_movementInputHandler.jumpAction.IsPressed() && m_groundedPlayer && !m_isAttacking)
+            {
+                print("JUMP INPUT YAAAS");
+                m_animator.SetTrigger(Jump);
+                m_animator.SetBool(Attacking, true);
+                m_accumulatedAttackTime = Time.time;
+                m_attackTimer = m_accumulatedAttackTime + 2.1f; //Don't we just love magic numbers? (approximate anim clip length)
+                m_isAttacking = true;
             }
 
             if (m_isAttacking)
@@ -76,11 +78,9 @@ namespace Player
                 m_accumulatedAttackTime += Time.deltaTime;
                 if (m_accumulatedAttackTime >= m_attackTimer)
                 {
-                    _animator.applyRootMotion = false;
-                    
+                    m_animator.SetBool(Attacking, false);
                     m_isAttacking = false;
-                    _animator.SetBool("Attacking", false);
-                    print("NOT ATTACKING!!!!!!");
+                    print("STOPPED ATTACKING!!!!!!");
                 }
             }
         }
@@ -90,12 +90,6 @@ namespace Player
                 return;
             
             Vector2 input = _movementInputHandler.moveAction.ReadValue<Vector2>();
-            m_groundedPlayer = _characterController.isGrounded;
-            
-            if (m_groundedPlayer && m_playerVelocity.y < 0f)
-            {
-                m_playerVelocity.y = 0f;
-            }
             
             float horizontalInput = input.x;
             float verticalInput = input.y;
@@ -114,28 +108,23 @@ namespace Player
             }
             
             _moveVelocity = movementDirection * (speed * Time.deltaTime);
-            _animator.SetFloat("Speed", _moveVelocity.normalized.magnitude * m_movementMultiplier, 0.05f, Time.deltaTime);
+            m_animator.SetFloat("Speed", _moveVelocity.normalized.magnitude * m_movementMultiplier, 0.05f, Time.deltaTime);
             
             if (movementDirection != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             }
-
-            if (_movementInputHandler.jumpAction.IsPressed() && m_groundedPlayer)
-            {
-                m_playerVelocity.y = Mathf.Sqrt(jumpHeight * -0.1f * gravityIntensity); //What should I call the magic number?
-            }
             
-            m_playerVelocity.y += gravityIntensity * Time.deltaTime;
-            //_characterController.Move(m_playerVelocity * Time.deltaTime);
         }
         
         private void OnAnimatorMove()
         {
             //Animator movement
-            Vector3 velocity = _animator.deltaPosition;
-            velocity.y = m_playerVelocity.y;
+            Vector3 velocity = m_animator.deltaPosition;
+            if(!m_isAttacking)
+                velocity.y += gravityIntensity * Time.deltaTime;
+            
             _characterController.Move(velocity);
         }
     }

@@ -18,6 +18,8 @@ public class ThirdPersonCamera : MonoBehaviour
     private float _stationaryDistanceFromTarget = 6.0f;
     [SerializeField]
     private float _movingDistanceFromTarget = 8.5f;
+    [SerializeField]
+    private float _heightOffset = 1f;
     
     private Vector3 _currentRotation;
     private Vector3 _smoothVelocity = Vector3.zero;
@@ -76,6 +78,6 @@ public class ThirdPersonCamera : MonoBehaviour
         distanceToTarget = Mathf.SmoothDamp(distanceToTarget, targetDistanceToTarget, ref nollan, _distanceSmoothTime);
         
         // Subtract the forward vector of the GameObject to point its forward vector to the target
-        transform.position = _player.transform.position - transform.forward * distanceToTarget; //Stuttering comes from this FIX IT!!!!
+        transform.position = _player.transform.position - transform.forward * distanceToTarget + transform.up * _heightOffset; //Stuttering comes from this FIX IT!!!!
     }
 }

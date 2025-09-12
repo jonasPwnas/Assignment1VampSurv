@@ -339,8 +339,9 @@ MonoBehaviour:
   _player: {fileID: 7944477699670793484}
   _stationaryDistanceFromTarget: 4
   _movingDistanceFromTarget: 5.1
+  _heightOffset: 2
   _distanceSmoothTime: 0.35
-  _rotationXMinMax: {x: -7, y: 40}
+  _rotationXMinMax: {x: -14, y: 40}
   _smoothCurve:
     serializedVersion: 2
     m_Curve:
@@ -787,8 +788,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383676078}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.74942875, y: -0.008387774, z: -0.40132603, w: 0.5265204}
-  m_LocalPosition: {x: 0.12, y: 0.273, z: 0.039}
+  m_LocalRotation: {x: -0.69848335, y: 0.23891932, z: -0.32864136, w: 0.5890954}
+  m_LocalPosition: {x: 0.156, y: 0.234, z: 0.049}
   m_LocalScale: {x: 99.99998, y: 99.99997, z: 99.999985}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4205,7 +4206,7 @@ GameObject:
   - component: {fileID: 7944477699670793483}
   - component: {fileID: 7944477699670793482}
   m_Layer: 0
-  m_Name: NEWPLAYERCONTROLLER
+  m_Name: PlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4302,13 +4303,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMovement
   walkSpeed: 6
-  sprintSpeed: 9
+  gravityIntensity: -8
   rotationSpeed: 10
-  jumpHeight: 1.2
-  gravityIntensity: -2
   playerCamera: {fileID: 330585545}
-  _animator: {fileID: 3741233553483914697}
-  AttackWaitTime: 2
   _moveVelocity: {x: 0, y: 0, z: 0}
 --- !u!143 &7944477699670793485
 CharacterController:

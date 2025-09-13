@@ -29,6 +29,7 @@ namespace Player
         private Vector3 m_playerVelocity;
         private bool m_groundedPlayer;
         private bool m_isAttacking;
+        private bool m_inputWindowOpen;
         private float m_accumulatedAttackTime;
         private float m_attackTimer;
         private float m_movementMultiplier = 0.5f;
@@ -79,6 +80,13 @@ namespace Player
                     m_isAttacking = false;
                 }
             }
+
+            if (m_inputWindowOpen && _movementInputHandler.attackAction.IsPressed())
+            {
+                print("<<<<<<<<<<<<<<<<<<DidFollowUpInput!!!!!!");
+                m_animator.SetTrigger(NormalAttack);
+                m_inputWindowOpen = false;
+            }
         }
         void Movement()
         {
@@ -121,6 +129,20 @@ namespace Player
                 velocity.y += gravityIntensity * Time.deltaTime;
             
             _characterController.Move(velocity);
+        }
+
+        
+        //Called from animation events
+        public void InputStart()
+        {
+            print("InputStart called from animation event");
+            m_inputWindowOpen = true;
+        }
+        
+        public void InputEnd()
+        {
+            print("InputEnd called from animation event");
+            m_inputWindowOpen = false;
         }
     }
 }

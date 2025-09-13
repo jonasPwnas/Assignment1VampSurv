@@ -53,8 +53,65 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
+      curves:
+      - name: PlayRate
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0.003442341
+            value: 0.90238094
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.2275994
+            value: 0.37136325
+            inSlope: 0.10734849
+            outSlope: 0.10734849
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.44068953
+            value: 1.0906692
+            inSlope: 0.9577614
+            outSlope: 0.9577614
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.9931153
+            value: 0.88809526
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 2
+          postInfinity: 2
+          rotationOrder: 4
+      events:
+      - time: 0.82959014
+        functionName: InputStart
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.93609154
+        functionName: InputEnd
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 46ebe743a61ad8b41b50fffdc276006a, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

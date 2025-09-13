@@ -13,6 +13,7 @@ namespace Player
         private static readonly int NormalAttack = Animator.StringToHash("Attack");
         private static readonly int Attacking = Animator.StringToHash("Attacking");
         private static readonly int Jump = Animator.StringToHash("Jump");
+        private static readonly int Speed = Animator.StringToHash("Speed");
 
         //Editor editable
         [SerializeField] private float walkSpeed = 6f;
@@ -53,6 +54,11 @@ namespace Player
 
         void Attack()
         {
+            if (m_animator.IsInTransition(0))
+            {
+                m_animator.ResetTrigger(NormalAttack);
+            }
+            
             if (_movementInputHandler.attackAction.IsPressed() && !m_isAttacking)
             {
                 m_animator.SetTrigger(NormalAttack);
@@ -112,7 +118,7 @@ namespace Player
             }
             
             _moveVelocity = movementDirection * (speed * Time.deltaTime);
-            m_animator.SetFloat("Speed", _moveVelocity.normalized.magnitude * m_movementMultiplier, 0.05f, Time.deltaTime);
+            m_animator.SetFloat(Speed, _moveVelocity.normalized.magnitude * m_movementMultiplier, 0.05f, Time.deltaTime);
             
             if (movementDirection != Vector3.zero)
             {

@@ -53,16 +53,102 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
+      curves:
+      - name: PlayDuration
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.44294864
+            value: 0.68801296
+            inSlope: 1.0944178
+            outSlope: 1.0944178
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.47547138
+            value: 0.82233965
+            inSlope: 0.6045423
+            outSlope: 0.6045423
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.82413656
+            value: 0.9688334
+            inSlope: 1.1856095
+            outSlope: 1.1856095
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.8429689
+            value: 1.0509605
+            inSlope: 1.3439381
+            outSlope: 1.3439381
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.25503173
+          - serializedVersion: 3
+            time: 0.97
+            value: 1.1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 2
+          postInfinity: 2
+          rotationOrder: 4
+      - name: PlayRate
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
       events:
-      - time: 0.85421115
+      - time: 0.5626917
         functionName: InputStart
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 46ebe743a61ad8b41b50fffdc276006a, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.9758242
+      - time: 0.84154856
         functionName: InputEnd
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 46ebe743a61ad8b41b50fffdc276006a, type: 3}

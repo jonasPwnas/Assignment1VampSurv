@@ -59,8 +59,87 @@ ModelImporter:
           serializedVersion: 2
           curve:
           - serializedVersion: 3
-            time: 0.003442341
-            value: 0.90238094
+            time: -0.0040098517
+            value: 0.9814747
+            inSlope: 10.319213
+            outSlope: 10.319213
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.09268371
+            value: 1.9792762
+            inSlope: 0.060261834
+            outSlope: 0.060261834
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.711984
+            outWeight: 0.52741146
+          - serializedVersion: 3
+            time: 0.20894691
+            value: 1.5254024
+            inSlope: -0.3477002
+            outSlope: -0.3477002
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.38700274
+          - serializedVersion: 3
+            time: 0.26382545
+            value: 0.8633485
+            inSlope: 1.0320052
+            outSlope: 1.0320052
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.34118435
+            outWeight: 1
+          - serializedVersion: 3
+            time: 0.35241964
+            value: 1.4752344
+            inSlope: 0.37282673
+            outSlope: 0.37282673
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.74284613
+            value: 1.3918703
+            inSlope: -0.7519949
+            outSlope: -0.7519949
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.1350732
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.76685315
+            value: 0.72819775
+            inSlope: -1.1419177
+            outSlope: -1.1419177
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.9931153
+            value: 0.88919985
+            inSlope: 0.71157324
+            outSlope: 0.71157324
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          preInfinity: 2
+          postInfinity: 2
+          rotationOrder: 4
+      - name: PlayDuration
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -68,26 +147,44 @@ ModelImporter:
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
-            time: 0.2275994
-            value: 0.37136325
-            inSlope: 0.10734849
-            outSlope: 0.10734849
+            time: 0.61238223
+            value: 0.6843356
+            inSlope: 1.0944178
+            outSlope: 1.0944178
             tangentMode: 0
             weightedMode: 0
             inWeight: 0.33333334
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 0.44068953
-            value: 1.0906692
-            inSlope: 0.9577614
-            outSlope: 0.9577614
+            time: 0.6363879
+            value: 0.86999565
+            inSlope: 0.6045423
+            outSlope: 0.6045423
             tangentMode: 0
             weightedMode: 0
             inWeight: 0.33333334
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 0.9931153
-            value: 0.88809526
+            time: 0.7915734
+            value: 0.9451914
+            inSlope: 1.1856095
+            outSlope: 1.1856095
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.8545911
+            value: 1.6568166
+            inSlope: 0.0689825
+            outSlope: 0.0689825
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.9690833
+            value: 1.7159985
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -98,14 +195,14 @@ ModelImporter:
           postInfinity: 2
           rotationOrder: 4
       events:
-      - time: 0.82959014
+      - time: 0.5416042
         functionName: InputStart
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.93609154
+      - time: 0.858353
         functionName: InputEnd
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 46ebe743a61ad8b41b50fffdc276006a, type: 3}

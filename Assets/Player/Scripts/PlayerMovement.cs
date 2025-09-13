@@ -14,9 +14,11 @@ namespace Player
         private static readonly int Attacking = Animator.StringToHash("Attacking");
         private static readonly int Jump = Animator.StringToHash("Jump");
         private static readonly int Speed = Animator.StringToHash("Speed");
+        private static readonly int IsGrounded = Animator.StringToHash("isGrounded");
 
         //Editor editable
         [SerializeField] private float walkSpeed = 6f;
+        [SerializeField] private float jumpHeight = 1.5f;
         [SerializeField] private float gravityIntensity = -6f;
         [SerializeField] private float rotationSpeed = 10f;
         [SerializeField] private Camera playerCamera;
@@ -48,8 +50,8 @@ namespace Player
         
         void Update()
         {
-            Movement();
             Attack();
+            Movement();
         }
 
         void Attack()
@@ -57,6 +59,7 @@ namespace Player
             if (m_animator.IsInTransition(0))
             {
                 m_animator.ResetTrigger(NormalAttack);
+                m_animator.ResetTrigger(Jump);
             }
             
             if (_movementInputHandler.attackAction.IsPressed() && !m_isAttacking)
@@ -66,15 +69,6 @@ namespace Player
                 m_accumulatedAttackTime = Time.time;
                 m_attackTimer = m_accumulatedAttackTime + 1.4f; //Don't we just love magic numbers? (approximate anim clip length)
                 m_isAttacking = true;
-            }
-            
-            m_groundedPlayer = _characterController.isGrounded;
-            
-            if (_movementInputHandler.jumpAction.IsPressed() && m_groundedPlayer && !m_isAttacking)
-            {
-                m_animator.SetTrigger(Jump);
-                m_accumulatedAttackTime = Time.time;
-                m_attackTimer = m_accumulatedAttackTime + 0.7f; //Don't we just love magic numbers? (approximate anim clip length)
             }
             
             if (m_isAttacking)
@@ -89,25 +83,25 @@ namespace Player
 
             if (m_inputWindowOpen && _movementInputHandler.attackAction.IsPressed())
             {
-                print("<<<<<<<<<<<<<<<<<<DidFollowUpInput!!!!!!");
                 m_animator.SetTrigger(NormalAttack);
                 m_inputWindowOpen = false;
             }
         }
+        
         void Movement()
         {
+            m_groundedPlayer = _characterController.isGrounded;
+            
             if(m_isAttacking)
                 return;
             
             Vector2 input = _movementInputHandler.moveAction.ReadValue<Vector2>();
-            
             float horizontalInput = input.x;
             float verticalInput = input.y;
-            
             Vector3 movementInput = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(horizontalInput, 0, verticalInput);
             Vector3 movementDirection = movementInput.normalized;
-            
             float speed = walkSpeed;
+            
             if (_movementInputHandler.sprintAction.IsPressed())
             {
                 m_movementMultiplier = 1f;
@@ -125,18 +119,31 @@ namespace Player
                 Quaternion targetRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             }
+            
+            if (m_groundedPlayer && m_playerVelocity.y < 0)
+            {
+                m_playerVelocity.y = 0f;
+                m_animator.SetBool(IsGrounded, m_groundedPlayer);
+            }
+            
+            if (_movementInputHandler.jumpAction.IsPressed() && m_groundedPlayer)
+            {
+                m_animator.SetTrigger(Jump); //disable root-motion in jump animations
+                m_playerVelocity.y += Mathf.Sqrt( jumpHeight * -2f * gravityIntensity);
+            }
+            
+            m_playerVelocity.y += gravityIntensity * Time.deltaTime;
+            _characterController.Move(m_playerVelocity * (speed * Time.deltaTime));
         }
         
-        private void OnAnimatorMove()
+        private void OnAnimatorMove() //Animator movement - root movement
         {
-            //Animator movement
             Vector3 velocity = m_animator.deltaPosition;
-            if(!m_isAttacking)
-                velocity.y += gravityIntensity * Time.deltaTime;
-            
+            velocity.y *= 2f;
             _characterController.Move(velocity);
         }
-
+        
+        
         
         //Called from animation events
         public void InputStart()

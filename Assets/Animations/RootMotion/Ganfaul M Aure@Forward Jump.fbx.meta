@@ -45,7 +45,7 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 1
+      loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
@@ -88,6 +88,76 @@ ModelImporter:
           - serializedVersion: 3
             time: 1.0117073
             value: 1.0076667
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      - name: GravityIntensity
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: -0.108729266
+            value: 7.3614707
+            inSlope: 8.9684105
+            outSlope: 8.9684105
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.7931146
+          - serializedVersion: 3
+            time: 0.355306
+            value: 7.711581
+            inSlope: 15.910712
+            outSlope: 15.910712
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.5018629
+            value: 8.818881
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.5425241
+            value: 1.7185085
+            inSlope: -8.404943
+            outSlope: -8.404943
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.16865347
+          - serializedVersion: 3
+            time: 0.65135473
+            value: -2.8977733
+            inSlope: -18.84816
+            outSlope: -18.84816
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.7659464
+            value: -5.8837743
+            inSlope: -12.970257
+            outSlope: -12.970257
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.26853704
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1.0136234
+            value: -8.033241
             inSlope: 0
             outSlope: 0
             tangentMode: 0

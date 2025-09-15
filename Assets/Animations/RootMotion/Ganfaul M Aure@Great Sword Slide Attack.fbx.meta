@@ -121,25 +121,7 @@ ModelImporter:
           curve:
           - serializedVersion: 3
             time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.27122438
-            value: 1.0038316
-            inSlope: 0.0070079095
-            outSlope: 0.0070079095
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.69997877
-          - serializedVersion: 3
-            time: 0.3131707
-            value: 1.0236666
+            value: 1.5
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -147,10 +129,80 @@ ModelImporter:
             inWeight: 0.33333334
             outWeight: 0.07492357
           - serializedVersion: 3
-            time: 0.64580786
-            value: 1.0208005
+            time: 0.45122778
+            value: 1.0075902
             inSlope: -0.040596943
             outSlope: -0.040596943
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.55394036
+            value: 1.504483
+            inSlope: -0.020503907
+            outSlope: -0.020503907
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.82183415
+            value: 1.4279646
+            inSlope: -0.9315339
+            outSlope: -0.9315339
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.26891375
+            outWeight: 0.14992113
+          - serializedVersion: 3
+            time: 1.0175611
+            value: 1.0074999
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      - name: AttackMomentum
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: -0.058536604
+            value: 1.7257556
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.03610459
+            value: 2.2045596
+            inSlope: 0.01372403
+            outSlope: 0.01372403
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.52778304
+            value: 2.0016618
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.61363673
+            value: 0.99832845
+            inSlope: 0
+            outSlope: 0
             tangentMode: 0
             weightedMode: 0
             inWeight: 0.33333334

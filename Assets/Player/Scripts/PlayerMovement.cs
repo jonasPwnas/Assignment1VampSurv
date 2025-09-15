@@ -13,8 +13,9 @@ namespace Player
         private static readonly int Speed = Animator.StringToHash("Speed");
         private static readonly int IsGrounded = Animator.StringToHash("isGrounded");
         private static readonly int GravityIntensity = Animator.StringToHash("GravityIntensity");
-        private static readonly int ForwardJump = Animator.StringToHash("Forward Jump");
-        private static readonly int RunJump = Animator.StringToHash("Run Jump");
+        private static readonly int AttackMomentum = Animator.StringToHash("AttackMomentum");
+        private static readonly int AttackTag = Animator.StringToHash("Attack");
+        private static readonly int JumpTag = Animator.StringToHash("Jump");
 
         //Editor editable
         [SerializeField] private float walkSpeed = 6f;
@@ -27,27 +28,26 @@ namespace Player
         
         //Privates
         private Animator m_animator;
-        private MovementInputHandler _movementInputHandler;
-        private CharacterController _characterController;
+        private MovementInputHandler m_movementInputHandler;
+        private CharacterController m_characterController;
         private Vector3 m_playerVelocity;
         private bool m_groundedPlayer;
         private bool m_allowJump = true;
-        private bool m_isAttacking;
+        private bool m_canAttack = true;
         private bool m_inputWindowOpen;
+        private float m_attackInputFrequency = 0.25f;
         private float m_accumulatedAttackTime;
         private float m_attackTimer;
         private float m_movementMultiplier = 0.5f;
         private float m_jumpTimer;
-        private float m_groundedTime;
-        private RuntimeAnimatorController m_animatorController;
         
         //Publics
         [HideInInspector] public Vector3 _moveVelocity;
 
         void Start()
         {
-            _movementInputHandler = GetComponent<MovementInputHandler>();
-            _characterController = GetComponent<CharacterController>();
+            m_movementInputHandler = GetComponent<MovementInputHandler>();
+            m_characterController = GetComponent<CharacterController>();
             m_animator = GetComponent<Animator>();
         }
         
@@ -59,39 +59,40 @@ namespace Player
 
         void Attack()
         {
-            if (_movementInputHandler.attackAction.IsPressed() && !m_isAttacking)
+            if (m_canAttack && m_inputWindowOpen && m_movementInputHandler.attackAction.IsPressed())
             {
                 m_animator.SetTrigger(NormalAttack);
-                m_animator.SetBool(Attacking, true);
                 m_accumulatedAttackTime = Time.time;
-                m_attackTimer = m_accumulatedAttackTime + 1.4f; //Don't we just love magic numbers? (approximate anim clip length)
-                m_isAttacking = true;
+                m_attackTimer = m_accumulatedAttackTime + m_attackInputFrequency;
+                m_inputWindowOpen = false;
+                m_canAttack = false;
             }
             
-            if (m_isAttacking)
+            if (m_canAttack && m_movementInputHandler.attackAction.IsPressed())
+            {
+                m_animator.SetTrigger(NormalAttack);
+                m_accumulatedAttackTime = Time.time;
+                m_attackTimer = m_accumulatedAttackTime + m_attackInputFrequency;
+                m_canAttack = false;
+            }
+            
+            if (!m_canAttack)
             {
                 m_accumulatedAttackTime += Time.deltaTime;
                 if (m_accumulatedAttackTime >= m_attackTimer)
                 {
-                    m_animator.SetBool(Attacking, false);
-                    m_isAttacking = false;
+                    m_canAttack = true;
+                    m_attackTimer = 0f;
                 }
-            }
-
-            if (m_inputWindowOpen && _movementInputHandler.attackAction.IsPressed())
-            {
-                m_animator.SetTrigger(NormalAttack);
-                m_inputWindowOpen = false;
             }
         }
         
         void Movement()
         {
-            m_groundedPlayer = _characterController.isGrounded;
+            m_groundedPlayer = m_characterController.isGrounded;
 
             if (m_groundedPlayer && !m_allowJump)
             {
-                m_groundedTime = Time.time;
                 m_jumpTimer += Time.deltaTime;
                 if(m_jumpTimer >= jumpFrequency)
                 {
@@ -99,17 +100,17 @@ namespace Player
                 }
             }
             
-            if(m_isAttacking)
+            if(m_animator.GetCurrentAnimatorStateInfo(0).tagHash == AttackTag)
                 return;
             
-            Vector2 input = _movementInputHandler.moveAction.ReadValue<Vector2>();
+            Vector2 input = m_movementInputHandler.moveAction.ReadValue<Vector2>();
             float horizontalInput = input.x;
             float verticalInput = input.y;
             Vector3 movementInput = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(horizontalInput, 0, verticalInput);
             Vector3 movementDirection = movementInput.normalized;
             float speed = walkSpeed;
             
-            if (_movementInputHandler.sprintAction.IsPressed())
+            if (m_movementInputHandler.sprintAction.IsPressed())
             {
                 m_movementMultiplier = 1f;
             }
@@ -133,41 +134,41 @@ namespace Player
                 m_animator.SetBool(IsGrounded, m_groundedPlayer);
             }
             
-            if (m_allowJump && m_groundedPlayer&& _movementInputHandler.jumpAction.IsPressed())
+            if (m_allowJump && m_groundedPlayer&& m_movementInputHandler.jumpAction.IsPressed())
             {
                 m_allowJump = false;
                 m_jumpTimer = 0f;
-                m_animator.SetTrigger(Jump); //disable root-motion in jump animations
+                m_animator.SetTrigger(Jump);
             }
             
-            if (m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash != RunJump &&
-                m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash != ForwardJump)
+            if (m_animator.GetCurrentAnimatorStateInfo(0).tagHash != JumpTag)
             {
                m_playerVelocity.y += gravityIntensity * Time.deltaTime;
-               _characterController.Move(m_playerVelocity * Time.deltaTime); 
+               m_characterController.Move(m_playerVelocity * Time.deltaTime); 
             }
         }
 
         private void OnAnimatorMove() //Animator movement - root movement
         {
             Vector3 velocity = m_animator.deltaPosition;
-            if (m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash == RunJump || 
-                m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash == ForwardJump)
+            if (m_animator.GetCurrentAnimatorStateInfo(0).tagHash == JumpTag)
             {
                 gravityIntensity = m_animator.GetFloat(GravityIntensity);
                 velocity.y += gravityIntensity * Time.deltaTime;
-                print("GRAVITY INTENSITY! " + gravityIntensity);
             }
             else
             {
                 gravityIntensity = -8f;
             }
-            if (m_isAttacking)
-                velocity += transform.forward * attackMovementMultiplier * Time.deltaTime;
-            _characterController.Move(velocity);
+
+            if (m_animator.GetCurrentAnimatorStateInfo(0).tagHash == AttackTag)
+            {
+                velocity += transform.forward * m_animator.GetFloat(AttackMomentum) * Time.deltaTime;
+                velocity.y += gravityIntensity * Time.deltaTime;
+            }
+            
+            m_characterController.Move(velocity);
         }
-        
-        
         
         //Called from animation events
         public void InputStart()

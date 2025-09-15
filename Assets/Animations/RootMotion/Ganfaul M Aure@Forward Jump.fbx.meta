@@ -38,7 +38,7 @@ ModelImporter:
       lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: -0.03
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -102,8 +102,8 @@ ModelImporter:
           serializedVersion: 2
           curve:
           - serializedVersion: 3
-            time: -0.108729266
-            value: 7.3614707
+            time: -0.11750191
+            value: -7.703111
             inSlope: 8.9684105
             outSlope: 8.9684105
             tangentMode: 0
@@ -111,8 +111,8 @@ ModelImporter:
             inWeight: 0
             outWeight: 0.7931146
           - serializedVersion: 3
-            time: 0.355306
-            value: 7.711581
+            time: 0.040722482
+            value: -6.8155966
             inSlope: 15.910712
             outSlope: 15.910712
             tangentMode: 0
@@ -120,8 +120,8 @@ ModelImporter:
             inWeight: 0.33333334
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 0.5018629
-            value: 8.818881
+            time: 0.11407393
+            value: 5.0391865
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -129,8 +129,8 @@ ModelImporter:
             inWeight: 0.33333334
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 0.5425241
-            value: 1.7185085
+            time: 0.5326064
+            value: 3.0988007
             inSlope: -8.404943
             outSlope: -8.404943
             tangentMode: 0
@@ -138,17 +138,8 @@ ModelImporter:
             inWeight: 0.33333334
             outWeight: 0.16865347
           - serializedVersion: 3
-            time: 0.65135473
-            value: -2.8977733
-            inSlope: -18.84816
-            outSlope: -18.84816
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 0.7659464
-            value: -5.8837743
+            time: 0.7681534
+            value: -7.399962
             inSlope: -12.970257
             outSlope: -12.970257
             tangentMode: 0

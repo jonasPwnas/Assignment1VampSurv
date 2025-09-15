@@ -4632,6 +4632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMovement
   walkSpeed: 6
   jumpHeight: 0.2
+  jumpFrequency: 0.3
   gravityIntensity: -8
   rotationSpeed: 10
   attackMovementMultiplier: 2

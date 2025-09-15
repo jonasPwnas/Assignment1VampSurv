@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 54263780bcb21c94e9782011e398bf62
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/Scripts/SpEp_RocketMotion.cs
+  uploadId: 252289

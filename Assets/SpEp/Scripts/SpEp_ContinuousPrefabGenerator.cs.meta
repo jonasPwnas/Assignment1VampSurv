@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: fc54bf69696cbff468f29baba8084538
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/Scripts/SpEp_ContinuousPrefabGenerator.cs
+  uploadId: 252289

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c368bd8c3adda1e45aeed60e188bacc6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/Scripts/SpEp_ExplosiveForce.cs
+  uploadId: 252289

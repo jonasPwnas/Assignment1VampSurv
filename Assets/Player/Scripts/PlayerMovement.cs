@@ -1,5 +1,6 @@
 using System;
 using Input;
+using Tiny;
 using UnityEngine;
 
 namespace Player
@@ -8,7 +9,6 @@ namespace Player
     {
         //Animator parameters
         private static readonly int NormalAttack = Animator.StringToHash("Attack");
-        private static readonly int Attacking = Animator.StringToHash("Attacking");
         private static readonly int Jump = Animator.StringToHash("Jump");
         private static readonly int Speed = Animator.StringToHash("Speed");
         private static readonly int IsGrounded = Animator.StringToHash("isGrounded");
@@ -18,13 +18,12 @@ namespace Player
         private static readonly int JumpTag = Animator.StringToHash("Jump");
 
         //Editor editable
-        [SerializeField] private float walkSpeed = 6f;
-        [SerializeField] private float jumpHeight = 1.5f;
-        [SerializeField] private float jumpFrequency = 0.4f; //in seconds
-        [SerializeField] private float gravityIntensity = -6f;
-        [SerializeField] private float rotationSpeed = 10f;
-        [SerializeField] private float attackMovementMultiplier = 2.0f;
-        [SerializeField] private Camera playerCamera;
+        [Tooltip("The higher the value the higher we jump")] [SerializeField] private float jumpIntensity = 1.5f;
+        [Tooltip("How fast we can jump after landing, in seconds")] [SerializeField] private float jumpFrequency = 0.4f;
+        [Tooltip("Downward force intensity")] [SerializeField] private float gravityIntensity = -6f;
+        [Tooltip("How fast the player rotates")] [SerializeField] private float rotationSpeed = 10f;
+        [Tooltip("The camera used by the player")] [SerializeField] private Camera playerCamera;
+        [SerializeField] Trail trail;
         
         //Privates
         private Animator m_animator;
@@ -35,11 +34,13 @@ namespace Player
         private bool m_allowJump = true;
         private bool m_canAttack = true;
         private bool m_inputWindowOpen;
-        private float m_attackInputFrequency = 0.25f;
         private float m_accumulatedAttackTime;
         private float m_attackTimer;
         private float m_movementMultiplier = 0.5f;
         private float m_jumpTimer;
+        
+        //Read-only
+        private readonly float m_attackInputFrequency = 0.25f;
         
         //Publics
         [HideInInspector] public Vector3 _moveVelocity;
@@ -49,6 +50,7 @@ namespace Player
             m_movementInputHandler = GetComponent<MovementInputHandler>();
             m_characterController = GetComponent<CharacterController>();
             m_animator = GetComponent<Animator>();
+            trail.enabled = false;
         }
         
         void Update()
@@ -83,6 +85,7 @@ namespace Player
                 {
                     m_canAttack = true;
                     m_attackTimer = 0f;
+                    m_animator.ResetTrigger(NormalAttack);
                 }
             }
         }
@@ -99,16 +102,19 @@ namespace Player
                     m_allowJump = true;
                 }
             }
+
+            if (!m_animator.IsInTransition(0))
+            {
+                if(m_animator.GetCurrentAnimatorStateInfo(0).tagHash == AttackTag)
+                    return;
+            }
             
-            if(m_animator.GetCurrentAnimatorStateInfo(0).tagHash == AttackTag)
-                return;
             
             Vector2 input = m_movementInputHandler.moveAction.ReadValue<Vector2>();
             float horizontalInput = input.x;
             float verticalInput = input.y;
             Vector3 movementInput = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(horizontalInput, 0, verticalInput);
             Vector3 movementDirection = movementInput.normalized;
-            float speed = walkSpeed;
             
             if (m_movementInputHandler.sprintAction.IsPressed())
             {
@@ -119,7 +125,7 @@ namespace Player
                 m_movementMultiplier = 0.5f;
             }
             
-            _moveVelocity = movementDirection * (speed * Time.deltaTime);
+            _moveVelocity = movementDirection * Time.deltaTime;
             m_animator.SetFloat(Speed, _moveVelocity.normalized.magnitude * m_movementMultiplier, 0.05f, Time.deltaTime);
             
             if (movementDirection != Vector3.zero)
@@ -146,6 +152,11 @@ namespace Player
                m_playerVelocity.y += gravityIntensity * Time.deltaTime;
                m_characterController.Move(m_playerVelocity * Time.deltaTime); 
             }
+            
+            if (m_animator.GetCurrentAnimatorStateInfo(0).tagHash != AttackTag)
+            {
+                trail.enabled = false;
+            }
         }
 
         private void OnAnimatorMove() //Animator movement - root movement
@@ -165,6 +176,7 @@ namespace Player
             {
                 velocity += transform.forward * m_animator.GetFloat(AttackMomentum) * Time.deltaTime;
                 velocity.y += gravityIntensity * Time.deltaTime;
+                trail.enabled = true;
             }
             
             m_characterController.Move(velocity);

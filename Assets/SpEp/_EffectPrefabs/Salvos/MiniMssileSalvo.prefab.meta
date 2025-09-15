@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f0f93cc1ceabc264ca3a92cb9707ebff
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/_EffectPrefabs/Salvos/MiniMssileSalvo.prefab
+  uploadId: 252289

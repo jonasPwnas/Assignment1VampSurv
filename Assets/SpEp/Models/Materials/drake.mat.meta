@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 9736eaeb232715549b607a0796d60f2a
+timeCreated: 1520259615
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/Models/Materials/drake.mat
+  uploadId: 252289

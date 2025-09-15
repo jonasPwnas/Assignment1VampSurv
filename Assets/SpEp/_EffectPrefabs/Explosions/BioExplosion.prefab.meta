@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bc89b1b49bfadd6459c5939dcee0ab4f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/_EffectPrefabs/Explosions/BioExplosion.prefab
+  uploadId: 252289

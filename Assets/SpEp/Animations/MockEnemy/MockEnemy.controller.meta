@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3b7be7b1a5fc0aa43a329ddfac8bc4aa
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/Animations/MockEnemy/MockEnemy.controller
+  uploadId: 252289

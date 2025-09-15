@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 574a8f0c6ade4a8498fbd0b5530e1853
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/Animations/Lasers/LightningBeam.controller
+  uploadId: 252289

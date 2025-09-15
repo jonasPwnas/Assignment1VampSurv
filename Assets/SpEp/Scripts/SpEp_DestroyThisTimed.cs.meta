@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 817957b62d6328f42a9c43ba278baae1
+timeCreated: 1520263324
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/Scripts/SpEp_DestroyThisTimed.cs
+  uploadId: 252289

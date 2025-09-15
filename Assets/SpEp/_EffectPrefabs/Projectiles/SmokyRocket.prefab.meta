@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 71ff655e26f91a74a84015187b206f6a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/_EffectPrefabs/Projectiles/SmokyRocket.prefab
+  uploadId: 252289

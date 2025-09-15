@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 1bee8ffb3bee1274b86e0ea864097953
+timeCreated: 1520590077
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/_EffectPrefabs/Explosions/flashExplosion.prefab
+  uploadId: 252289

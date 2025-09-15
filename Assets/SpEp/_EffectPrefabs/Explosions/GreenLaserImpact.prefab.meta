@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c62d588ae230aad4d99363251108a059
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/_EffectPrefabs/Explosions/GreenLaserImpact.prefab
+  uploadId: 252289

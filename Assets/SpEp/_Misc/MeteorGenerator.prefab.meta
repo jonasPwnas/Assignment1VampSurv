@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5be596ac4ce172d4e8ad15b60292a18b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/_Misc/MeteorGenerator.prefab
+  uploadId: 252289

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 67ba1f7fa6fd5234d81767f019bdb8d9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/_EffectPrefabs/Explosions/SmokyExplosion.prefab
+  uploadId: 252289

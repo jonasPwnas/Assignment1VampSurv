@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 5d8b2e89be8c61a40b94aa58623cc1fd
+timeCreated: 1520264354
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/Scripts/SpEp_ContinuousRotation.cs
+  uploadId: 252289

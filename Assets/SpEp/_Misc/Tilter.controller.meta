@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8244ece011a5cad43bbbebb9532ae820
+timeCreated: 1520257481
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/_Misc/Tilter.controller
+  uploadId: 252289

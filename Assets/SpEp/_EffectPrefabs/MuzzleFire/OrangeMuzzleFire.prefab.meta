@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d99f1daf10921ca449558555cb85401f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 119338
+  packageName: Sci-fi Spaceship Effect Pack X
+  packageVersion: 1.05
+  assetPath: Assets/SpEp/_EffectPrefabs/MuzzleFire/OrangeMuzzleFire.prefab
+  uploadId: 252289

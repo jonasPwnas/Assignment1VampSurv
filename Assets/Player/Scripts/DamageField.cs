@@ -4,8 +4,25 @@ using UnityEngine;
 
 public class DamageField : MonoBehaviour
 {
+    [SerializeField] private List<Collider> forwardColliders;
+    [SerializeField] private Collider areaCollider;
+    
     private List<GameObject> m_overlappedObjects = new List<GameObject>();
 
+    public void EnableCollider(bool areaDamage)
+    {
+        if (areaDamage)
+        {
+            areaCollider.enabled = true;
+            forwardColliders.ForEach(c => c.enabled = false);
+        }
+        else
+        {
+            areaCollider.enabled = false;
+            forwardColliders.ForEach(c => c.enabled = true);       
+        }
+    }
+    
     public void DealDamage(float damage, Vector3 hitDirection)
     {
         if(m_overlappedObjects.Count < 1)
@@ -19,6 +36,7 @@ public class DamageField : MonoBehaviour
                 healthAndDamage.TakeDamage(damage, hitDirection);
             }
         });
+        m_overlappedObjects.Clear();
     }
     
     private void OnTriggerEnter(Collider other)

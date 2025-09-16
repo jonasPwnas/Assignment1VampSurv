@@ -9,7 +9,9 @@ namespace Enemies
         //Animation parameters
         private static readonly int Move = Animator.StringToHash("Move");
         private static readonly int Attack = Animator.StringToHash("Attack");
-        private static readonly int Died = Animator.StringToHash("Died");
+        private static readonly int isDead = Animator.StringToHash("isDead");
+        private static readonly int Damaged = Animator.StringToHash("Damaged");
+        private static readonly int Reset = Animator.StringToHash("Reset");
 
         //Editor editable
         [SerializeField] private Animator animator;
@@ -17,28 +19,41 @@ namespace Enemies
         [SerializeField] private float rotationSpeed = 10f;
         [SerializeField] private float movementSpeed = 5f;
         [SerializeField] private LayerMask groundLayer;
-        [SerializeField] private float maxDistanceToPlayer = 10f;
         [SerializeField] private float maxHealth = 100f;
+        [SerializeField] private bool rangedAttack;
+        [SerializeField] private float damageMovementIntensity = 2f;
+        [SerializeField] private float damagedMoveSpeed = 25f;
         
         //Privates
         private bool m_canMove;
-        private PlayerMovement m_player;
+        private Transform m_player;
         private float m_health;
-        private float m_damagedMoveSpeed = 25f;
         private bool m_doDamagedMove;
+        private bool m_isDead;
         private Vector3 m_damagedMoveToPosition;
         private SkinnedMeshRenderer m_renderer;
         private float m_gravityIntensity = -8f;
         private float m_fallSpeed = 50f;
         private Vector3 m_targetLocation;
+        private Collider m_collider;
         
         void Start()
         {
-            m_player = FindAnyObjectByType<PlayerMovement>();
-            m_health = maxHealth;
+            m_player = FindAnyObjectByType<PlayerMovement>().transform;
             m_renderer = GetComponentInChildren<SkinnedMeshRenderer>();
+            animator.SetTrigger(Reset);
+            m_collider = GetComponent<Collider>();
+            ResetEnemy();
         }
 
+        private void ResetEnemy()
+        {
+            animator.SetBool(isDead, false);
+            m_health = maxHealth;
+            m_isDead = false;
+            m_collider.enabled = true;
+        }
+        
         void Update()
         {
             m_targetLocation = transform.position;
@@ -57,7 +72,8 @@ namespace Enemies
             
             if (m_doDamagedMove)
             {
-                m_targetLocation = Vector3.MoveTowards(transform.position, m_damagedMoveToPosition, m_damagedMoveSpeed * Time.deltaTime);
+                m_targetLocation = Vector3.MoveTowards(transform.position, m_damagedMoveToPosition, damagedMoveSpeed * Time.deltaTime);
+                transform.position = m_targetLocation;
                 if (Vector3.Distance(transform.position, m_damagedMoveToPosition) < 0.1f)
                 {
                     m_doDamagedMove = false;
@@ -65,10 +81,10 @@ namespace Enemies
                 }
             }
             
-            if (m_health < 0f)
+            if (m_isDead)
                 return;
             
-            float distanceToPlayer = Vector3.Distance(transform.position, m_player.transform.position) + maxDistanceToPlayer;
+            float distanceToPlayer = Vector3.Distance(transform.position, m_player.transform.position);
             
             if (distanceToPlayer >= attackThreshold)
             {
@@ -110,23 +126,31 @@ namespace Enemies
 
         public void DoAttack()
         {
-            //Rotate toward player and shoot projectile
-            print("SLIME tries to attack");
+            if (rangedAttack)
+            {
+                //do ranged attack
+            }
+            else
+            {
+                //do melee attack
+            }
         }
 
         public void TakeDamage(float damage, Vector3 hitDirection)
         {
             m_health -= damage;
-            m_damagedMoveToPosition = hitDirection + transform.position; 
+            m_damagedMoveToPosition = hitDirection * damageMovementIntensity + transform.position;
             m_renderer.material.color = Color.crimson;
             m_doDamagedMove = true;
+            animator.SetTrigger(Damaged);
             
             if (m_health <= 0)
             {
-                animator.SetTrigger(Died);
+                animator.SetBool(isDead, true);
                 m_damagedMoveToPosition = hitDirection + -transform.forward * 10f + transform.position + Vector3.up * 10f;
+                m_collider.enabled = false;
+                m_isDead = true;
             }
-            
         }
 
         public void Heal(float healAmount)

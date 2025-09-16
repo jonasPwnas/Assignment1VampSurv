@@ -1,0 +1,23 @@
+using System;
+using UnityEngine;
+
+public class XpPickup : MonoBehaviour
+{
+    private bool m_pickedUp = false;
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            print( other.name + " PICKED UP XP!!!!");
+            m_pickedUp = true;
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(m_pickedUp)
+            Destroy(gameObject);
+    }
+}

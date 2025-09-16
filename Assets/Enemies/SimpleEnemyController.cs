@@ -24,10 +24,13 @@ namespace Enemies
         private bool m_canMove;
         private PlayerMovement m_player;
         private float m_health;
-        private float m_damagedMoveSpeed = 10f;
+        private float m_damagedMoveSpeed = 25f;
         private bool m_doDamagedMove;
         private Vector3 m_damagedMoveToPosition;
         private SkinnedMeshRenderer m_renderer;
+        private float m_gravityIntensity = -8f;
+        private float m_fallSpeed = 50f;
+        private Vector3 m_targetLocation;
         
         void Start()
         {
@@ -38,6 +41,30 @@ namespace Enemies
 
         void Update()
         {
+            m_targetLocation = transform.position;
+            
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position + Vector3.up * 2f, transform.position + transform.forward + Vector3.down * 500, out hit,
+                    1000f, groundLayer))
+            {
+                if (hit.point.y < transform.position.y)
+                {
+                    m_targetLocation.y += m_gravityIntensity * Time.deltaTime;
+                    Vector3.MoveTowards(transform.position, m_player.transform.position, m_fallSpeed * Time.deltaTime);
+                }
+            }
+            transform.position = m_targetLocation;
+            
+            if (m_doDamagedMove)
+            {
+                m_targetLocation = Vector3.MoveTowards(transform.position, m_damagedMoveToPosition, m_damagedMoveSpeed * Time.deltaTime);
+                if (Vector3.Distance(transform.position, m_damagedMoveToPosition) < 0.1f)
+                {
+                    m_doDamagedMove = false;
+                    m_renderer.material.color = Color.white;
+                }
+            }
+            
             if (m_health < 0f)
                 return;
             
@@ -56,20 +83,10 @@ namespace Enemies
             
             if (m_canMove && !m_doDamagedMove)
             {
-                Vector3 targetLocation = Vector3.MoveTowards(transform.position, m_player.transform.position, movementSpeed * Time.deltaTime);
-                targetLocation.y = Physics.Raycast(transform.position + Vector3.up * 2f, transform.position-Vector3.down*100, 1000f, groundLayer) ? transform.position.y : targetLocation.y;
-                transform.position = targetLocation;
+                m_targetLocation = Vector3.MoveTowards(transform.position, m_player.transform.position, movementSpeed * Time.deltaTime);
             }
-
-            if (m_doDamagedMove)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, m_damagedMoveToPosition, m_damagedMoveSpeed * Time.deltaTime);
-                if (Vector3.Distance(transform.position, m_damagedMoveToPosition) < 0.1f)
-                {
-                    m_doDamagedMove = false;
-                    m_renderer.material.color = Color.white;
-                }
-            }
+            
+            transform.position = m_targetLocation;
             
             RotateTowardPlayer();
         }
@@ -100,15 +117,16 @@ namespace Enemies
         public void TakeDamage(float damage, Vector3 hitDirection)
         {
             m_health -= damage;
-            m_damagedMoveToPosition = hitDirection; 
-            m_doDamagedMove = true;
+            m_damagedMoveToPosition = hitDirection + transform.position; 
             m_renderer.material.color = Color.crimson;
+            m_doDamagedMove = true;
             
             if (m_health <= 0)
             {
                 animator.SetTrigger(Died);
-                print("SLIME WAS and IS DEADER THAN DISCO!");
+                m_damagedMoveToPosition = hitDirection + -transform.forward * 10f + transform.position + Vector3.up * 10f;
             }
+            
         }
 
         public void Heal(float healAmount)

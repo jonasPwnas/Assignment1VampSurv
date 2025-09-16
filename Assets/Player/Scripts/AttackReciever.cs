@@ -18,11 +18,9 @@ public class AttackReciever : MonoBehaviour
                 break;
             case 1:
                 m_attackDirection = transform.right * m_damageMovementIntensity;
-                m_attackDirection = transform.forward * m_damageMovementIntensity;
                 break;
             case 2:
                 m_attackDirection = transform.up * m_damageMovementIntensity;
-                m_attackDirection = transform.forward * m_damageMovementIntensity;
                 break;
         }
         damageField.DealDamage(damage, m_attackDirection);

@@ -180,6 +180,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.4013841
+        functionName: DoAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 46ebe743a61ad8b41b50fffdc276006a, type: 3}
+        floatParameter: 0
+        intParameter: 2
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

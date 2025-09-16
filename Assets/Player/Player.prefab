@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 8493401732348307952}
   - component: {fileID: 4261542562133372650}
   - component: {fileID: 4081770841377166144}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Swordish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,6 +370,81 @@ Transform:
   - {fileID: 6800693411779722583}
   m_Father: {fileID: 5800971344521946015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &933179286792400502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4565330511445262887}
+  - component: {fileID: 7934017756612917366}
+  - component: {fileID: 7911938929505570477}
+  m_Layer: 6
+  m_Name: Colliders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4565330511445262887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933179286792400502}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.96}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7492609579243471252}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7934017756612917366
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933179286792400502}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 255
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.55, y: 2.87, z: 1.33}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &7911938929505570477
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933179286792400502}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 255
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5538743, y: 1.9596398, z: 1.0878813}
+  m_Center: {x: 0, y: 0.13097239, z: -1.04}
 --- !u!1 &1016699462966963546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,6 +1175,79 @@ Transform:
   - {fileID: 2939190948342934754}
   m_Father: {fileID: 3939737056458525943}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3123458974221537196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7492609579243471252}
+  - component: {fileID: 1603725949927124810}
+  - component: {fileID: 1583855414394109073}
+  m_Layer: 7
+  m_Name: DamageField
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7492609579243471252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3123458974221537196}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.743, z: 0.656}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4565330511445262887}
+  m_Father: {fileID: 6786782269607391995}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1603725949927124810
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3123458974221537196}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 255
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1583855414394109073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3123458974221537196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9571bd244fa1804fbc07e1f0f17d545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFIeld
 --- !u!1 &3174382032128329151
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,8 +1610,8 @@ GameObject:
   - component: {fileID: 3921491361808722412}
   - component: {fileID: 4551192468168486062}
   - component: {fileID: 2910350134373054638}
-  - component: {fileID: 8981610072869256480}
-  m_Layer: 0
+  - component: {fileID: 3869856706500325027}
+  m_Layer: 7
   m_Name: PlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1486,6 +1634,7 @@ Transform:
   - {fileID: 4420795339642528582}
   - {fileID: 5304569824974694267}
   - {fileID: 4405090740265312224}
+  - {fileID: 7492609579243471252}
   m_Father: {fileID: 8925482448027082040}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4967685241951226432
@@ -1648,21 +1797,20 @@ MonoBehaviour:
   - m_Rig: {fileID: 2161475265737772578}
     m_Active: 1
   m_Effectors: []
---- !u!114 &8981610072869256480
+--- !u!114 &3869856706500325027
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3867287359964132333}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75d30932b2433154da7d694229505320, type: 3}
+  m_Script: {fileID: 11500000, guid: f8cea52558247e64da0cb238b5f17a0d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TwoBoneTargetMover
-  constraint: {fileID: 0}
-  constraintTarget: {fileID: 0}
-  target: {fileID: 8734539063246105970}
+  m_EditorClassIdentifier: Assembly-CSharp::AttackReciever
+  damage: 75
+  damageField: {fileID: 1583855414394109073}
 --- !u!1 &3927546922913170956
 GameObject:
   m_ObjectHideFlags: 0

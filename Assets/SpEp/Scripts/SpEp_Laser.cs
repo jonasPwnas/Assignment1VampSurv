@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SpEp_Laser : MonoBehaviour {
 
+    [SerializeField] private LayerMask layerMask;
+    
+    
     public GameObject HitEffect;
     public GameObject theoreticalEnd;
     public float HitEffectRate=0.1f;
@@ -45,23 +48,27 @@ public class SpEp_Laser : MonoBehaviour {
         }
 
 
-        if (doEffects&&muzzleFire) Instantiate(muzzleFire, transform.position, transform.parent.transform.rotation); 
+        if (doEffects && muzzleFire)
+        {
+            //Instantiate(muzzleFire, transform.position, transform.parent.transform.rotation);
+        } 
 
             RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, length))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, length, layerMask))
         {
 
-        if (doEffects)
+            if (doEffects)
             {
-            if (doEffects&&HitEffect) Instantiate(HitEffect, hit.point, Quaternion.identity);
-                     
-                if (hit.transform.gameObject.GetComponent<SpEp_Enemy>())
+                if (doEffects&&HitEffect) Instantiate(HitEffect, hit.point, Quaternion.identity);
                 {
-                    hit.transform.gameObject.GetComponent<SpEp_Enemy>().HP -= damage;
-                    hit.transform.gameObject.GetComponent<SpEp_Enemy>().TakingDamage();
+                         
+                    //if (hit.transform.gameObject.GetComponent<SpEp_Enemy>())
+                    //{
+                    //    hit.transform.gameObject.GetComponent<SpEp_Enemy>().HP -= damage;
+                    //    hit.transform.gameObject.GetComponent<SpEp_Enemy>().TakingDamage();
+                    //}
                 }
-
             }
 
             for (int i = 0; i < myLines.Length; i++)

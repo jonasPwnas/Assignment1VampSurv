@@ -5,6 +5,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] HudUpdater hudUpdater;
     [SerializeField] private ProgressionData progressionData;
+    [SerializeField] private DamageIndicator damageIndicator;
     
     
     public float m_currentLevel = 1;
@@ -41,6 +42,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     {
         m_currentHealth -= damage;
         hudUpdater.UpdateHealthBar(m_currentHealth, maxHealth);
+        damageIndicator.PlayDamageEffect();
     }
 
     public void Heal(float healAmount)

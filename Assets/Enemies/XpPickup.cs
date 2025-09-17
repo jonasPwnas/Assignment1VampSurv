@@ -4,6 +4,9 @@ using UnityEngine;
 public class XpPickup : MonoBehaviour
 {
     private bool m_pickedUp = false;
+    private float m_xpValue = 1f;
+    
+    //Add logic to place itself on the ground on spawn/gotten from the pool
     
     private void OnTriggerEnter(Collider other)
     {
@@ -18,7 +21,7 @@ public class XpPickup : MonoBehaviour
     {
         if (m_pickedUp)
         {
-            other.GetComponent<IGainXp>().GainXp(1f);
+            other.GetComponent<IGainXp>().GainXp(m_xpValue);
             Destroy(gameObject);
         }
     }

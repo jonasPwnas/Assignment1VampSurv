@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using Player;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Enemies
 {
@@ -15,7 +17,6 @@ namespace Enemies
 
         //Editor editable
         [SerializeField] private Animator animator;
-        [SerializeField] private float attackThreshold = 15f;
         [SerializeField] private float rotationSpeed = 10f;
         [SerializeField] private float movementSpeed = 5f;
         [SerializeField] private LayerMask groundLayer;
@@ -23,8 +24,12 @@ namespace Enemies
         [SerializeField] private bool rangedAttack;
         [SerializeField] private float damageMovementIntensity = 2f;
         [SerializeField] private float damagedMoveSpeed = 25f;
-        
+        [SerializeField] private float damageToDeal = 1f;
+        [SerializeField] private DamageIndicator damageIndicator;
+        [SerializeField] private GameObject xpDrop; //Have to pool this
+
         //Privates
+        private float m_attackThreshold = 2f;
         private bool m_canMove;
         private Transform m_player;
         private float m_health;
@@ -36,7 +41,8 @@ namespace Enemies
         private float m_fallSpeed = 50f;
         private Vector3 m_targetLocation;
         private Collider m_collider;
-        
+        private bool m_inAttackRange;
+
         void Start()
         {
             m_player = FindAnyObjectByType<PlayerMovement>().transform;
@@ -53,13 +59,14 @@ namespace Enemies
             m_isDead = false;
             m_collider.enabled = true;
         }
-        
+
         void Update()
         {
             m_targetLocation = transform.position;
-            
+
             RaycastHit hit;
-            if (Physics.Raycast(transform.position + Vector3.up * 2f, transform.position + transform.forward + Vector3.down * 500, out hit,
+            if (Physics.Raycast(transform.position + Vector3.up * 2f,
+                    transform.position + transform.forward + Vector3.down * 500, out hit,
                     1000f, groundLayer))
             {
                 if (hit.point.y < transform.position.y)
@@ -68,11 +75,13 @@ namespace Enemies
                     Vector3.MoveTowards(transform.position, m_player.transform.position, m_fallSpeed * Time.deltaTime);
                 }
             }
+
             transform.position = m_targetLocation;
-            
+
             if (m_doDamagedMove)
             {
-                m_targetLocation = Vector3.MoveTowards(transform.position, m_damagedMoveToPosition, damagedMoveSpeed * Time.deltaTime);
+                m_targetLocation = Vector3.MoveTowards(transform.position, m_damagedMoveToPosition,
+                    damagedMoveSpeed * Time.deltaTime);
                 transform.position = m_targetLocation;
                 if (Vector3.Distance(transform.position, m_damagedMoveToPosition) < 0.1f)
                 {
@@ -80,36 +89,41 @@ namespace Enemies
                     m_renderer.material.color = Color.white;
                 }
             }
-            
+
             if (m_isDead)
                 return;
-            
+
             float distanceToPlayer = Vector3.Distance(transform.position, m_player.transform.position);
-            
-            if (distanceToPlayer >= attackThreshold)
+
+            if (distanceToPlayer >= m_attackThreshold)
             {
                 animator.SetBool(Move, true);
                 animator.SetBool(Attack, false);
+                m_inAttackRange = false;
             }
-            else if (distanceToPlayer <= attackThreshold)
+            else if (distanceToPlayer <= m_attackThreshold)
             {
                 animator.SetBool(Move, false);
                 animator.SetBool(Attack, true);
+                EndMove();
+                m_inAttackRange = true;
             }
-            
+
             if (m_canMove && !m_doDamagedMove)
             {
-                m_targetLocation = Vector3.MoveTowards(transform.position, m_player.transform.position, movementSpeed * Time.deltaTime);
+                m_targetLocation = Vector3.MoveTowards(transform.position, m_player.transform.position,
+                    movementSpeed * Time.deltaTime);
             }
-            
+
             transform.position = m_targetLocation;
-            
+
             RotateTowardPlayer();
         }
 
         private void RotateTowardPlayer()
         {
-            Quaternion targetRotation = Quaternion.LookRotation(m_player.transform.position - transform.position, Vector3.up);
+            Quaternion targetRotation =
+                Quaternion.LookRotation(m_player.transform.position - transform.position, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
@@ -126,36 +140,58 @@ namespace Enemies
 
         public void DoAttack()
         {
-            if (rangedAttack)
+            if (m_inAttackRange)
             {
-                //do ranged attack
-            }
-            else
-            {
-                //do melee attack
+                m_player.GetComponent<IHealthAndDamage>().TakeDamage(damageToDeal, transform.position);
             }
         }
 
         public void TakeDamage(float damage, Vector3 hitDirection)
         {
+            damageIndicator.PlayDamageEffect();
             m_health -= damage;
             m_damagedMoveToPosition = hitDirection * damageMovementIntensity + transform.position;
             m_renderer.material.color = Color.crimson;
             m_doDamagedMove = true;
             animator.SetTrigger(Damaged);
-            
+
             if (m_health <= 0)
             {
-                animator.SetBool(isDead, true);
                 m_damagedMoveToPosition = hitDirection + -transform.forward * 10f + transform.position + Vector3.up * 10f;
-                m_collider.enabled = false;
-                m_isDead = true;
+                OnDeath();
+            }
+        }
+
+        private void OnDeath()
+        {
+            animator.SetBool(isDead, true);
+            m_collider.enabled = false;
+            m_isDead = true;
+            StartCoroutine(AlphaLerp(0f, 1f, 0.7f));
+
+            if (Random.Range(0f, 1f) < 0.14f)
+            {
+                Instantiate(xpDrop, transform.position, Quaternion.identity);
             }
         }
 
         public void Heal(float healAmount)
         {
             //Does not heal
+        }
+        
+        IEnumerator AlphaLerp(float startValue, float endValue, float duration) //ÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖ
+        {
+            for (float t = 0f; t < duration; t += Time.deltaTime)
+            {
+                Color lerpColor = m_renderer.material.color;
+                lerpColor.a = Mathf.Lerp(startValue, endValue, t / duration);
+                m_renderer.material.color = lerpColor;
+                print("LERPING!!!");
+                yield return new WaitForEndOfFrame();
+            }
+            print("Did the COOL lerp");
+            yield return null;
         }
     }
 }

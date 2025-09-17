@@ -12,8 +12,9 @@ public class XpPickup : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            print( other.name + " PICKED UP XP!!!!");
             m_pickedUp = true;
+            other.GetComponent<IGainXp>().GainXp(m_xpValue);
+            Destroy(gameObject);
         }
     }
 
@@ -21,8 +22,7 @@ public class XpPickup : MonoBehaviour
     {
         if (m_pickedUp)
         {
-            other.GetComponent<IGainXp>().GainXp(m_xpValue);
-            Destroy(gameObject);
+            
         }
     }
 }

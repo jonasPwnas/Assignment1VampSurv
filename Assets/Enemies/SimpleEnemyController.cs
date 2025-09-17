@@ -42,6 +42,8 @@ namespace Enemies
         private Vector3 m_targetLocation;
         private Collider m_collider;
         private bool m_inAttackRange;
+        
+        private Rigidbody m_rigidbody; //testing
 
         void Start()
         {
@@ -155,7 +157,7 @@ namespace Enemies
             m_doDamagedMove = true;
             animator.SetTrigger(Damaged);
 
-            if (m_health <= 0)
+            if (!m_isDead && m_health <= 0)
             {
                 m_damagedMoveToPosition = hitDirection + -transform.forward * 10f + transform.position + Vector3.up * 10f;
                 OnDeath();
@@ -167,12 +169,7 @@ namespace Enemies
             animator.SetBool(isDead, true);
             m_collider.enabled = false;
             m_isDead = true;
-            StartCoroutine(AlphaLerp(0f, 1f, 0.7f));
-
-            if (Random.Range(0f, 1f) < 0.14f)
-            {
-                Instantiate(xpDrop, transform.position, Quaternion.identity);
-            }
+            StartCoroutine(BlinkMesh(false, 2f, 0.12f));
         }
 
         public void Heal(float healAmount)
@@ -180,17 +177,20 @@ namespace Enemies
             //Does not heal
         }
         
-        IEnumerator AlphaLerp(float startValue, float endValue, float duration) //ÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖ
+        IEnumerator BlinkMesh(bool endValue, float duration, float blinkTime)
         {
-            for (float t = 0f; t < duration; t += Time.deltaTime)
+            bool isEnabled = false;
+            for (float t = 0f; t < duration; t += blinkTime)
             {
-                Color lerpColor = m_renderer.material.color;
-                lerpColor.a = Mathf.Lerp(startValue, endValue, t / duration);
-                m_renderer.material.color = lerpColor;
-                print("LERPING!!!");
-                yield return new WaitForEndOfFrame();
+                m_renderer.enabled = isEnabled;
+                yield return new WaitForSeconds(blinkTime);
+                isEnabled = !isEnabled;
             }
-            print("Did the COOL lerp");
+            m_renderer.enabled = endValue; //Set end value
+            if (Random.Range(0f, 1f) < 0.14f) //Randomly spawn XP drop
+            {
+                Instantiate(xpDrop, transform.position, Quaternion.identity);
+            }
             yield return null;
         }
     }

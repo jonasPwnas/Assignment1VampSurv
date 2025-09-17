@@ -184,13 +184,11 @@ namespace Player
         //Called from animation events
         public void InputStart()
         {
-            print("InputStart called from animation event");
             m_inputWindowOpen = true;
         }
         
         public void InputEnd()
         {
-            print("InputEnd called from animation event");
             m_inputWindowOpen = false;
         }
     }

@@ -6,6 +6,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     [SerializeField] HudUpdater hudUpdater;
     [SerializeField] private ProgressionData progressionData;
     [SerializeField] private DamageIndicator damageIndicator;
+    [SerializeField] private DamageIndicator xpIndicator;
     
     
     public float m_currentLevel = 1;
@@ -23,6 +24,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     {
         m_currentXp += xp;
         m_currentMaxXp = progressionData.GetXpForLevel(m_currentLevel);
+        xpIndicator.PlayDamageEffect();
 
         if (m_currentXp >= m_currentMaxXp)
         {
@@ -35,6 +37,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
         else
         {
             hudUpdater.UpdateXpBar(m_currentXp, m_currentMaxXp, m_currentLevel);
+            //Blaaaaaaaablablabla
         }
     }
 

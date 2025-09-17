@@ -12,12 +12,14 @@ public class XpPickup : MonoBehaviour
             print( other.name + " PICKED UP XP!!!!");
             m_pickedUp = true;
         }
-        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(m_pickedUp)
+        if (m_pickedUp)
+        {
+            other.GetComponent<IGainXp>().GainXp(1f);
             Destroy(gameObject);
+        }
     }
 }

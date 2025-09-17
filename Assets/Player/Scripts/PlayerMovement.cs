@@ -18,7 +18,6 @@ namespace Player
         private static readonly int JumpTag = Animator.StringToHash("Jump");
 
         //Editor editable
-        [Tooltip("The higher the value the higher we jump")] [SerializeField] private float jumpIntensity = 1.5f;
         [Tooltip("How fast we can jump after landing, in seconds")] [SerializeField] private float jumpFrequency = 0.4f;
         [Tooltip("Downward force intensity")] [SerializeField] private float gravityIntensity = -6f;
         [Tooltip("How fast the player rotates")] [SerializeField] private float rotationSpeed = 10f;

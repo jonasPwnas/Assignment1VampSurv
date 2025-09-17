@@ -9,7 +9,6 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     
     public float m_currentLevel = 1;
     private float m_currentHealth;
-    private float m_tempXp;
     private float m_currentXp;
     private float m_currentMaxXp;
     
@@ -21,21 +20,21 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     
     public void GainXp(float xp)
     {
-        m_tempXp = 0f;
-        m_currentMaxXp = progressionData.GetXpForLevel(m_currentLevel);
-        m_tempXp += m_currentXp + xp;
         m_currentXp += xp;
-        
-        if (m_tempXp > m_currentMaxXp)
+        m_currentMaxXp = progressionData.GetXpForLevel(m_currentLevel);
+
+        if (m_currentXp >= m_currentMaxXp)
         {
-            m_tempXp =- m_currentMaxXp;
+            m_currentXp -= m_currentMaxXp;
+            m_currentLevel++; //DING DING DING
+            m_currentMaxXp = progressionData.GetXpForLevel(m_currentLevel);
             hudUpdater.UpdateXpBar(m_currentXp, m_currentMaxXp, m_currentLevel);
-            m_currentXp = 0f;
-            m_currentLevel += 1f;
-            GainXp(m_tempXp);
-            return;
+            m_currentXp = 0;
         }
-        hudUpdater.UpdateXpBar(m_currentXp, m_currentMaxXp, m_currentLevel);
+        else
+        {
+            hudUpdater.UpdateXpBar(m_currentXp, m_currentMaxXp, m_currentLevel);
+        }
     }
 
     public void TakeDamage(float damage, Vector3 hitDirection)

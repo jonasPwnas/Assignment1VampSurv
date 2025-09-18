@@ -149,7 +149,7 @@ namespace Enemies
             m_canMove = true;
         }
 
-        public void EndMove()
+        public void EndMove() //Don't listen to rider, this has to be public
         {
             m_canMove = false;
         }

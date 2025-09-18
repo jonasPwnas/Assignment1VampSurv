@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using Player;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
 namespace Enemies
@@ -19,28 +21,32 @@ namespace Enemies
         [SerializeField] private Animator animator;
         [SerializeField] private float rotationSpeed = 10f;
         [SerializeField] private float movementSpeed = 5f;
-        [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private LayerMask traceMask;
+        [SerializeField] private LayerMask deadMask;
         [SerializeField] private float maxHealth = 100f;
         [SerializeField] private bool rangedAttack;
-        [SerializeField] private float damageMovementIntensity = 2f;
         [SerializeField] private float damagedMoveSpeed = 25f;
         [SerializeField] private float damageToDeal = 1f;
         [SerializeField] private DamageIndicator damageIndicator;
         [SerializeField] private GameObject xpDrop; //Have to pool this
 
         //Privates
-        private float m_attackThreshold = 2f;
-        private bool m_canMove;
+        private SkinnedMeshRenderer m_renderer;
+        private RigidbodyConstraints m_constraints;
         private Transform m_player;
+        private Collider m_collider;
+        private Quaternion m_targetRotation;
+        private Vector3 m_damagedMoveToPosition;
+        private Vector3 m_targetPosition;
+        private float m_damageMovementIntensity = 20f;
+        private float m_attackThreshold = 3f;
+        private bool m_canMove;
         private float m_health;
         private bool m_doDamagedMove;
         private bool m_isDead;
-        private Vector3 m_damagedMoveToPosition;
-        private SkinnedMeshRenderer m_renderer;
         private float m_gravityIntensity = -8f;
         private float m_fallSpeed = 50f;
-        private Vector3 m_targetLocation;
-        private Collider m_collider;
+        private float startY;
         private bool m_inAttackRange;
         
         private Rigidbody m_rigidbody; //testing
@@ -51,6 +57,9 @@ namespace Enemies
             m_renderer = GetComponentInChildren<SkinnedMeshRenderer>();
             animator.SetTrigger(Reset);
             m_collider = GetComponent<Collider>();
+            m_rigidbody = GetComponent<Rigidbody>();
+            m_constraints = m_rigidbody.constraints;
+            startY = transform.position.y;
             ResetEnemy();
         }
 
@@ -62,33 +71,30 @@ namespace Enemies
             m_collider.enabled = true;
         }
 
-        void Update()
+        void FixedUpdate()
         {
-            m_targetLocation = transform.position;
-
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position + Vector3.up * 2f,
-                    transform.position + transform.forward + Vector3.down * 500, out hit,
-                    1000f, groundLayer))
-            {
-                if (hit.point.y < transform.position.y)
-                {
-                    m_targetLocation.y += m_gravityIntensity * Time.deltaTime;
-                    Vector3.MoveTowards(transform.position, m_player.transform.position, m_fallSpeed * Time.deltaTime);
-                }
-            }
-
-            transform.position = m_targetLocation;
+            m_targetPosition = transform.position;
+            
+            //USING RIGIDBODY INSTEAD FOR NOW!!!
+            //transform.position = m_targetLocation;
 
             if (m_doDamagedMove)
             {
-                m_targetLocation = Vector3.MoveTowards(transform.position, m_damagedMoveToPosition,
+                m_rigidbody.constraints = RigidbodyConstraints.None;
+                
+                m_targetPosition = Vector3.MoveTowards(transform.position, m_damagedMoveToPosition,
                     damagedMoveSpeed * Time.deltaTime);
-                transform.position = m_targetLocation;
-                if (Vector3.Distance(transform.position, m_damagedMoveToPosition) < 0.1f)
+                //transform.position = m_targetPosition;
+                if (Vector3.Distance(transform.position, m_damagedMoveToPosition) < 1f)
                 {
                     m_doDamagedMove = false;
                     m_renderer.material.color = Color.white;
+                    m_rigidbody.constraints = m_constraints;
+                    if (transform.position.y > startY)
+                    {
+                        Vector3 resetHeight = new Vector3(transform.position.x, startY, transform.position.z);
+                        transform.position = resetHeight;
+                    }
                 }
             }
 
@@ -113,21 +119,28 @@ namespace Enemies
 
             if (m_canMove && !m_doDamagedMove)
             {
-                m_targetLocation = Vector3.MoveTowards(transform.position, m_player.transform.position,
-                    movementSpeed * Time.deltaTime);
+                m_targetPosition = Vector3.MoveTowards(transform.position, m_player.transform.position,movementSpeed * Time.deltaTime);
             }
-
-            transform.position = m_targetLocation;
-
+            
             RotateTowardPlayer();
+            
+            if (m_canMove || m_doDamagedMove)
+            {
+                m_rigidbody.MovePosition(m_targetPosition);
+            }
+            m_rigidbody.MoveRotation(m_targetRotation.normalized);
         }
 
         private void RotateTowardPlayer()
         {
-            Quaternion targetRotation =
-                Quaternion.LookRotation(m_player.transform.position - transform.position, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            m_targetRotation = Quaternion.LookRotation(m_player.transform.position - transform.position, Vector3.up);
         }
+
+        private void LateUpdate()
+        {
+            m_rigidbody.linearVelocity = Vector3.zero;
+        }
+
 
         //Called from move animation events
         public void StartMove()
@@ -152,7 +165,7 @@ namespace Enemies
         {
             damageIndicator.PlayDamageEffect();
             m_health -= damage;
-            m_damagedMoveToPosition = hitDirection * damageMovementIntensity + transform.position;
+            m_damagedMoveToPosition = hitDirection * m_damageMovementIntensity + transform.position;
             m_renderer.material.color = Color.crimson;
             m_doDamagedMove = true;
             animator.SetTrigger(Damaged);
@@ -167,7 +180,7 @@ namespace Enemies
         private void OnDeath()
         {
             animator.SetBool(isDead, true);
-            m_collider.enabled = false;
+            //m_collider.includeLayers
             m_isDead = true;
             StartCoroutine(BlinkMesh(false, 2f, 0.12f));
         }
@@ -189,6 +202,8 @@ namespace Enemies
             m_renderer.enabled = endValue; //Set end value
             if (Random.Range(0f, 1f) < 0.14f) //Randomly spawn XP drop
             {
+                Vector3 resetHeight = new Vector3(transform.position.x, startY, transform.position.z);
+                transform.position = resetHeight;
                 Instantiate(xpDrop, transform.position, Quaternion.identity);
             }
             yield return null;

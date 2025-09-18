@@ -43,7 +43,8 @@ GameObject:
   - component: {fileID: 7664521889302470036}
   - component: {fileID: 540483505158707526}
   - component: {fileID: 7455817545353489160}
-  - component: {fileID: 728073827523293221}
+  - component: {fileID: 4145264513000001523}
+  - component: {fileID: 4539864084918867401}
   m_Layer: 8
   m_Name: Ghost_Enemy
   m_TagString: Untagged
@@ -61,8 +62,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.98093575, z: -0, w: -0.19433218}
   m_LocalPosition: {x: 0.18450001, y: -0.0412, z: 0.25910005}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 90, y: 90, z: 90}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5709416151412794279}
   - {fileID: 5886116592465698764}
@@ -82,13 +83,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.SimpleEnemyController
   animator: {fileID: 7455817545353489160}
   rotationSpeed: 6
-  movementSpeed: 3.5
-  groundLayer:
+  movementSpeed: 4
+  traceMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
+  deadMask:
+    serializedVersion: 2
+    m_Bits: 0
   maxHealth: 3
   rangedAttack: 0
-  damageMovementIntensity: 2
   damagedMoveSpeed: 50
   damageToDeal: 1
   damageIndicator: {fileID: 7850863851883014284}
@@ -115,8 +118,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!135 &728073827523293221
-SphereCollider:
+--- !u!54 &4145264513000001523
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493443656972554806}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 257
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 84
+  m_CollisionDetection: 0
+--- !u!136 &4539864084918867401
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -133,9 +163,11 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.01
-  m_Center: {x: 0, y: 0.01, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.014
+  m_Height: 0.028
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.0145, z: 0}
 --- !u!1 &1956976847111949868
 GameObject:
   m_ObjectHideFlags: 0

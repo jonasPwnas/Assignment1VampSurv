@@ -5,37 +5,26 @@ using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-    [SerializeField]
-    private float _mouseSensitivity = 3.0f;
+    [SerializeField] private float _mouseSensitivity = 3.0f;
 
     private float _rotationY;
     private float _rotationX;
 
-    [SerializeField]
-    private PlayerMovement _player;
+    [SerializeField] private PlayerMovement _player;
 
-    [SerializeField]
-    private float _stationaryDistanceFromTarget = 6.0f;
-    [SerializeField]
-    private float _movingDistanceFromTarget = 8.5f;
-    [SerializeField]
-    private float _heightOffset = 1f;
+    [SerializeField] private float _stationaryDistanceFromTarget = 6.0f;
+    [SerializeField] private float _movingDistanceFromTarget = 8.5f;
+    [SerializeField] private float _heightOffset = 1f;
     
     private Vector3 _currentRotation;
     private Vector3 _smoothVelocity = Vector3.zero;
     private float distanceToTarget;
     private float targetDistanceToTarget;
-    private float nollan;
-    
+    private float nollan; //???
 
-    [SerializeField]
-    private float _distanceSmoothTime = 0.2f;
-
-    [SerializeField]
-    private Vector2 _rotationXMinMax = new Vector2(-20, 40);
-    
-    [SerializeField]
-    AnimationCurve _smoothCurve;
+    [SerializeField] private float _distanceSmoothTime = 0.2f;
+    [SerializeField] private Vector2 _rotationXMinMax = new Vector2(-20, 40);
+    [SerializeField] ScriptableFloatCurve _smoothCurve;
     
     private CameraInputHandler  _cameraInputHandler;
 
@@ -56,7 +45,7 @@ public class ThirdPersonCamera : MonoBehaviour
         // Apply clamping for x rotation 
         _rotationX = Mathf.Clamp(_rotationX, _rotationXMinMax.x, _rotationXMinMax.y);
         
-        float evaluatedSmoothCurve = _smoothCurve.Evaluate(_cameraInputHandler.lookAction.ReadValue<Vector2>().magnitude);
+        float evaluatedSmoothCurve = _smoothCurve.floatCurve.Evaluate(_cameraInputHandler.lookAction.ReadValue<Vector2>().magnitude);
         
         Vector3 nextRotation = new Vector3(_rotationX, _rotationY);
 

@@ -849,6 +849,7 @@ GameObject:
   - component: {fileID: 7675114222429741416}
   - component: {fileID: 8871552772931839782}
   - component: {fileID: 2671770043463307033}
+  - component: {fileID: 3385800615029853854}
   m_Layer: 8
   m_Name: Bat_Enemy
   m_TagString: Untagged
@@ -864,10 +865,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5476329861681011025}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.99960923, z: -0, w: 0.027955435}
+  m_LocalRotation: {x: 0, y: 0.9996091, z: 0, w: 0.027956583}
   m_LocalPosition: {x: 0.0846, y: -0.0618, z: 0.2655}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 90, y: 90, z: 90}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8057175298583776538}
   - {fileID: 4555291137600098875}
@@ -888,12 +889,14 @@ MonoBehaviour:
   animator: {fileID: 8871552772931839782}
   rotationSpeed: 10
   movementSpeed: 5
-  groundLayer:
+  traceMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
+  deadMask:
+    serializedVersion: 2
+    m_Bits: 0
   maxHealth: 1
   rangedAttack: 0
-  damageMovementIntensity: 5
   damagedMoveSpeed: 50
   damageToDeal: 1
   damageIndicator: {fileID: 4143429995765876959}
@@ -939,10 +942,37 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.005
+  m_Radius: 0.013
   m_Height: 0.05
   m_Direction: 1
   m_Center: {x: 0, y: 0.025, z: 0}
+--- !u!54 &3385800615029853854
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476329861681011025}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 257
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 84
+  m_CollisionDetection: 0
 --- !u!1 &5945503018895411329
 GameObject:
   m_ObjectHideFlags: 0

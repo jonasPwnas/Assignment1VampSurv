@@ -13,9 +13,10 @@ namespace Enemies
         //Animation parameters
         private static readonly int Move = Animator.StringToHash("Move");
         private static readonly int Attack = Animator.StringToHash("Attack");
-        private static readonly int isDead = Animator.StringToHash("isDead");
+        private static readonly int IsDead = Animator.StringToHash("isDead");
         private static readonly int Damaged = Animator.StringToHash("Damaged");
         private static readonly int Reset = Animator.StringToHash("Reset");
+        private static readonly int VariSpeed = Animator.StringToHash("VariSpeed");
 
         //Editor editable
         [SerializeField] private Animator animator;
@@ -48,8 +49,7 @@ namespace Enemies
         private float m_fallSpeed = 50f;
         private float startY;
         private bool m_inAttackRange;
-        
-        private Rigidbody m_rigidbody; //testing
+        private Rigidbody m_rigidbody;
 
         void Start()
         {
@@ -60,12 +60,13 @@ namespace Enemies
             m_rigidbody = GetComponent<Rigidbody>();
             m_constraints = m_rigidbody.constraints;
             startY = transform.position.y;
+            animator.SetFloat(VariSpeed, Random.Range(0.8f, 1.2f)); //small variations in movement anim speed to get less synced movements
             ResetEnemy();
         }
 
         private void ResetEnemy()
         {
-            animator.SetBool(isDead, false);
+            animator.SetBool(IsDead, false);
             m_health = maxHealth;
             m_isDead = false;
             m_collider.enabled = true;
@@ -179,7 +180,7 @@ namespace Enemies
 
         private void OnDeath()
         {
-            animator.SetBool(isDead, true);
+            animator.SetBool(IsDead, true);
             //m_collider.includeLayers
             m_isDead = true;
             StartCoroutine(BlinkMesh(false, 2f, 0.12f));

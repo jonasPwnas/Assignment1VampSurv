@@ -11,7 +11,7 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] private float movingDistanceFromTarget = 8.5f;
     [SerializeField] private float heightOffset = 1f;
     [SerializeField] private float distanceSmoothTime = 0.2f;
-    [SerializeField] private Vector2 rotationXMinMax = new Vector2(-20, 40);
+    [SerializeField] private Vector2 rotationXMinMax = new Vector2(-7, 40);
     [SerializeField] ScriptableFloatCurve smoothCurve;
 
     private float m_rotationY;

@@ -771,14 +771,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8fe9690f072c64d8c0f0eee85eeb42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThirdPersonCamera
-  _mouseSensitivity: 0.3
-  _player: {fileID: 5764792242526140126}
-  _stationaryDistanceFromTarget: 4.7
-  _movingDistanceFromTarget: 5.8
-  _heightOffset: 1.6
-  _distanceSmoothTime: 0.35
-  _rotationXMinMax: {x: -14, y: 40}
-  _smoothCurve: {fileID: 11400000, guid: 7819c40bd067fe44abc41cf8957f48bc, type: 2}
+  mouseSensitivity: 0.55
+  player: {fileID: 5764792242526140126}
+  stationaryDistanceFromTarget: 5
+  movingDistanceFromTarget: 6.5
+  heightOffset: 1
+  distanceSmoothTime: 0.2
+  rotationXMinMax: {x: -20, y: 40}
+  smoothCurve: {fileID: 11400000, guid: 7819c40bd067fe44abc41cf8957f48bc, type: 2}
 --- !u!4 &5294785675819695514
 Transform:
   m_ObjectHideFlags: 0

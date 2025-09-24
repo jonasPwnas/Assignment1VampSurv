@@ -25,7 +25,6 @@ namespace Enemies
         [SerializeField] private LayerMask traceMask;
         [SerializeField] private LayerMask deadMask;
         [SerializeField] private float maxHealth = 100f;
-        [SerializeField] private bool rangedAttack;
         [SerializeField] private float damagedMoveSpeed = 25f;
         [SerializeField] private float damageToDeal = 1f;
         [SerializeField] private DamageIndicator damageIndicator;
@@ -40,7 +39,7 @@ namespace Enemies
         private Vector3 m_damagedMoveToPosition;
         private Vector3 m_targetPosition;
         private float m_damageMovementIntensity = 20f;
-        private float m_attackThreshold = 3f;
+        private float m_attackThreshold = 4.5f;
         private bool m_canMove;
         private float m_health;
         private bool m_doDamagedMove;

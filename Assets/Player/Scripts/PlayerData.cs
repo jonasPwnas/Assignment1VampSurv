@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
@@ -8,16 +9,17 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     [SerializeField] private DamageIndicator damageIndicator;
     [SerializeField] private DamageIndicator xpIndicator;
     
-    
     public float m_currentLevel = 1;
     private float m_currentHealth;
     private float m_currentXp;
     private float m_currentMaxXp;
+    private float m_currentTime = 0f;
     
     void Start()
     {
         m_currentHealth = maxHealth;
         hudUpdater.UpdateHealthBar(m_currentHealth, maxHealth);
+        StartCoroutine(UpdateTimeEverySecond());
     }
     
     public void GainXp(float xp)
@@ -52,5 +54,13 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     {
         m_currentHealth += healAmount;
         hudUpdater.UpdateHealthBar(m_currentHealth, maxHealth);
+    }
+    
+    IEnumerator UpdateTimeEverySecond()
+    {
+        yield return new WaitForSeconds(1f);
+        m_currentTime++;
+        hudUpdater.DisplayNewTime(m_currentTime);
+        StartCoroutine(UpdateTimeEverySecond());
     }
 }

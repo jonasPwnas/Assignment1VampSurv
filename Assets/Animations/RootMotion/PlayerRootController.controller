@@ -868,13 +868,13 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: c4d8f6a6c48698449ad663425fdda1d4, type: 3}
   m_Tag: Attack
-  m_SpeedParameter: 
+  m_SpeedParameter: PlayRate
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 

@@ -39,7 +39,6 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
         else
         {
             hudUpdater.UpdateXpBar(m_currentXp, m_currentMaxXp, m_currentLevel);
-            //Blaaaaaaaablablabla
         }
     }
 

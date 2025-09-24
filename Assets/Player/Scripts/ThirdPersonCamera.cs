@@ -5,68 +5,63 @@ using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-    [SerializeField] private float _mouseSensitivity = 3.0f;
+    [SerializeField] private float mouseSensitivity = 3.0f;
+    [SerializeField] private PlayerMovement player;
+    [SerializeField] private float stationaryDistanceFromTarget = 6.0f;
+    [SerializeField] private float movingDistanceFromTarget = 8.5f;
+    [SerializeField] private float heightOffset = 1f;
+    [SerializeField] private float distanceSmoothTime = 0.2f;
+    [SerializeField] private Vector2 rotationXMinMax = new Vector2(-20, 40);
+    [SerializeField] ScriptableFloatCurve smoothCurve;
 
-    private float _rotationY;
-    private float _rotationX;
-
-    [SerializeField] private PlayerMovement _player;
-
-    [SerializeField] private float _stationaryDistanceFromTarget = 6.0f;
-    [SerializeField] private float _movingDistanceFromTarget = 8.5f;
-    [SerializeField] private float _heightOffset = 1f;
-    
-    private Vector3 _currentRotation;
-    private Vector3 _smoothVelocity = Vector3.zero;
-    private float distanceToTarget;
-    private float targetDistanceToTarget;
-    private float nollan; //???
-
-    [SerializeField] private float _distanceSmoothTime = 0.2f;
-    [SerializeField] private Vector2 _rotationXMinMax = new Vector2(-20, 40);
-    [SerializeField] ScriptableFloatCurve _smoothCurve;
-    
-    private CameraInputHandler  _cameraInputHandler;
+    private float m_rotationY;
+    private float m_rotationX;
+    private Vector3 m_currentRotation;
+    private Vector3 m_smoothVelocity = Vector3.zero;
+    private float m_distanceToTarget;
+    private float m_targetDistanceToTarget;
+    private float m_nollan; //???
+    private CameraInputHandler  m_cameraInputHandler;
 
     private void Start()
     {
-        _cameraInputHandler = GetComponent<CameraInputHandler>();
+        m_cameraInputHandler = GetComponent<CameraInputHandler>();
         Cursor.visible = false;
     }
 
     void Update()
     {
-        float mouseX = _cameraInputHandler.lookAction.ReadValue<Vector2>().x * _mouseSensitivity;
-        float mouseY = _cameraInputHandler.lookAction.ReadValue<Vector2>().y * _mouseSensitivity * -1f;
+        float mouseX = m_cameraInputHandler.lookAction.ReadValue<Vector2>().x * mouseSensitivity;
+        float mouseY = m_cameraInputHandler.lookAction.ReadValue<Vector2>().y * mouseSensitivity * -1f;
 
-        _rotationY += mouseX;
-        _rotationX += mouseY;
+        m_rotationY += mouseX;
+        m_rotationX += mouseY;
 
         // Apply clamping for x rotation 
-        _rotationX = Mathf.Clamp(_rotationX, _rotationXMinMax.x, _rotationXMinMax.y);
+        m_rotationX = Mathf.Clamp(m_rotationX, rotationXMinMax.x, rotationXMinMax.y);
         
-        float evaluatedSmoothCurve = _smoothCurve.floatCurve.Evaluate(_cameraInputHandler.lookAction.ReadValue<Vector2>().magnitude);
+        float evaluatedSmoothCurve = smoothCurve.floatCurve.Evaluate(m_cameraInputHandler.lookAction.ReadValue<Vector2>().magnitude);
         
-        Vector3 nextRotation = new Vector3(_rotationX, _rotationY);
+        Vector3 nextRotation = new Vector3(m_rotationX, m_rotationY);
 
         // Apply damping between rotation changes
-        _currentRotation = Vector3.SmoothDamp(_currentRotation, nextRotation, ref _smoothVelocity, evaluatedSmoothCurve);
+        m_currentRotation = Vector3.SmoothDamp(m_currentRotation, nextRotation, ref m_smoothVelocity, evaluatedSmoothCurve);
       
-        transform.localEulerAngles = _currentRotation;
-        float distanceMoveVelocity = _player._moveVelocity.normalized.magnitude;
+        transform.localEulerAngles = m_currentRotation;
+        float distanceMoveVelocity = player._moveVelocity.normalized.magnitude;
         
         if (distanceMoveVelocity > 0.01f)
         {
-            targetDistanceToTarget = _movingDistanceFromTarget;
+            m_targetDistanceToTarget = movingDistanceFromTarget;
         }
         else
         {
-            targetDistanceToTarget = _stationaryDistanceFromTarget;
+            m_targetDistanceToTarget = stationaryDistanceFromTarget;
         }
         
-        distanceToTarget = Mathf.SmoothDamp(distanceToTarget, targetDistanceToTarget, ref nollan, _distanceSmoothTime);
+        m_distanceToTarget = Mathf.SmoothDamp(m_distanceToTarget, m_targetDistanceToTarget, ref m_nollan, distanceSmoothTime);
         
         // Subtract the forward vector of the GameObject to point its forward vector to the target
-        transform.position = _player.transform.position - transform.forward * distanceToTarget + transform.up * _heightOffset; //Stuttering comes from this FIX IT!!!!
+        transform.position = player.transform.position - transform.forward * m_distanceToTarget + transform.up * heightOffset; //Stuttering comes from this FIX IT!!!!
     }
 }

@@ -201,7 +201,7 @@ namespace Enemies
                 isEnabled = !isEnabled;
             }
             m_renderer.enabled = endValue; //Set end value
-            if (Random.Range(0f, 1f) < 0.14f) //Randomly spawn XP drop
+            if (Random.Range(0f, 1f) < 0.33f) //Randomly spawn XP drop
             {
                 Vector3 resetHeight = new Vector3(transform.position.x, startY, transform.position.z);
                 transform.position = resetHeight;

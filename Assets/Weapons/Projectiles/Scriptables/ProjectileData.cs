@@ -3,10 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Projectile Data", menuName = "Scriptable Objects/Projectile data")]
 public class ProjectileData : ScriptableObject
 {
-    public enum SpawnLocation{OnTheGround, MiddleOfPlayer, AbovePlayer, SkyHigh}
     public enum ProjectileTargeting {None, ClosestEnemy}
     public enum ProjectileMovement {Forward, Downward}
     
+    [Header("Projectile Settings")]
     [Tooltip("Time between spawn and movement starts, in seconds")]
     [SerializeField] public float launchTime = 1f;
     
@@ -19,8 +19,14 @@ public class ProjectileData : ScriptableObject
     [Tooltip("Radius of the impact made when colliding with something")]
     [SerializeField] public float impactRadius = 1f;
     
-    [Tooltip("Where is the projectile spawned")]
-    [SerializeField] public SpawnLocation spawnLocation = SpawnLocation.MiddleOfPlayer;
+    [Tooltip("The time it takes the projectile to impact the target, in seconds-ish")]
+    [SerializeField] public float timeToImpact = 0.6f;
+    
+    [Tooltip("The speed of a linear, non-targeting projectile")]
+    [SerializeField] public float linearProjectileSpeed = 1f;
+    
+    [Tooltip("The travel distance, non-targeting projectile")]
+    [SerializeField] public float linearProjectileTravelDistance = 100f;
     
     [Tooltip("Does the projectile target the closest enemy?")]
     [SerializeField] public ProjectileTargeting projectileTargeting = ProjectileTargeting.None;
@@ -28,5 +34,12 @@ public class ProjectileData : ScriptableObject
     [Tooltip("In what direction does the projectile travel?")]
     [SerializeField] public ProjectileMovement projectileMovement = ProjectileMovement.Forward;
     
-    //Probably rethink this, want the WHOLE weapon to be configurable and useable
+    [Tooltip("What should we hit? Enemies and default probably")]
+    [SerializeField] LayerMask projectileHitLayerMask;
+    
+    [Header("Graphics Settings")]
+    [SerializeField] public Mesh projectileMesh;
+    [SerializeField] public Material projectileMaterial;
+    [SerializeField] public GameObject projectileTrailSystem;
+    [SerializeField] public GameObject projectileImpactSystem;
 }

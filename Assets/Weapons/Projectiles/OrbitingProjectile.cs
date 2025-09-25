@@ -2,19 +2,7 @@ using UnityEngine;
 
 public class OrbitingProjectile : ProjectileBehavior
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public override void LaunchProjectile()
+    public override void LaunchProjectile(Vector3 spawnPosition, Transform target, ProjectilePool pool)
     {
         throw new System.NotImplementedException();
     }

@@ -20,7 +20,6 @@ namespace Enemies
 
         //Editor editable
         [SerializeField] private Animator animator;
-        [SerializeField] private float rotationSpeed = 10f;
         [SerializeField] private float movementSpeed = 5f;
         [SerializeField] private LayerMask traceMask;
         [SerializeField] private LayerMask deadMask;
@@ -44,8 +43,6 @@ namespace Enemies
         private float m_health;
         private bool m_doDamagedMove;
         private bool m_isDead;
-        private float m_gravityIntensity = -8f;
-        private float m_fallSpeed = 50f;
         private float startY;
         private bool m_inAttackRange;
         private Rigidbody m_rigidbody;

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bc04906c9bbea47b07fb72bd19c479, type: 3}
+  m_Name: ElectricSwordProjectile
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  launchTime: 0.3
+  projectileRadius: 0.5
+  projectileDamage: 5
+  impactRadius: 2
+  timeToImpact: 0.8
+  linearProjectileSpeed: 1
+  linearProjectileTravelDistance: 100
+  projectileTargeting: 0
+  projectileMovement: 1
+  projectileHitLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  projectileMesh: {fileID: 4300000, guid: be90710b73e237d48b6ec6270ff416ab, type: 2}
+  projectileMaterial: {fileID: 2100000, guid: 4198bcde6fe21ba45b0963ec8fa24f98, type: 2}
+  projectileTrailSystem: {fileID: 1663943515658122463, guid: 1ddf10169984aab4d9161380484ebaad, type: 3}
+  projectileImpactSystem: {fileID: 2312717052356732516, guid: 34464e099e1a53841a2b400d19b820c4, type: 3}

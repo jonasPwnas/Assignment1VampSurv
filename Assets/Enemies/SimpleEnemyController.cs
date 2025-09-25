@@ -43,7 +43,7 @@ namespace Enemies
         private float m_health;
         private bool m_doDamagedMove;
         private bool m_isDead;
-        private float startY;
+        private float startY = -1.6f;
         private bool m_inAttackRange;
         private Rigidbody m_rigidbody;
         private SimpleEnemyPool m_pool;
@@ -59,24 +59,26 @@ namespace Enemies
             animator.SetFloat(VariSpeed, Random.Range(0.8f, 1.2f)); //small variations in movement anim speed to get less synced movements
             m_pool = pool;
             transform.position = spawnPosition;
-            startY = transform.position.y;
         }
 
         public void OnRespawn(Vector3 spawnPosition)
         {
             transform.position = spawnPosition;
-            m_targetPosition = transform.position;
-            m_health = maxHealth;
             ResetEnemy();
         }
 
         private void ResetEnemy()
         {
+            m_doDamagedMove = false;
+            m_targetPosition = transform.position;
+            m_health = maxHealth;
+            m_rigidbody.linearVelocity = Vector3.zero;
             animator.SetTrigger(Reset);
             animator.SetBool(IsDead, false);
             m_collider.enabled = true;
             m_renderer.enabled = true;
             m_isDead = false;
+                                m_renderer.material.color = Color.white;
             gameObject.SetActive(true);
         }
 
@@ -102,6 +104,10 @@ namespace Enemies
                     {
                         Vector3 resetHeight = new Vector3(transform.position.x, startY, transform.position.z);
                         transform.position = resetHeight;
+                    }
+                    if (!m_isDead && m_health <= 0)
+                    {
+                        OnDeath();
                     }
                 }
             }
@@ -180,12 +186,6 @@ namespace Enemies
             m_renderer.material.color = Color.crimson;
             m_doDamagedMove = true;
             animator.SetTrigger(Damaged);
-
-            if (!m_isDead && m_health <= 0)
-            {
-                m_damagedMoveToPosition = hitDirection + -transform.forward * 10f + transform.position + Vector3.up * 10f;
-                OnDeath();
-            }
         }
 
         private void OnDeath()
@@ -210,18 +210,21 @@ namespace Enemies
                 isEnabled = !isEnabled;
             }
             m_renderer.enabled = endValue; //Set end value
-            StartCoroutine(WaitThenSendToPool(0.6f));
+            
+            Vector3 resetHeight = new Vector3(transform.position.x, startY, transform.position.z);
+            transform.position = resetHeight;
+            if (Random.Range(0f, 1f) < 0.33f) //Randomly spawn XP drop
+            {
+                Instantiate(xpDrop, transform.position, Quaternion.identity);
+            }
+            
+            StartCoroutine(WaitThenSendToPool(1f));
         }
 
         IEnumerator WaitThenSendToPool(float waitTime)
         {
             yield return new WaitForSeconds(waitTime);
-            if (Random.Range(0f, 1f) < 0.33f) //Randomly spawn XP drop
-            {
-                Vector3 resetHeight = new Vector3(transform.position.x, startY, transform.position.z);
-                transform.position = resetHeight;
-                Instantiate(xpDrop, transform.position, Quaternion.identity);
-            }
+            m_rigidbody.linearVelocity = Vector3.zero;
             m_pool.ReturnToPool(this);
             gameObject.SetActive(false);
         }

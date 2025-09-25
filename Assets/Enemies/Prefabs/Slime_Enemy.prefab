@@ -566,8 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.SimpleEnemyController
   animator: {fileID: 2469461072682255860}
-  rotationSpeed: 2
-  movementSpeed: 3.5
+  movementSpeed: 5
   traceMask:
     serializedVersion: 2
     m_Bits: 0
@@ -575,7 +574,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   maxHealth: 4
-  rangedAttack: 0
   damagedMoveSpeed: 50
   damageToDeal: 1
   damageIndicator: {fileID: 6067386313573361026}

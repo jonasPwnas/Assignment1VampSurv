@@ -887,8 +887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.SimpleEnemyController
   animator: {fileID: 8871552772931839782}
-  rotationSpeed: 10
-  movementSpeed: 5
+  movementSpeed: 6
   traceMask:
     serializedVersion: 2
     m_Bits: 0
@@ -896,7 +895,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   maxHealth: 1
-  rangedAttack: 0
   damagedMoveSpeed: 50
   damageToDeal: 1
   damageIndicator: {fileID: 4143429995765876959}
@@ -1333,8 +1331,8 @@ Transform:
   m_GameObject: {fileID: 7290505792362503750}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalPosition: {x: -0, y: -0.00259, z: 0}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3081309603103043563}

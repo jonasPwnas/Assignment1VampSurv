@@ -57,14 +57,14 @@ public class EnemySpawner : MonoBehaviour
                 StartCoroutine(SlimeSpawnWait(slimeFrequency));
                 break;
             case 6:
-                batFrequency = 1f;
-                ghostFrequency = 1f;
-                slimeFrequency = 5f;
+                batFrequency = 1.5f;
+                ghostFrequency = 2f;
+                slimeFrequency = 4f;
                 break;
             case 8:
                 batFrequency *= 0.3f;
-                ghostFrequency*= 0.6f;
-                slimeFrequency*= 0.7f;
+                ghostFrequency*= 0.3f;
+                slimeFrequency*= 0.3f;
                 break;
         }
     }

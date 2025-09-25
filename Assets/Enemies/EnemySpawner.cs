@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject BatEnemy;
+    [SerializeField] private SimpleEnemyPool batPool;
+    [SerializeField] private float spawnFrequency = 1.1f; //Change spawn amount instead of frequency?
     
     private void Start()
     {
@@ -13,11 +14,10 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         float distance = Random.Range(7f, 25f);
-        float angle = Random.Range(0f, 360f);
         Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(90f, 270f), Vector3.up) * transform.forward * distance;
-        spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane....
-        Instantiate(BatEnemy, spawnPos, Quaternion.identity);
-        StartCoroutine(EnemySpawnWait(0.3f));
+        spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
+        batPool.SpawnEnemy(spawnPos);
+        StartCoroutine(EnemySpawnWait(spawnFrequency));
     }
     
     IEnumerator EnemySpawnWait(float time)

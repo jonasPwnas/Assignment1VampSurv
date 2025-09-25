@@ -1,6 +1,7 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum SpawnLocation{OnTheGround, MiddleOfPlayer, AbovePlayer, SkyHigh}
 
@@ -33,24 +34,24 @@ public class ProjectilePool : MonoBehaviour
                     m_spawnOffset = Vector3.zero;
                     break;
                 case 1:
-                    m_spawnOffset = Vector3.right * 0.5f;
+                    m_spawnOffset = Vector3.right * 1f;
                     break;
                 case 2:
-                    m_spawnOffset = -Vector3.right * 0.5f;
+                    m_spawnOffset = -Vector3.right * 1f;
                     break;
             }
             
             if (m_avalibleProjectiles.Count > 0)
             {
                 ProjectileBehavior avalibleProjectile = m_avalibleProjectiles[0];
-                avalibleProjectile.LaunchProjectile(GetProjectilePosition(m_spawnOffset), target, this);
+                StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), avalibleProjectile, m_spawnOffset, target));
                 m_avalibleProjectiles.Remove(avalibleProjectile);
             }
             else
             {
                 ProjectileBehavior newProjectile = Instantiate(projectilePrefab, GetProjectilePosition(m_spawnOffset), 
                     Quaternion.identity).GetComponent<ProjectileBehavior>();
-                newProjectile.LaunchProjectile(GetProjectilePosition(m_spawnOffset), target, this);
+                StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), newProjectile, m_spawnOffset, target));
             }
         }
     }
@@ -80,5 +81,11 @@ public class ProjectilePool : MonoBehaviour
                 break;
         }
         return spawnPosition + spawnOffset;
+    }
+
+    IEnumerator LaunchAfterTime(float time, ProjectileBehavior projectile, Vector3 spawnOffset, Transform target)
+    {
+        yield return new WaitForSeconds(time);
+        projectile.LaunchProjectile(GetProjectilePosition(spawnOffset), target, this);
     }
 }

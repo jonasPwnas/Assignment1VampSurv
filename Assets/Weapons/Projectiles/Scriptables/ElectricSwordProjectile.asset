@@ -17,14 +17,15 @@ MonoBehaviour:
   projectileDamage: 5
   impactRadius: 2
   timeToImpact: 0.8
-  linearProjectileSpeed: 1
+  linearProjectileSpeed: 44
   linearProjectileTravelDistance: 100
   projectileTargeting: 0
-  projectileMovement: 1
+  projectileMovement: 5
+  customProjectileMovementDirection: {x: 0, y: -0.1, z: 1}
   projectileHitLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  projectileMesh: {fileID: 4300000, guid: be90710b73e237d48b6ec6270ff416ab, type: 2}
+  projectileMesh: {fileID: -6212167852835061359, guid: abdf83869daf1e944bc1188f1eac6e66, type: 3}
   projectileMaterial: {fileID: 2100000, guid: 4198bcde6fe21ba45b0963ec8fa24f98, type: 2}
   projectileTrailSystem: {fileID: 1663943515658122463, guid: 1ddf10169984aab4d9161380484ebaad, type: 3}
   projectileImpactSystem: {fileID: 2312717052356732516, guid: 34464e099e1a53841a2b400d19b820c4, type: 3}

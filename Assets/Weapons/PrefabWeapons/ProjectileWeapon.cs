@@ -21,7 +21,7 @@ public class ProjectileWeapon : MonoBehaviour
 
     private void UseWeapon(Transform target)
     {
-        m_projectilePool.SpawnProjectile(target, 2);
+        m_projectilePool.SpawnProjectile(target, 3);
         StartCoroutine(WaitForNextAttack());
     }
 

@@ -46,34 +46,46 @@ namespace Enemies
         private float startY;
         private bool m_inAttackRange;
         private Rigidbody m_rigidbody;
+        private SimpleEnemyPool m_pool;
+        private bool m_startHappaned;
 
-        void Start()
+        public void OnSpawn(SimpleEnemyPool pool, Vector3 spawnPosition)
         {
             m_player = FindAnyObjectByType<PlayerMovement>().transform;
             m_renderer = GetComponentInChildren<SkinnedMeshRenderer>();
-            animator.SetTrigger(Reset);
             m_collider = GetComponent<Collider>();
             m_rigidbody = GetComponent<Rigidbody>();
             m_constraints = m_rigidbody.constraints;
-            startY = transform.position.y;
             animator.SetFloat(VariSpeed, Random.Range(0.8f, 1.2f)); //small variations in movement anim speed to get less synced movements
+            m_pool = pool;
+            transform.position = spawnPosition;
+            startY = transform.position.y;
+        }
+
+        public void OnRespawn(Vector3 spawnPosition)
+        {
+            transform.position = spawnPosition;
+            m_targetPosition = transform.position;
+            m_health = maxHealth;
             ResetEnemy();
         }
 
         private void ResetEnemy()
         {
+            animator.SetTrigger(Reset);
             animator.SetBool(IsDead, false);
-            m_health = maxHealth;
-            m_isDead = false;
             m_collider.enabled = true;
+            m_renderer.enabled = true;
+            m_isDead = false;
+            gameObject.SetActive(true);
         }
 
         void FixedUpdate()
         {
-            m_targetPosition = transform.position;
+            if (m_isDead)
+                return;
             
-            //USING RIGIDBODY INSTEAD FOR NOW!!!
-            //transform.position = m_targetLocation;
+            m_targetPosition = transform.position;
 
             if (m_doDamagedMove)
             {
@@ -81,7 +93,6 @@ namespace Enemies
                 
                 m_targetPosition = Vector3.MoveTowards(transform.position, m_damagedMoveToPosition,
                     damagedMoveSpeed * Time.deltaTime);
-                //transform.position = m_targetPosition;
                 if (Vector3.Distance(transform.position, m_damagedMoveToPosition) < 1f)
                 {
                     m_doDamagedMove = false;
@@ -94,9 +105,6 @@ namespace Enemies
                     }
                 }
             }
-
-            if (m_isDead)
-                return;
 
             float distanceToPlayer = Vector3.Distance(transform.position, m_player.transform.position);
 
@@ -130,11 +138,17 @@ namespace Enemies
 
         private void RotateTowardPlayer()
         {
+            if (m_isDead)
+                return;
+            
             m_targetRotation = Quaternion.LookRotation(m_player.transform.position - transform.position, Vector3.up);
         }
 
         private void LateUpdate()
         {
+            if (m_isDead)
+                return;
+            
             m_rigidbody.linearVelocity = Vector3.zero;
         }
 
@@ -177,7 +191,6 @@ namespace Enemies
         private void OnDeath()
         {
             animator.SetBool(IsDead, true);
-            //m_collider.includeLayers
             m_isDead = true;
             StartCoroutine(BlinkMesh(false, 2f, 0.12f));
         }
@@ -197,13 +210,20 @@ namespace Enemies
                 isEnabled = !isEnabled;
             }
             m_renderer.enabled = endValue; //Set end value
+            StartCoroutine(WaitThenSendToPool(0.6f));
+        }
+
+        IEnumerator WaitThenSendToPool(float waitTime)
+        {
+            yield return new WaitForSeconds(waitTime);
             if (Random.Range(0f, 1f) < 0.33f) //Randomly spawn XP drop
             {
                 Vector3 resetHeight = new Vector3(transform.position.x, startY, transform.position.z);
                 transform.position = resetHeight;
                 Instantiate(xpDrop, transform.position, Quaternion.identity);
             }
-            yield return null;
+            m_pool.ReturnToPool(this);
+            gameObject.SetActive(false);
         }
     }
 }

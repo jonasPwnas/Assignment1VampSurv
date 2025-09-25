@@ -4,7 +4,7 @@ using UnityEngine;
 public class ProjectileData : ScriptableObject
 {
     public enum ProjectileTargeting {None, ClosestEnemy}
-    public enum ProjectileMovement {Forward, Downward}
+    public enum ProjectileMovement {Forward, Down, DiagonalDown, DiagonalUp, Up, Custom}
     
     [Header("Projectile Settings")]
     [Tooltip("Time between spawn and movement starts, in seconds")]
@@ -33,6 +33,9 @@ public class ProjectileData : ScriptableObject
     
     [Tooltip("In what direction does the projectile travel?")]
     [SerializeField] public ProjectileMovement projectileMovement = ProjectileMovement.Forward;
+
+    [Tooltip("Custom movement direction, used when custom projectile movement is chosen")]
+    [SerializeField] public Vector3 customProjectileMovementDirection = Vector3.zero;
     
     [Tooltip("What should we hit? Enemies and default probably")]
     [SerializeField] LayerMask projectileHitLayerMask;

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeapon
   projectilePool: {fileID: 2745297092293960935}
-  spawnLocation: 2
+  attackFrequency: 2.3
 --- !u!1001 &4403209876577173742
 PrefabInstance:
   m_ObjectHideFlags: 0

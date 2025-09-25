@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class LinearProjectile : ProjectileBehavior
 {
-    private Vector3 endPosition;
-    
+    private Vector3 startPosition;
+    private Vector3 lastPosition;
+
+    [ContextMenu("UpdateVisuals")]
+    private void UpdateVisuals()
+    {
+        SetGraphics();
+    }
+
     private void OnDisable()
     {
         projectilePool.ReturnToPool(this);
@@ -14,13 +21,13 @@ public class LinearProjectile : ProjectileBehavior
     public override void LaunchProjectile(Vector3 spawnPosition, Transform target, ProjectilePool pool)
     {
         transform.position = spawnPosition;
-        endPosition = spawnPosition;
-        endPosition.z += projectileData.linearProjectileTravelDistance; 
+        startPosition = spawnPosition;
+        lastPosition = spawnPosition;
         projectilePool = pool;
+        transform.rotation = projectilePool.transform.rotation;
         gameObject.SetActive(true);
         projectileTarget = target;
         StartCoroutine(WaitThenFire());
-        print("Initiated LAUNCH!!");
     }
 
     public override void DisableProjectile()
@@ -39,17 +46,36 @@ public class LinearProjectile : ProjectileBehavior
 
     private void UntargetedMove()
     {
+        Vector3 movementDirection = Vector3.zero;
         switch (projectileData.projectileMovement)
         {
-            case ProjectileData.ProjectileMovement.Downward:
-                transform.Translate(new Vector3(0, -0.5f, 1f) * (projectileData.linearProjectileSpeed * Time.deltaTime));
-                break;
             case ProjectileData.ProjectileMovement.Forward:
-                transform.Translate(Vector3.forward * (projectileData.linearProjectileSpeed * Time.deltaTime));
+                movementDirection = Vector3.forward;
+                transform.Translate(movementDirection * (projectileData.linearProjectileSpeed * Time.deltaTime), Space.Self);
+                break;
+            case ProjectileData.ProjectileMovement.Custom:
+                movementDirection = projectileData.customProjectileMovementDirection;
+                transform.Translate(movementDirection * (projectileData.linearProjectileSpeed * Time.deltaTime), Space.Self);
+                break;
+            case ProjectileData.ProjectileMovement.Down:
+                movementDirection = new Vector3(0f, -1f, 0f);
+                transform.Translate(movementDirection * (projectileData.linearProjectileSpeed * Time.deltaTime), Space.Self);
+                break;
+            case ProjectileData.ProjectileMovement.Up:
+                movementDirection = new Vector3(0f, 1f, 0f);
+                transform.Translate(movementDirection * (projectileData.linearProjectileSpeed * Time.deltaTime), Space.Self);
+                break;
+            case ProjectileData.ProjectileMovement.DiagonalDown:
+                movementDirection = new Vector3(0f, -0.5f, 1f);
+                transform.Translate(movementDirection * (projectileData.linearProjectileSpeed * Time.deltaTime), Space.Self);
+                break;
+            case ProjectileData.ProjectileMovement.DiagonalUp:
+                movementDirection = new Vector3(0f, 0.5f, 1f);
+                transform.Translate(movementDirection * (projectileData.linearProjectileSpeed * Time.deltaTime), Space.Self);
                 break;
         }
-        transform.rotation = Quaternion.LookRotation(endPosition - transform.position);
-        
+        meshChild.transform.rotation = Quaternion.LookRotation((transform.position - lastPosition).normalized);
+        lastPosition = transform.position;
         StartCoroutine(MoveProjectileForward());
     }
 
@@ -96,7 +122,7 @@ public class LinearProjectile : ProjectileBehavior
     IEnumerator MoveProjectileForward()
     {   
         yield return new WaitForEndOfFrame();
-        if (Vector3.Distance(transform.position, endPosition) <= 3f)
+        if (Vector3.Distance(startPosition, transform.position) > projectileData.linearProjectileTravelDistance)
         {
             ProjectileImpact();
         }

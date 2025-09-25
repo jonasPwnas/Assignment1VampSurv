@@ -1,8 +1,12 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
 {
+    public delegate void TimeThresholdReached(int timeThresholdIndex);
+    public static event TimeThresholdReached OnTimeThresholdReached;
+    
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] HudUpdater hudUpdater;
     [SerializeField] private ProgressionData progressionData;
@@ -57,8 +61,17 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     
     IEnumerator UpdateTimeEverySecond()
     {
+        int thirtySecMarker;
         yield return new WaitForSeconds(1f);
         m_currentTime++;
+        float testTime = m_currentTime % 30f;
+
+        if (testTime < 0.1)
+        {
+            thirtySecMarker = (int) m_currentTime / 30;
+            OnTimeThresholdReached?.Invoke(thirtySecMarker);
+        }
+        
         hudUpdater.DisplayNewTime(m_currentTime);
         StartCoroutine(UpdateTimeEverySecond());
     }

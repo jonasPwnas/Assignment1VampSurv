@@ -20,6 +20,8 @@ public class LinearProjectile : ProjectileBehavior
 
     public override void LaunchProjectile(Vector3 spawnPosition, Transform target, ProjectilePool pool)
     {
+        transform.localScale = new Vector3(projectileData.projectileUniformScale, projectileData.projectileUniformScale,
+            projectileData.projectileUniformScale);
         transform.position = spawnPosition;
         startPosition = spawnPosition;
         lastPosition = spawnPosition;

@@ -14,13 +14,12 @@ public abstract class ProjectileBehavior : MonoBehaviour
 
     private void Start()
     {
-        meshChild = transform.GetChild(0).gameObject;
         SetGraphics();
-        
     }
     
     public virtual void SetGraphics()
     {
+        meshChild = transform.GetChild(0).gameObject;
         meshChild.GetComponent<MeshFilter>().mesh = projectileData.projectileMesh;
         meshChild.GetComponent<MeshRenderer>().material = projectileData.projectileMaterial;
         if (trailChild != null)

@@ -9,6 +9,8 @@ public class ProjectileWeapon : MonoBehaviour
     
     [Tooltip("Weapon base interval, how often the weapon will be used")]
     [SerializeField] private float attackFrequency = 1.2f;
+
+    [SerializeField] private int spawnAmount = 1;
     
     private ProjectilePool m_projectilePool;
     private int m_weaponLevel = 1;
@@ -21,7 +23,7 @@ public class ProjectileWeapon : MonoBehaviour
 
     private void UseWeapon(Transform target)
     {
-        m_projectilePool.SpawnProjectile(target, 3);
+        m_projectilePool.SpawnProjectile(target, spawnAmount);
         StartCoroutine(WaitForNextAttack());
     }
 

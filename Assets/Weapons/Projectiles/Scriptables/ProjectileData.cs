@@ -19,11 +19,14 @@ public class ProjectileData : ScriptableObject
     [Tooltip("Radius of the impact made when colliding with something")]
     [SerializeField] public float impactRadius = 1f;
     
+    [Tooltip("The scale of the projectile")]
+    [SerializeField] public float projectileUniformScale = 1f;
+    
     [Tooltip("The time it takes the projectile to impact the target, in seconds-ish")]
     [SerializeField] public float timeToImpact = 0.6f;
     
     [Tooltip("The speed of a linear, non-targeting projectile")]
-    [SerializeField] public float linearProjectileSpeed = 1f;
+    [SerializeField] public float linearProjectileSpeed = 25f;
     
     [Tooltip("The travel distance, non-targeting projectile")]
     [SerializeField] public float linearProjectileTravelDistance = 100f;

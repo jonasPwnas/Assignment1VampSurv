@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74bc04906c9bbea47b07fb72bd19c479, type: 3}
   m_Name: ElectricSwordProjectile
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
-  launchTime: 0.3
+  launchTime: 0.5
   projectileRadius: 0.5
   projectileDamage: 5
   impactRadius: 2

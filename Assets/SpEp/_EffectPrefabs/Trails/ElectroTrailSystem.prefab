@@ -4860,7 +4860,7 @@ GameObject:
   - component: {fileID: 6965948239685729986}
   - component: {fileID: 1680283613147535830}
   m_Layer: 0
-  m_Name: ElectroBulletSystem
+  m_Name: ElectroTrailSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

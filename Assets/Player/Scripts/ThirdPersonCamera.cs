@@ -20,7 +20,7 @@ public class ThirdPersonCamera : MonoBehaviour
     private Vector3 m_smoothVelocity = Vector3.zero;
     private float m_distanceToTarget;
     private float m_targetDistanceToTarget;
-    private float m_nollan; //???
+    private float m_refVelocity;
     private CameraInputHandler  m_cameraInputHandler;
 
     private void Start()
@@ -59,9 +59,9 @@ public class ThirdPersonCamera : MonoBehaviour
             m_targetDistanceToTarget = stationaryDistanceFromTarget;
         }
         
-        m_distanceToTarget = Mathf.SmoothDamp(m_distanceToTarget, m_targetDistanceToTarget, ref m_nollan, distanceSmoothTime);
+        m_distanceToTarget = Mathf.SmoothDamp(m_distanceToTarget, m_targetDistanceToTarget, ref m_refVelocity, distanceSmoothTime);
         
         // Subtract the forward vector of the GameObject to point its forward vector to the target
-        transform.position = player.transform.position - transform.forward * m_distanceToTarget + transform.up * heightOffset; //Stuttering comes from this FIX IT!!!!
+        transform.position = player.transform.position - transform.forward * m_distanceToTarget + transform.up * heightOffset;
     }
 }

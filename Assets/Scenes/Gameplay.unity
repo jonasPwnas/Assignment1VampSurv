@@ -6560,6 +6560,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7855317953777694301, guid: 15f3300f2024a844bb3d60e6e3d09815, type: 3}
+      propertyPath: attackFrequency
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10011,6 +10015,10 @@ PrefabInstance:
     - target: {fileID: 6791530109601823146, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: spawnAmount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791530109601823146, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: attackFrequency
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 7110957252731670791, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: hudUpdater

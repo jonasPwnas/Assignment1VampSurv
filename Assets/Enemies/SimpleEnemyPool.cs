@@ -6,10 +6,10 @@ public class SimpleEnemyPool : MonoBehaviour
 {
     [SerializeField] private GameObject simpleEnemyPrefab;
 
-    private List<SimpleEnemyController> m_enemyPool = new List<SimpleEnemyController>();
-    private SimpleEnemyController m_currentEnemy;
-
-    public void SpawnEnemy(Vector3 spawnPos)
+    [HideInInspector] public List<SimpleEnemyController> m_enemyPool = new List<SimpleEnemyController>();
+    [HideInInspector] public SimpleEnemyController m_currentEnemy;
+    
+    public virtual void SpawnEnemy(Vector3 spawnPos)
     {
         if (m_enemyPool.Count > 0)
         {
@@ -24,7 +24,7 @@ public class SimpleEnemyPool : MonoBehaviour
         }
     }
 
-    public void ReturnToPool(SimpleEnemyController enemy)
+    public virtual void ReturnToPool(SimpleEnemyController enemy)
     {
         m_enemyPool.Add(enemy);
     }

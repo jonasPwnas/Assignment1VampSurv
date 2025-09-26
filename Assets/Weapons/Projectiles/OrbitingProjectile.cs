@@ -1,10 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 public class OrbitingProjectile : ProjectileBehavior
 {
-    private Vector3 startPosition;
-    private Vector3 lastPosition;
+    private Vector3 m_startPosition;
+    private Vector3 m_lastPosition;
+    private Vector3 m_rotationDirection;
+    private float m_orbitingSpeed = 1f;
 
+
+    private void Start()
+    {
+        m_rotationDirection = new Vector3(0f, 1f, Random.Range(-0.3f, 0.3f));
+    }
+    
     [ContextMenu("UpdateVisuals")]
     private void UpdateVisuals()
     {
@@ -28,6 +37,7 @@ public class OrbitingProjectile : ProjectileBehavior
 
     private void OrbitProjectile()
     {
-        
+        //transform.localEulerAngles;
     }
+
 }

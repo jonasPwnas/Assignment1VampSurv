@@ -6,19 +6,41 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private SimpleEnemyPool batPool;
     [SerializeField] private SimpleEnemyPool slimePool;
     [SerializeField] private SimpleEnemyPool ghostPool;
+    [SerializeField] private RandomEnemyPool randomPool;
     [SerializeField] private float batFrequency = 0.8f;
     [SerializeField] private float ghostFrequency = 2f;
     [SerializeField] private float slimeFrequency = 3f;
+    [SerializeField] private float randomFrequency = 3.5f;
     
     private void Start()
     {
         StartCoroutine(BatSpawnWait(2f));
         PlayerData.OnTimeThresholdReached += UpdateSpawnSettings;
+        SpawnStarterEnemies(7);
     }
 
+    private float GetNearRandomSpawnRange()
+    {
+        return Random.Range(18f, 37f);
+    }
+    
+    private float GetFarRandomSpawnRange()
+    {
+        return Random.Range(40f, 120f);
+    }
+
+    private void SpawnRandomFarEnemy()
+    {
+        float distance = GetFarRandomSpawnRange();
+        Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(-90f, 90f), Vector3.up) * transform.forward * distance;
+        spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
+        randomPool.SpawnEnemy(spawnPos);
+        StartCoroutine(RandomSpawnWait(randomFrequency));
+    }
+    
     private void SpawnBatEnemy()
     {
-        float distance = Random.Range(7f, 25f);
+        float distance = GetNearRandomSpawnRange();
         Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(90f, 270f), Vector3.up) * transform.forward * distance;
         spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
         batPool.SpawnEnemy(spawnPos);
@@ -26,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private void SpawnSlimeEnemy()
     {
-        float distance = Random.Range(7f, 25f);
+        float distance = GetNearRandomSpawnRange();
         Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(90f, 270f), Vector3.up) * transform.forward * distance;
         spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
         slimePool.SpawnEnemy(spawnPos);
@@ -34,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private void SpawnGhostEnemy()
     {
-        float distance = Random.Range(7f, 25f);
+        float distance = GetNearRandomSpawnRange();
         Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(90f, 270f), Vector3.up) * transform.forward * distance;
         spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
         ghostPool.SpawnEnemy(spawnPos);
@@ -48,6 +70,7 @@ public class EnemySpawner : MonoBehaviour
             case 1:
                 batFrequency *= 0.8f;
                 StartCoroutine(GhostSpawnWait(ghostFrequency));
+                StartCoroutine(RandomSpawnWait(0.1f));
                 break;
             case 2:
                 batFrequency *= 0.6f;
@@ -68,6 +91,18 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
     }
+
+    private void SpawnStarterEnemies(int amount)
+    {
+        int i;
+        for (i = 0; i < amount; i++)
+        {
+            float distance = GetNearRandomSpawnRange();
+            Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(-90f, 90f), Vector3.up) * transform.forward * distance;
+            spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
+            batPool.SpawnEnemy(spawnPos);
+        }
+    }
     
     IEnumerator BatSpawnWait(float time)
     {
@@ -83,5 +118,10 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         SpawnGhostEnemy();
+    }
+    IEnumerator RandomSpawnWait(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SpawnRandomFarEnemy();
     }
 }

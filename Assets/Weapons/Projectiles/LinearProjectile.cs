@@ -17,6 +17,11 @@ public class LinearProjectile : ProjectileBehavior
     {
         projectilePool.ReturnToPool(this);
     }
+    
+    public override void DisableProjectile()
+    {
+        gameObject.SetActive(false);
+    }
 
     public override void LaunchProjectile(Vector3 spawnPosition, Transform target, ProjectilePool pool)
     {
@@ -31,12 +36,7 @@ public class LinearProjectile : ProjectileBehavior
         projectileTarget = target;
         StartCoroutine(WaitThenFire());
     }
-
-    public override void DisableProjectile()
-    {
-        gameObject.SetActive(false);
-    }
-
+    
     private void TargetedMove()
     {
         Vector3 refVelocity = Vector3.zero;

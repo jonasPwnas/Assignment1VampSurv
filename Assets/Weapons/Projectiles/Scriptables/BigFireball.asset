@@ -21,8 +21,8 @@ MonoBehaviour:
   linearProjectileSpeed: 17
   linearProjectileTravelDistance: 50
   projectileTargeting: 0
-  projectileMovement: 5
-  customProjectileMovementDirection: {x: 0, y: -1, z: 0.6}
+  projectileMovement: 0
+  customProjectileMovementDirection: {x: 0, y: 0, z: 0.6}
   projectileHitLayerMask:
     serializedVersion: 2
     m_Bits: 256

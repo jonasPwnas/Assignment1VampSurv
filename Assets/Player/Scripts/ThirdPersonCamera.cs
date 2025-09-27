@@ -22,6 +22,23 @@ public class ThirdPersonCamera : MonoBehaviour
     private float m_targetDistanceToTarget;
     private float m_refVelocity;
     private CameraInputHandler  m_cameraInputHandler;
+    private bool m_isDead = false;
+
+    private void OnEnable()
+    {
+        PlayerData.OnPlayerDeath += OnDeath;
+    }
+
+    private void OnDisable()
+    {
+        PlayerData.OnPlayerDeath -= OnDeath;
+    }
+
+    private void OnDeath()
+    {
+        m_isDead = true;
+    }
+    
 
     private void Start()
     {
@@ -31,6 +48,13 @@ public class ThirdPersonCamera : MonoBehaviour
 
     void Update()
     {
+        if (m_isDead)
+        {
+            m_currentRotation = Vector3.SmoothDamp(m_currentRotation, Vector3.zero, ref m_smoothVelocity, 0.1f);
+      
+            transform.localEulerAngles = m_currentRotation;
+        }
+        
         float mouseX = m_cameraInputHandler.lookAction.ReadValue<Vector2>().x * mouseSensitivity;
         float mouseY = m_cameraInputHandler.lookAction.ReadValue<Vector2>().y * mouseSensitivity * -1f;
 

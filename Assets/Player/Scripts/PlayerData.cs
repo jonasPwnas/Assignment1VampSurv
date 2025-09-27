@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
 {
+    //Delegates
     public delegate void TimeThresholdReached(int timeThresholdIndex);
     public static event TimeThresholdReached OnTimeThresholdReached;
+
+    public delegate void PlayerDeath();
+    public static event PlayerDeath OnPlayerDeath;
     
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] HudUpdater hudUpdater;
@@ -18,6 +22,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     private float m_currentXp;
     private float m_currentMaxXp;
     private float m_currentTime = 0f;
+    private bool m_isDead;
     
     void Start()
     {
@@ -48,9 +53,17 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
 
     public void TakeDamage(float damage, Vector3 hitDirection)
     {
-        m_currentHealth -= damage;
-        hudUpdater.UpdateHealthBar(m_currentHealth, maxHealth);
-        damageIndicator.PlayDamageEffect();
+        if(!m_isDead)
+        {
+            m_currentHealth -= damage;
+            hudUpdater.UpdateHealthBar(m_currentHealth, maxHealth);
+            damageIndicator.PlayDamageEffect();
+            if (m_currentHealth < 0)
+            {
+                OnPlayerDeath?.Invoke();
+                m_isDead = true;
+            }
+        }
     }
 
     public void Heal(float healAmount)

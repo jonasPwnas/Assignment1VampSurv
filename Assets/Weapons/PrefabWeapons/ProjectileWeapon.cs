@@ -15,6 +15,21 @@ public class ProjectileWeapon : MonoBehaviour
     private ProjectilePool m_projectilePool;
     private int m_weaponLevel = 1;
 
+    private void OnEnable()
+    {
+        PlayerData.OnPlayerDeath += OnDeath;
+    }
+
+    private void OnDisable()
+    {
+        PlayerData.OnPlayerDeath -= OnDeath;
+    }
+
+    private void OnDeath()
+    {
+        StopAllCoroutines();
+    }
+
     private void Start()
     {
         m_projectilePool = projectilePool.GetComponent<ProjectilePool>();

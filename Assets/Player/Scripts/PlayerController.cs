@@ -16,6 +16,7 @@ namespace Player
         private static readonly int AttackMomentum = Animator.StringToHash("AttackMomentum");
         private static readonly int AttackTag = Animator.StringToHash("Attack");
         private static readonly int JumpTag = Animator.StringToHash("Jump");
+        private static readonly int Died = Animator.StringToHash("Died");
 
         //Editor editable
         [Tooltip("How fast we can jump after landing, in seconds")] [SerializeField] private float jumpFrequency = 0.4f;
@@ -32,6 +33,7 @@ namespace Player
         private Vector3 m_playerVelocity;
         private bool m_groundedPlayer;
         private bool m_allowJump = true;
+        private bool m_isDead;
         private bool m_canAttack = true;
         private bool m_inputWindowOpen;
         private float m_accumulatedAttackTime;
@@ -45,6 +47,17 @@ namespace Player
         //Publics
         [HideInInspector] public Vector3 _moveVelocity;
 
+        private void OnEnable()
+        {
+            PlayerData.OnPlayerDeath += OnDeath;
+        }
+
+        private void OnDisable()
+        {
+            PlayerData.OnPlayerDeath -= OnDeath;
+        }
+
+
         void Start()
         {
             m_PlayerInputHandler = GetComponent<PlayerInputHandler>();
@@ -55,7 +68,7 @@ namespace Player
         
         void Update()
         {
-            if (m_PlayerInputHandler.pauseAction.IsPressed())
+            if (!m_isDead && m_PlayerInputHandler.pauseAction.IsPressed())
             {
                 pauseMenuNav.PauseGame();
             }
@@ -64,6 +77,13 @@ namespace Player
             Movement();
         }
 
+        private void OnDeath()
+        {
+            //Death animation
+            m_animator.SetTrigger(Died);
+            m_isDead = true;
+        }
+        
         void Attack()
         {
             if (m_canAttack && m_inputWindowOpen && m_PlayerInputHandler.attackAction.IsPressed())

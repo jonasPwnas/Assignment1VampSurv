@@ -51,7 +51,7 @@ namespace Enemies
 
         public void OnSpawn(SimpleEnemyPool pool, Vector3 spawnPosition)
         {
-            m_player = FindAnyObjectByType<PlayerMovement>().transform;
+            m_player = FindAnyObjectByType<PlayerController>().transform;
             m_renderer = GetComponentInChildren<SkinnedMeshRenderer>();
             m_collider = GetComponent<Collider>();
             m_rigidbody = GetComponent<Rigidbody>();
@@ -227,6 +227,11 @@ namespace Enemies
             m_rigidbody.linearVelocity = Vector3.zero;
             m_pool.ReturnToPool(this);
             gameObject.SetActive(false);
+        }
+        
+        private void OnDestroy()
+        {
+            StopAllCoroutines();
         }
     }
 }

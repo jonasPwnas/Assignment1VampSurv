@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Player
 { 
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         //Animator parameters
         private static readonly int NormalAttack = Animator.StringToHash("Attack");
@@ -23,10 +23,11 @@ namespace Player
         [Tooltip("How fast the player rotates")] [SerializeField] private float rotationSpeed = 10f;
         [Tooltip("The camera used by the player")] [SerializeField] private Camera playerCamera;
         [SerializeField] Trail trail;
+        [SerializeField] private PauseMenuNav pauseMenuNav;
         
         //Privates
         private Animator m_animator;
-        private MovementInputHandler m_movementInputHandler;
+        private PlayerInputHandler m_PlayerInputHandler;
         private CharacterController m_characterController;
         private Vector3 m_playerVelocity;
         private bool m_groundedPlayer;
@@ -46,7 +47,7 @@ namespace Player
 
         void Start()
         {
-            m_movementInputHandler = GetComponent<MovementInputHandler>();
+            m_PlayerInputHandler = GetComponent<PlayerInputHandler>();
             m_characterController = GetComponent<CharacterController>();
             m_animator = GetComponent<Animator>();
             trail.enabled = false;
@@ -54,13 +55,18 @@ namespace Player
         
         void Update()
         {
+            if (m_PlayerInputHandler.pauseAction.IsPressed())
+            {
+                pauseMenuNav.PauseGame();
+            }
+            
             Attack();
             Movement();
         }
 
         void Attack()
         {
-            if (m_canAttack && m_inputWindowOpen && m_movementInputHandler.attackAction.IsPressed())
+            if (m_canAttack && m_inputWindowOpen && m_PlayerInputHandler.attackAction.IsPressed())
             {
                 m_animator.SetTrigger(NormalAttack);
                 m_accumulatedAttackTime = Time.time;
@@ -69,7 +75,7 @@ namespace Player
                 m_canAttack = false;
             }
             
-            if (m_canAttack && m_movementInputHandler.attackAction.IsPressed())
+            if (m_canAttack && m_PlayerInputHandler.attackAction.IsPressed())
             {
                 m_animator.SetTrigger(NormalAttack);
                 m_accumulatedAttackTime = Time.time;
@@ -109,13 +115,13 @@ namespace Player
             }
             
             
-            Vector2 input = m_movementInputHandler.moveAction.ReadValue<Vector2>();
+            Vector2 input = m_PlayerInputHandler.moveAction.ReadValue<Vector2>();
             float horizontalInput = input.x;
             float verticalInput = input.y;
             Vector3 movementInput = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(horizontalInput, 0, verticalInput);
             Vector3 movementDirection = movementInput.normalized;
             
-            if (m_movementInputHandler.sprintAction.IsPressed())
+            if (m_PlayerInputHandler.sprintAction.IsPressed())
             {
                 m_movementMultiplier = 1f;
             }
@@ -139,7 +145,7 @@ namespace Player
                 m_animator.SetBool(IsGrounded, m_groundedPlayer);
             }
             
-            if (m_allowJump && m_groundedPlayer&& m_movementInputHandler.jumpAction.IsPressed())
+            if (m_allowJump && m_groundedPlayer&& m_PlayerInputHandler.jumpAction.IsPressed())
             {
                 m_allowJump = false;
                 m_jumpTimer = 0f;

@@ -133,4 +133,9 @@ public class LinearProjectile : ProjectileBehavior
             UntargetedMove();
         }
     }
+    
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class ThirdPersonCamera : MonoBehaviour
 {
     [SerializeField] private float mouseSensitivity = 3.0f;
-    [SerializeField] private PlayerMovement player;
+    [SerializeField] private PlayerController player;
     [SerializeField] private float stationaryDistanceFromTarget = 6.0f;
     [SerializeField] private float movingDistanceFromTarget = 8.5f;
     [SerializeField] private float heightOffset = 1f;

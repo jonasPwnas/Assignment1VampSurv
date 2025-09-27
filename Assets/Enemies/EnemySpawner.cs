@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -12,16 +14,30 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float slimeFrequency = 3f;
     [SerializeField] private float randomFrequency = 3.5f;
     
+    private void OnEnable()
+    {
+        PlayerData.OnTimeThresholdReached += UpdateSpawnSettings;
+    }
+    
+    private void OnDisable()
+    {
+        PlayerData.OnTimeThresholdReached -= UpdateSpawnSettings;
+    }
+    
     private void Start()
     {
         StartCoroutine(BatSpawnWait(2f));
-        PlayerData.OnTimeThresholdReached += UpdateSpawnSettings;
         SpawnStarterEnemies(7);
     }
-
+    
     private float GetNearRandomSpawnRange()
     {
-        return Random.Range(18f, 37f);
+        return Random.Range(23f, 40f);
+    }
+    
+    private float GetMidRandomSpawnRange()
+    {
+        return Random.Range(35f, 50f);
     }
     
     private float GetFarRandomSpawnRange()
@@ -97,7 +113,7 @@ public class EnemySpawner : MonoBehaviour
         int i;
         for (i = 0; i < amount; i++)
         {
-            float distance = GetNearRandomSpawnRange();
+            float distance = GetMidRandomSpawnRange();
             Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(-90f, 90f), Vector3.up) * transform.forward * distance;
             spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
             batPool.SpawnEnemy(spawnPos);
@@ -123,5 +139,10 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         SpawnRandomFarEnemy();
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }

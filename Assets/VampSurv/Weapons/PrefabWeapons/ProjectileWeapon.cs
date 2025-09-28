@@ -17,6 +17,8 @@ public class ProjectileWeapon : WeaponBase
     private int m_maxColliders = 20;
     private Collider[] colliders;
     private bool m_isTargeting;
+    private float m_targetLocationOffset = 3f;
+    private float m_targetLocationRadius = 30f;
     
     public override void StartWeapon()
     {
@@ -62,7 +64,7 @@ public class ProjectileWeapon : WeaponBase
     {
         float furthestDistance = 0;
         Transform targetEnemy = null;
-        int numColliders = Physics.OverlapSphereNonAlloc( transform.position + transform.forward * 3f, 10, colliders, 
+        int numColliders = Physics.OverlapSphereNonAlloc(transform.position + transform.forward * m_targetLocationOffset, m_targetLocationRadius, colliders, 
             m_projectilePool.projectileData.projectileHitLayerMask);
         
         for(int i = 0; i < numColliders; i++)

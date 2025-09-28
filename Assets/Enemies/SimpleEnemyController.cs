@@ -10,6 +10,10 @@ namespace Enemies
 {
     public class SimpleEnemyController : MonoBehaviour, IHealthAndDamage
     {
+        public delegate void EnemyDeath();
+
+        public static event EnemyDeath OnEnemyDeath;
+        
         //Animation parameters
         private static readonly int Move = Animator.StringToHash("Move");
         private static readonly int Attack = Animator.StringToHash("Attack");
@@ -190,6 +194,7 @@ namespace Enemies
 
         private void OnDeath()
         {
+            OnEnemyDeath?.Invoke();
             animator.SetBool(IsDead, true);
             m_isDead = true;
             StartCoroutine(BlinkMesh(false, 2f, 0.12f));

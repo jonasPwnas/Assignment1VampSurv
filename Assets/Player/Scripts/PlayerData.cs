@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Enemies;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
@@ -23,7 +24,24 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     private float m_currentMaxXp;
     private float m_currentTime = 0f;
     private bool m_isDead;
-    
+    private int m_sessionKills = 0;
+
+    private void OnEnable()
+    {
+        SimpleEnemyController.OnEnemyDeath += EnemyDied;
+    }
+
+    private void OnDisable()
+    {
+        SimpleEnemyController.OnEnemyDeath -= EnemyDied;
+    }
+
+
+    private void EnemyDied()
+    {
+        m_sessionKills++;
+        hudUpdater.UpdateKills(m_sessionKills);
+    }
     void Start()
     {
         m_currentHealth = maxHealth;

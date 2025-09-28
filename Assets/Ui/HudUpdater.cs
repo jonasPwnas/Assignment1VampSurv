@@ -10,6 +10,7 @@ public class HudUpdater : MonoBehaviour
     [SerializeField] private Image xpBar;
     [SerializeField] private TMP_Text currentLevelText;
     [SerializeField] private TMP_Text currentTimeText;
+    [SerializeField] private TMP_Text currentKillsText;
     
     public void UpdateHealthBar(float health, float maxHealth)
     {
@@ -20,6 +21,11 @@ public class HudUpdater : MonoBehaviour
     {
         xpBar.fillAmount = currentXp / currentMaxXp;
         currentLevelText.text = "Level " + currentLevel;
+    }
+
+    public void UpdateKills(int kills)
+    {
+        currentKillsText.text = kills.ToString(format:"0000");
     }
     
     //TimeyWimeyStuff

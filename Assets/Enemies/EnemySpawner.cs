@@ -63,7 +63,7 @@ public class EnemySpawner : MonoBehaviour
     
     private void SpawnBatEnemy()
     {
-        float distance = GetNearRandomSpawnRange();
+        float distance = GetMidRandomSpawnRange();
         Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(90f, 270f), Vector3.up) * transform.forward * distance;
         spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
         batPool.SpawnEnemy(spawnPos);
@@ -71,7 +71,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private void SpawnSlimeEnemy()
     {
-        float distance = GetNearRandomSpawnRange();
+        float distance = GetMidRandomSpawnRange();
         Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(90f, 270f), Vector3.up) * transform.forward * distance;
         spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
         slimePool.SpawnEnemy(spawnPos);
@@ -79,7 +79,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private void SpawnGhostEnemy()
     {
-        float distance = GetNearRandomSpawnRange();
+        float distance = GetMidRandomSpawnRange();
         Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(90f, 270f), Vector3.up) * transform.forward * distance;
         spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
         ghostPool.SpawnEnemy(spawnPos);

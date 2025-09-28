@@ -1,23 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
-public enum SpawnLocation{OnTheGround, MiddleOfPlayer, AbovePlayer, SkyHigh}
 
 public class ProjectilePool : MonoBehaviour
 {
     [Tooltip("What projectile to fire?")]
     [SerializeField] private GameObject projectilePrefab;
     
-    [Tooltip("Where is the projectile spawned?")]
-    [SerializeField] private SpawnLocation m_spawnLocation = SpawnLocation.AbovePlayer;
+    [HideInInspector] public ProjectileData projectileData;
     
     private List<ProjectileBehavior> m_avalibleProjectiles;
     private ProjectileSpawnPositions m_spawnPositions;
     private Vector3 m_spawnPosition;
     private Vector3 m_spawnOffset;
-    
+
+
+    private void Awake()
+    {
+        projectileData = projectilePrefab.GetComponent<ProjectileBehavior>().projectileData;
+        m_avalibleProjectiles = new List<ProjectileBehavior>(12);
+        m_spawnPositions = FindFirstObjectByType<ProjectileSpawnPositions>();
+    }
+
     private void Start()
     {
         m_spawnPositions = FindFirstObjectByType<ProjectileSpawnPositions>();
@@ -65,18 +71,18 @@ public class ProjectilePool : MonoBehaviour
     private Vector3 GetProjectilePosition(Vector3 spawnOffset)
     {
         Vector3 spawnPosition = Vector3.zero;
-        switch (m_spawnLocation)
+        switch (projectileData.spawnLocation)
         {
-            case SpawnLocation.OnTheGround:
+            case ProjectileData.SpawnLocation.OnTheGround:
                 spawnPosition = m_spawnPositions.groundedSpawn.position;
                 break;
-            case SpawnLocation.MiddleOfPlayer:
+            case ProjectileData.SpawnLocation.MiddleOfPlayer:
                 spawnPosition = m_spawnPositions.middlePlayerSpawn.position;
                 break;
-            case SpawnLocation.AbovePlayer:
+            case ProjectileData.SpawnLocation.AbovePlayer:
                 spawnPosition = m_spawnPositions.abovePlayerSpawn.position;
                 break;
-            case SpawnLocation.SkyHigh:
+            case ProjectileData.SpawnLocation.SkyHigh:
                 spawnPosition = m_spawnPositions.skyHighSpawn.position;
                 break;
         }

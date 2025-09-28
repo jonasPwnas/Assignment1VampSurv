@@ -78,7 +78,7 @@ public class LinearProjectile : ProjectileBehavior
         }
         meshChild.transform.rotation = Quaternion.LookRotation((transform.position - lastPosition).normalized);
         lastPosition = transform.position;
-        StartCoroutine(MoveProjectileForward());
+        StartCoroutine(MoveProjectileAlongDirection());
     }
 
     private void ProjectileImpact()
@@ -99,10 +99,17 @@ public class LinearProjectile : ProjectileBehavior
         switch (projectileData.projectileTargeting)
         {
             case ProjectileData.ProjectileTargeting.None:
-                StartCoroutine(MoveProjectileForward());
+                StartCoroutine(MoveProjectileAlongDirection());
                 break;
             case ProjectileData.ProjectileTargeting.ClosestEnemy:
-                StartCoroutine(MoveProjectileToTarget());
+                if (projectileTarget != null)
+                {
+                    StartCoroutine(MoveProjectileToTarget());
+                }
+                else
+                {
+                    StartCoroutine(MoveProjectileAlongDirection());
+                }
                 break;
         }
     }
@@ -111,7 +118,7 @@ public class LinearProjectile : ProjectileBehavior
     {
         yield return new WaitForEndOfFrame();
         
-        if (Vector3.Distance(transform.position, projectileTarget.position) >= projectileData.projectileRadius)
+        if (Vector3.Distance(transform.position, projectileTarget.position) <= projectileData.projectileRadius)
         {
             ProjectileImpact();
         }
@@ -121,7 +128,7 @@ public class LinearProjectile : ProjectileBehavior
         }
     }
     
-    IEnumerator MoveProjectileForward()
+    IEnumerator MoveProjectileAlongDirection()
     {   
         yield return new WaitForEndOfFrame();
         if (Vector3.Distance(startPosition, transform.position) > projectileData.linearProjectileTravelDistance)

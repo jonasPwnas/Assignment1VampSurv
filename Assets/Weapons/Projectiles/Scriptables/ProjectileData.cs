@@ -5,6 +5,7 @@ public class ProjectileData : ScriptableObject
 {
     public enum ProjectileTargeting {None, ClosestEnemy}
     public enum ProjectileMovement {Forward, Down, DiagonalDown, DiagonalUp, Up, Custom}
+    public enum SpawnLocation{OnTheGround, MiddleOfPlayer, AbovePlayer, SkyHigh}
     
     [Header("Projectile Settings")]
     [Tooltip("Time between spawn and movement starts, in seconds")]
@@ -31,6 +32,9 @@ public class ProjectileData : ScriptableObject
     [Tooltip("The travel distance, non-targeting projectile")]
     [SerializeField] public float linearProjectileTravelDistance = 100f;
     
+    [Tooltip("Where, relative to the player, is the projectile spawned?")]
+    [SerializeField] public SpawnLocation spawnLocation = SpawnLocation.AbovePlayer;
+    
     [Tooltip("Does the projectile target the closest enemy?")]
     [SerializeField] public ProjectileTargeting projectileTargeting = ProjectileTargeting.None;
     
@@ -41,7 +45,7 @@ public class ProjectileData : ScriptableObject
     [SerializeField] public Vector3 customProjectileMovementDirection = Vector3.zero;
     
     [Tooltip("What should we hit? Enemies and default probably")]
-    [SerializeField] LayerMask projectileHitLayerMask;
+    [SerializeField] public LayerMask projectileHitLayerMask;
     
     [Header("Graphics Settings")]
     [SerializeField] public Mesh projectileMesh;

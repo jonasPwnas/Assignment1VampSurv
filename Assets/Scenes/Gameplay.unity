@@ -945,13 +945,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 475971851883176946, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773816748210831333, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856455875494744365, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4707190851120594925, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 8130840995259666465}
-    - target: {fileID: 5119986808636245757, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-      propertyPath: m_spawnLocation
-      value: 3
+    - target: {fileID: 5062246862317066823, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: spawnAmount
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5617226958839021519, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -997,6 +1009,10 @@ PrefabInstance:
       propertyPath: hudUpdater
       value: 
       objectReference: {fileID: 1964602102}
+    - target: {fileID: 7284416603493557488, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8039828625646574126, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: m_Name
       value: Player

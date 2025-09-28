@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileWeapon : MonoBehaviour
+public class ProjectileWeapon : WeaponBase
 {
     [Tooltip("What projectile-pool will the weapon use?")]
     [SerializeField] private GameObject projectilePool; //Probably should be instantiated? To reduce setup and prefab clutter
@@ -13,44 +14,74 @@ public class ProjectileWeapon : MonoBehaviour
     [SerializeField] private int spawnAmount = 1;
     
     private ProjectilePool m_projectilePool;
-    private int m_weaponLevel = 1;
-
-    private void OnEnable()
+    private int m_maxColliders = 20;
+    private Collider[] colliders;
+    private bool m_isTargeting;
+    
+    public override void StartWeapon()
     {
-        PlayerData.OnPlayerDeath += OnDeath;
+        UseWeapon();
     }
 
-    private void OnDisable()
+    public override void LevelWeaponUp()
     {
-        PlayerData.OnPlayerDeath -= OnDeath;
-    }
-
-    private void OnDeath()
-    {
-        StopAllCoroutines();
+        base.LevelWeaponUp();
     }
 
     private void Start()
     {
         m_projectilePool = projectilePool.GetComponent<ProjectilePool>();
-        StartCoroutine(WaitForNextAttack());
-    }
+        colliders = new Collider[m_maxColliders];
 
-    private void UseWeapon(Transform target)
+        switch (m_projectilePool.projectileData.projectileTargeting)
+        {
+            case ProjectileData.ProjectileTargeting.None:
+                m_isTargeting = false;
+                break;
+            case ProjectileData.ProjectileTargeting.ClosestEnemy:
+                m_isTargeting = true;
+                break;
+        }
+        Debug.Log("DEBUG STARTING WEAPONS!!!! BE AWARE");
+        StartWeapon();
+    }
+    
+
+    private void UseWeapon()
     {
+        Transform target = null;
+        
+        if (m_isTargeting)
+            target = GetTargetEnemy();
+        
         m_projectilePool.SpawnProjectile(target, spawnAmount);
         StartCoroutine(WaitForNextAttack());
     }
 
-    private void GetTargetEnemy()
+    private Transform GetTargetEnemy()
     {
-        //Blah
+        float furthestDistance = 0;
+        Transform targetEnemy = null;
+        int numColliders = Physics.OverlapSphereNonAlloc( transform.position + transform.forward * 3f, 10, colliders, 
+            m_projectilePool.projectileData.projectileHitLayerMask);
+        
+        for(int i = 0; i < numColliders; i++)
+        {
+            Vector3 dirToTarget = colliders[i].transform.position - transform.position;
+            float distanceToTargetSqr = dirToTarget.magnitude;
+            if (distanceToTargetSqr > furthestDistance)
+            {
+                furthestDistance = distanceToTargetSqr;
+                targetEnemy = colliders[i].transform;
+            }
+        }
+        
+        return targetEnemy;
     }
     
     IEnumerator WaitForNextAttack()
     {
         yield return new WaitForSeconds(attackFrequency);
-        UseWeapon(transform); //Maybe shouldn't send this transform hihihihihihihi
+        UseWeapon();
     }
-    
 }

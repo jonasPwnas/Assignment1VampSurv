@@ -30,36 +30,26 @@ public class ProjectilePool : MonoBehaviour
         m_avalibleProjectiles = new List<ProjectileBehavior>(12);
     }
 
-    public void SpawnProjectile(Transform target, int spawnAmount)
+    public void SpawnProjectile(Transform target)
     {
-        for (int i = 0; i < spawnAmount; i++)
+        if (m_avalibleProjectiles.Count > 0)
         {
-            switch (i)
-            {
-                case 0:
-                    m_spawnOffset = Vector3.zero;
-                    break;
-                case 1:
-                    m_spawnOffset = Vector3.right * 1f;
-                    break;
-                case 2:
-                    m_spawnOffset = -Vector3.right * 1f;
-                    break;
-            }
-            
-            if (m_avalibleProjectiles.Count > 0)
-            {
-                ProjectileBehavior avalibleProjectile = m_avalibleProjectiles[0];
-                StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), avalibleProjectile, m_spawnOffset, target));
-                m_avalibleProjectiles.Remove(avalibleProjectile);
-            }
-            else
-            {
-                ProjectileBehavior newProjectile = Instantiate(projectilePrefab, GetProjectilePosition(m_spawnOffset), 
-                    Quaternion.identity).GetComponent<ProjectileBehavior>();
-                StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), newProjectile, m_spawnOffset, target));
-            }
+            ProjectileBehavior avalibleProjectile = m_avalibleProjectiles[0];
+            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), avalibleProjectile, GetRandomOffset(), target));
+            m_avalibleProjectiles.Remove(avalibleProjectile);
         }
+        else
+        {
+            ProjectileBehavior newProjectile = Instantiate(projectilePrefab, GetProjectilePosition(m_spawnOffset), 
+                Quaternion.identity).GetComponent<ProjectileBehavior>();
+            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), newProjectile, GetRandomOffset(), target));
+        }
+    }
+
+    private Vector3 GetRandomOffset()
+    {
+        Vector3 offset = new Vector3(Random.Range(0.7f, 2f), 0f, 0f);
+        return offset;
     }
     
     public void ReturnToPool(ProjectileBehavior projectile)

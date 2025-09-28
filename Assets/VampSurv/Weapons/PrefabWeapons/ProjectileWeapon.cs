@@ -17,8 +17,9 @@ public class ProjectileWeapon : WeaponBase
     private int m_maxColliders = 20;
     private Collider[] colliders;
     private bool m_isTargeting;
-    private float m_targetLocationOffset = 3f;
-    private float m_targetLocationRadius = 30f;
+    private float m_targetLocationOffset = 10f;
+    private float m_targetLocationRadius = 20f;
+    private List<Transform> m_targets = new List<Transform>();
     
     public override void StartWeapon()
     {
@@ -52,11 +53,15 @@ public class ProjectileWeapon : WeaponBase
     private void UseWeapon()
     {
         Transform target = null;
+        m_targets.Clear();
         
-        if (m_isTargeting)
-            target = GetTargetEnemy();
-        
-        m_projectilePool.SpawnProjectile(target, spawnAmount);
+        for (int i = 0; i < spawnAmount; i++)
+        {
+            if (m_isTargeting)
+                target = GetTargetEnemy();
+            
+            m_projectilePool.SpawnProjectile(target);
+        }
         StartCoroutine(WaitForNextAttack());
     }
 
@@ -64,21 +69,41 @@ public class ProjectileWeapon : WeaponBase
     {
         float furthestDistance = 0;
         Transform targetEnemy = null;
-        int numColliders = Physics.OverlapSphereNonAlloc(transform.position + transform.forward * m_targetLocationOffset, m_targetLocationRadius, colliders, 
+        int numColliders = Physics.OverlapSphereNonAlloc(GetTargetingPosition(), m_targetLocationRadius, colliders, 
             m_projectilePool.projectileData.projectileHitLayerMask);
         
         for(int i = 0; i < numColliders; i++)
         {
-            Vector3 dirToTarget = colliders[i].transform.position - transform.position;
+            Vector3 dirToTarget = colliders[i].transform.position - GetTargetingPosition();
             float distanceToTargetSqr = dirToTarget.magnitude;
             if (distanceToTargetSqr > furthestDistance)
             {
-                furthestDistance = distanceToTargetSqr;
-                targetEnemy = colliders[i].transform;
+                if(m_targets.Count > 0)
+                {
+                    foreach (Transform t in m_targets)
+                    {
+                        if (t != colliders[i].transform)
+                        {
+                            furthestDistance = distanceToTargetSqr;
+                            targetEnemy = colliders[i].transform;
+                        }
+                    }
+                }
+                else
+                {
+                    furthestDistance = distanceToTargetSqr;
+                    targetEnemy = colliders[i].transform;
+                }
             }
         }
         
+        m_targets.Add(targetEnemy);
         return targetEnemy;
+    }
+    
+    private Vector3 GetTargetingPosition()
+    {
+        return transform.position + transform.forward * m_targetLocationOffset;
     }
     
     IEnumerator WaitForNextAttack()

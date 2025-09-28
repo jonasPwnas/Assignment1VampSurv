@@ -8,6 +8,7 @@ public abstract class ProjectileBehavior : MonoBehaviour
     [HideInInspector] public ProjectilePool projectilePool;
     [HideInInspector] public GameObject meshChild;
     [HideInInspector] public GameObject trailChild;
+    [HideInInspector] public MeshRenderer renderer;
     
     public abstract void LaunchProjectile(Vector3 spawnPosition, Transform target, ProjectilePool projectilePool);
     public abstract void DisableProjectile();
@@ -22,6 +23,7 @@ public abstract class ProjectileBehavior : MonoBehaviour
         meshChild = transform.GetChild(0).gameObject;
         meshChild.GetComponent<MeshFilter>().mesh = projectileData.projectileMesh;
         meshChild.GetComponent<MeshRenderer>().material = projectileData.projectileMaterial;
+        renderer = meshChild.GetComponent<MeshRenderer>();
         if (trailChild != null)
         {
             Destroy(trailChild);

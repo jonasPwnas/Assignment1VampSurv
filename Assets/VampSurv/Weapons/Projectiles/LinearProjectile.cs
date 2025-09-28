@@ -25,6 +25,7 @@ public class LinearProjectile : ProjectileBehavior
 
     public override void LaunchProjectile(Vector3 spawnPosition, Transform target, ProjectilePool pool)
     {
+        renderer.enabled = true;
         transform.localScale = new Vector3(projectileData.projectileUniformScale, projectileData.projectileUniformScale,
             projectileData.projectileUniformScale);
         transform.position = spawnPosition;
@@ -84,13 +85,15 @@ public class LinearProjectile : ProjectileBehavior
     private void ProjectileImpact()
     {
         //Activate VFX plz
-        
-        Physics.OverlapSphereNonAlloc(transform.position, projectileData.impactRadius, colliders);
-        foreach (Collider hit in colliders)
-        {
-            hit.GetComponent<IHealthAndDamage>().TakeDamage(projectileData.projectileDamage, Vector3.up);
-        }
-        DisableProjectile(); //Should do this when particles has finished playing
+        //Physics.OverlapSphereNonAlloc(transform.position, projectileData.impactRadius, colliders);
+        //foreach (Collider hit in colliders)
+        //{
+        //    hit.GetComponent<IHealthAndDamage>().TakeDamage(projectileData.projectileDamage, Vector3.up);
+        //}
+
+        Instantiate(projectileData.projectileImpactSystem, transform.position, Quaternion.identity, transform);
+        renderer.enabled = false;
+        StartCoroutine(WaitThenDisable(1f));
     }
     
     IEnumerator WaitThenFire()
@@ -118,7 +121,7 @@ public class LinearProjectile : ProjectileBehavior
     {
         yield return new WaitForEndOfFrame();
         
-        if (Vector3.Distance(transform.position, projectileTarget.position) <= projectileData.projectileRadius)
+        if (Vector3.Distance(transform.position, projectileTarget.position) <= projectileData.projectileRadius+0.1f)
         {
             ProjectileImpact();
         }
@@ -140,6 +143,13 @@ public class LinearProjectile : ProjectileBehavior
             UntargetedMove();
         }
     }
+
+    IEnumerator WaitThenDisable(float timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        DisableProjectile();
+    }
+    
     
     private void OnDestroy()
     {

@@ -197,17 +197,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!114 &604883304 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 389923484025111778, guid: c86f4aa34c8954742b99d8c4d4b57dab, type: 3}
-  m_PrefabInstance: {fileID: 8853112984021289183}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,10 +1218,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 889481880091731412, guid: c86f4aa34c8954742b99d8c4d4b57dab, type: 3}
-      propertyPath: currentKillsText
-      value: 
-      objectReference: {fileID: 604883304}
     - target: {fileID: 3182102390827325591, guid: c86f4aa34c8954742b99d8c4d4b57dab, type: 3}
       propertyPath: m_Name
       value: RuntimeUi
@@ -1277,21 +1262,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5751137103188673416, guid: c86f4aa34c8954742b99d8c4d4b57dab, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -1.5256729
-      objectReference: {fileID: 0}
-    - target: {fileID: 5751137103188673416, guid: c86f4aa34c8954742b99d8c4d4b57dab, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.000015258789
-      objectReference: {fileID: 0}
-    - target: {fileID: 7481322996362200447, guid: c86f4aa34c8954742b99d8c4d4b57dab, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.90000916
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923274478527907012, guid: c86f4aa34c8954742b99d8c4d4b57dab, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.53778076
+    - target: {fileID: 7454395142993051895, guid: c86f4aa34c8954742b99d8c4d4b57dab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

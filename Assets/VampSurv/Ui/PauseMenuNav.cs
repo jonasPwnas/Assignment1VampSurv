@@ -7,15 +7,25 @@ public class PauseMenuNav : MonoBehaviour
     [SerializeField] private GameObject hud;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject deathMenu;
+    [SerializeField] private GameObject levelUpMenu;
 
     private void OnEnable()
     {
         PlayerData.OnPlayerDeath += DeathMenu;
+        PlayerData.OnLevelUp += DoLevelUp;
     }
 
     private void OnDisable()
     {
         PlayerData.OnPlayerDeath -= DeathMenu;
+        PlayerData.OnLevelUp -= DoLevelUp;
+    }
+
+    private void DoLevelUp()
+    {
+        levelUpMenu.SetActive(true);
+        hud.gameObject.SetActive(false);
+        Cursor.visible = true;
     }
 
     public void LoadMainMenu()
@@ -44,6 +54,7 @@ public class PauseMenuNav : MonoBehaviour
     
     public void Continue()
     {
+        levelUpMenu.SetActive(false);
         pauseMenu.gameObject.SetActive(false);
         hud.gameObject.SetActive(true);
         Time.timeScale = 1;

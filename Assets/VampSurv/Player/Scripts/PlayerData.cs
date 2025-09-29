@@ -12,6 +12,11 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     public delegate void PlayerDeath();
     public static event PlayerDeath OnPlayerDeath;
     
+    public delegate void LevelUp();
+    public static event LevelUp OnLevelUp;
+    
+    
+    
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] HudUpdater hudUpdater;
     [SerializeField] private ProgressionData progressionData;
@@ -62,6 +67,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
             m_currentMaxXp = progressionData.GetXpForLevel(m_currentLevel);
             hudUpdater.UpdateXpBar(m_currentXp, m_currentMaxXp, m_currentLevel);
             m_currentXp = 0;
+            OnLevelUp?.Invoke();
         }
         else
         {

@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Avalible Equipment", menuName = "Scriptable Objects/Avalible Equipment")]
 public class AvalibleEquipment : ScriptableObject
 {
-    // blork
+    public List<GameObject> avalibleEquipment;
 }

@@ -18,7 +18,7 @@ public class EquipmentBase : MonoBehaviour
         //Cool base implementation
     }
 
-    public virtual void LevelEquipmentUp()
+    public virtual void LevelEquipmentUp(int level)
     {
         //Also a very cool base implementation
     }

@@ -26,9 +26,9 @@ public class ProjectileWeapon : EquipmentBase
         UseWeapon();
     }
 
-    public override void LevelEquipmentUp()
+    public override void LevelEquipmentUp(int level)
     {
-        base.LevelEquipmentUp();
+        base.LevelEquipmentUp(0);
     }
 
     private void Start()

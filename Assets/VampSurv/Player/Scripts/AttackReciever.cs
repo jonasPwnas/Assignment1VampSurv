@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class AttackReciever : MonoBehaviour
 {
-    [SerializeField] private float damage = 10f;
-    [SerializeField] private DamageField damageField;
+    [SerializeField] private DragonSlayerWeapon dragonSlayerWeapon;
     
     private Vector3 m_attackDirection;
 
@@ -13,16 +12,16 @@ public class AttackReciever : MonoBehaviour
         switch (AttackDirection)
         {
             case 0:
-                damageField.EnableCollider(false);
+                dragonSlayerWeapon.EnableCollider(false);
                 break;
             case 1:
-                damageField.EnableCollider(false);
+                dragonSlayerWeapon.EnableCollider(false);
                 break;
             case 2:
-                damageField.EnableCollider(false);
+                dragonSlayerWeapon.EnableCollider(false);
                 break;
             case 3:
-                damageField.EnableCollider(true);
+                dragonSlayerWeapon.EnableCollider(true);
                 break;
         }
     }
@@ -44,6 +43,6 @@ public class AttackReciever : MonoBehaviour
                 m_attackDirection = transform.up * 0.18f + transform.forward;
                 break;
         }
-        damageField.DealDamage(damage, m_attackDirection);
+        dragonSlayerWeapon.DealDamage(m_attackDirection);
     }
 }

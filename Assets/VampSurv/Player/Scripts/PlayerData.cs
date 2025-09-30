@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Enemies;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     [SerializeField] private ProgressionData progressionData;
     [SerializeField] private DamageIndicator damageIndicator;
     [SerializeField] private DamageIndicator xpIndicator;
+    [SerializeField] private List<EquipmentBase> currentEquipment;
     
     //Public
     [HideInInspector] public float m_currentLevel = 1;

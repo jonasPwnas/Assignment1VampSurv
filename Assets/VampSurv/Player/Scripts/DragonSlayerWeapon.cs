@@ -1,14 +1,25 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static EquipmentLevelUp.EquipmentLevelUpStructs;
 
-public class DamageField : EquipmentBase
+public class DragonSlayerWeapon : EquipmentBase
 {
     [SerializeField] private List<Collider> forwardColliders;
-    [SerializeField] private Collider areaCollider;
+    [SerializeField] private SphereCollider areaCollider;
+    [SerializeField] private EquipmentLevelUpData levelUpData;
+    [SerializeField] private Transform swordTransform;
+    [SerializeField] private Transform forwardColliderTransform;
+    [SerializeField] private float baseDamage = 1.1f;
+    [SerializeField] private int startLevel;
     
     private List<GameObject> m_overlappedObjects = new List<GameObject>();
 
+    private void Start()
+    {
+        LevelEquipmentUp(startLevel);
+    }
+    
     public void EnableCollider(bool areaDamage)
     {
         if (areaDamage)
@@ -23,7 +34,7 @@ public class DamageField : EquipmentBase
         }
     }
     
-    public void DealDamage(float damage, Vector3 hitDirection)
+    public void DealDamage(Vector3 hitDirection)
     {
         if(m_overlappedObjects.Count < 1)
             return;
@@ -33,7 +44,7 @@ public class DamageField : EquipmentBase
             IHealthAndDamage healthAndDamage = obj.GetComponent<IHealthAndDamage>();
             if (healthAndDamage != null)
             {
-                healthAndDamage.TakeDamage(damage, hitDirection);
+                healthAndDamage.TakeDamage(baseDamage, hitDirection);
             }
         });
         m_overlappedObjects.Clear();
@@ -49,8 +60,12 @@ public class DamageField : EquipmentBase
         m_overlappedObjects.Remove(other.gameObject);
     }
 
-    public override void LevelEquipmentUp()
+    public override void LevelEquipmentUp(int level)
     {
-        base.LevelEquipmentUp();
+        MeleeWeaponLevelUpData data = (MeleeWeaponLevelUpData)levelUpData.GetLevelUpData(level);
+        areaCollider.radius += data.rangeIncrease * 0.7f;
+        forwardColliderTransform.localScale += new Vector3(data.rangeIncrease * 0.2f, 0f, data.rangeIncrease * 0.5f);
+        swordTransform.localScale += new Vector3(data.rangeIncrease * 40f, 10f, data.rangeIncrease * 25f);
+        baseDamage += data.damageIncrease;
     }
 }

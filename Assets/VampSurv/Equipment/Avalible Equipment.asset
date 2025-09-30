@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e435f2e9dbb32544285eef1e11c01cdc, type: 3}
+  m_Name: Avalible Equipment
+  m_EditorClassIdentifier: Assembly-CSharp::AvalibleEquipment
+  avalibleEquipment:
+  - {fileID: 929764349997055287, guid: 15f3300f2024a844bb3d60e6e3d09815, type: 3}
+  - {fileID: 503610872001624304, guid: b77f769e2eb01ab488272a5ebc229160, type: 3}

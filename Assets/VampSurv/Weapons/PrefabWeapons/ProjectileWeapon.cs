@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileWeapon : WeaponBase
+public class ProjectileWeapon : EquipmentBase
 {
     [Tooltip("What projectile-pool will the weapon use?")]
     [SerializeField] private GameObject projectilePool; //Probably should be instantiated? To reduce setup and prefab clutter
@@ -21,14 +21,14 @@ public class ProjectileWeapon : WeaponBase
     private float m_targetLocationRadius = 20f;
     private List<Transform> m_targets = new List<Transform>();
     
-    public override void StartWeapon()
+    public override void StartEquipment()
     {
         UseWeapon();
     }
 
-    public override void LevelWeaponUp()
+    public override void LevelEquipmentUp()
     {
-        base.LevelWeaponUp();
+        base.LevelEquipmentUp();
     }
 
     private void Start()
@@ -46,7 +46,7 @@ public class ProjectileWeapon : WeaponBase
                 break;
         }
         Debug.Log("DEBUG STARTING WEAPONS!!!! BE AWARE");
-        StartWeapon();
+        StartEquipment();
     }
     
 

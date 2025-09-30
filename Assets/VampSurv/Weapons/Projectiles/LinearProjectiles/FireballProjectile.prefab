@@ -53,6 +53,8 @@ MonoBehaviour:
   projectilePool: {fileID: 0}
   meshChild: {fileID: 8350618414348093357}
   trailChild: {fileID: 0}
+  renderer: {fileID: 0}
+  genericParticlePool: {fileID: 4428260854416681844, guid: 63eb20a2c78876e4c85f8f0d86d50a3f, type: 3}
 --- !u!114 &7857587243844780725
 MonoBehaviour:
   m_ObjectHideFlags: 0

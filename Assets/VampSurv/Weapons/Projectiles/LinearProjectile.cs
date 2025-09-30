@@ -1,11 +1,16 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LinearProjectile : ProjectileBehavior
 {
-    private Vector3 startPosition;
-    private Vector3 lastPosition;
+    [Tooltip("Find object in VampSurv/Utility/Prefabs")]
+    [SerializeField] private GameObject genericParticlePool;
+    
+    private Vector3 m_startPosition;
+    private Vector3 m_lastPosition;
+    private ParticleSystemPool m_projectilePool;
 
     [ContextMenu("UpdateVisuals")]
     private void UpdateVisuals()
@@ -23,14 +28,21 @@ public class LinearProjectile : ProjectileBehavior
         gameObject.SetActive(false);
     }
 
+    private void Start()
+    {
+        SetGraphics();
+        m_projectilePool = Instantiate(genericParticlePool, Vector3.zero, Quaternion.identity).GetComponent<ParticleSystemPool>();
+        m_projectilePool.SetParticleSystemPrefab(projectileData.projectileImpactSystem);
+    }
+    
     public override void LaunchProjectile(Vector3 spawnPosition, Transform target, ProjectilePool pool)
     {
         renderer.enabled = true;
         transform.localScale = new Vector3(projectileData.projectileUniformScale, projectileData.projectileUniformScale,
             projectileData.projectileUniformScale);
         transform.position = spawnPosition;
-        startPosition = spawnPosition;
-        lastPosition = spawnPosition;
+        m_startPosition = spawnPosition;
+        m_lastPosition = spawnPosition;
         projectilePool = pool;
         transform.rotation = projectilePool.transform.rotation;
         gameObject.SetActive(true);
@@ -77,8 +89,8 @@ public class LinearProjectile : ProjectileBehavior
                 transform.Translate(movementDirection * (projectileData.linearProjectileSpeed * Time.deltaTime), Space.Self);
                 break;
         }
-        meshChild.transform.rotation = Quaternion.LookRotation((transform.position - lastPosition).normalized);
-        lastPosition = transform.position;
+        meshChild.transform.rotation = Quaternion.LookRotation((transform.position - m_lastPosition).normalized);
+        m_lastPosition = transform.position;
         StartCoroutine(MoveProjectileAlongDirection());
     }
 
@@ -91,7 +103,7 @@ public class LinearProjectile : ProjectileBehavior
         //    hit.GetComponent<IHealthAndDamage>().TakeDamage(projectileData.projectileDamage, Vector3.up);
         //}
 
-        Instantiate(projectileData.projectileImpactSystem, transform.position, Quaternion.identity, transform);
+        m_projectilePool.SpawnSystem(transform.position);
         renderer.enabled = false;
         StartCoroutine(WaitThenDisable(1f));
     }
@@ -134,7 +146,7 @@ public class LinearProjectile : ProjectileBehavior
     IEnumerator MoveProjectileAlongDirection()
     {   
         yield return new WaitForEndOfFrame();
-        if (Vector3.Distance(startPosition, transform.position) > projectileData.linearProjectileTravelDistance)
+        if (Vector3.Distance(m_startPosition, transform.position) > projectileData.linearProjectileTravelDistance)
         {
             ProjectileImpact();
         }

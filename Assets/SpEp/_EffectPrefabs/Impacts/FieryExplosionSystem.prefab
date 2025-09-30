@@ -24309,7 +24309,7 @@ GameObject:
   - component: {fileID: 6285657304383161303}
   - component: {fileID: 5685028808954353024}
   - component: {fileID: 5297124101049749265}
-  - component: {fileID: 1334806729133331040}
+  - component: {fileID: 4227152954071358883}
   m_Layer: 0
   m_Name: FieryExplosionSystem
   m_TagString: Untagged
@@ -29212,7 +29212,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &1334806729133331040
+--- !u!114 &4227152954071358883
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29221,10 +29221,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6844599722858113385}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 817957b62d6328f42a9c43ba278baae1, type: 3}
+  m_Script: {fileID: 11500000, guid: 17c14f20976bb7349ab847f7c61dd9f2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  destroyTime: 5
+  m_EditorClassIdentifier: Assembly-CSharp::PooledParticleSystem
 --- !u!1 &7594536684706799773
 GameObject:
   m_ObjectHideFlags: 0

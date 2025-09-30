@@ -1,29 +1,29 @@
 using System;
 using UnityEngine;
 
-public class WeaponBase : MonoBehaviour
+public class EquipmentBase : MonoBehaviour
 {
     private void OnEnable()
     {
-        PlayerData.OnPlayerDeath += StopWeapon;
+        PlayerData.OnPlayerDeath += StopEquipment;
     }
 
     private void OnDisable()
     {
-        PlayerData.OnPlayerDeath -= StopWeapon;
+        PlayerData.OnPlayerDeath -= StopEquipment;
     }
     
-    public virtual void StartWeapon()
+    public virtual void StartEquipment()
     {
         //Cool base implementation
     }
 
-    public virtual void LevelWeaponUp()
+    public virtual void LevelEquipmentUp()
     {
         //Also a very cool base implementation
     }
 
-    public virtual void StopWeapon()
+    public virtual void StopEquipment()
     {
         StopAllCoroutines();
     }

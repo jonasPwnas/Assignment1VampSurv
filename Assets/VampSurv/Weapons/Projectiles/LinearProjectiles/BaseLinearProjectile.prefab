@@ -49,6 +49,11 @@ MonoBehaviour:
   projectileData: {fileID: 0}
   projectileTarget: {fileID: 0}
   colliders: []
+  projectilePool: {fileID: 0}
+  meshChild: {fileID: 0}
+  trailChild: {fileID: 0}
+  renderer: {fileID: 0}
+  genericParticlePool: {fileID: 4428260854416681844, guid: 63eb20a2c78876e4c85f8f0d86d50a3f, type: 3}
 --- !u!33 &4334565712260382141
 MeshFilter:
   m_ObjectHideFlags: 0

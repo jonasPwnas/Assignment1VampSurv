@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageField : MonoBehaviour
+public class DamageField : EquipmentBase
 {
     [SerializeField] private List<Collider> forwardColliders;
     [SerializeField] private Collider areaCollider;
@@ -47,5 +47,10 @@ public class DamageField : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         m_overlappedObjects.Remove(other.gameObject);
+    }
+
+    public override void LevelEquipmentUp()
+    {
+        base.LevelEquipmentUp();
     }
 }

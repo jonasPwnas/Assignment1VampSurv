@@ -48,6 +48,11 @@ public class ThirdPersonCamera : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0f)
+        {
+            return;
+        }
+        
         if (m_isDead)
         {
             m_currentRotation = Vector3.SmoothDamp(m_currentRotation, Vector3.zero, ref m_smoothVelocity, 0.1f);

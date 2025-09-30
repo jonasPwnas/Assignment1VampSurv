@@ -72,6 +72,10 @@ namespace Player
             {
                 pauseMenuNav.PauseGame();
             }
+            if (Time.timeScale == 0f)
+            {
+                return;
+            }
             
             Attack();
             Movement();

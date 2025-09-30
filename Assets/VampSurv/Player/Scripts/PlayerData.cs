@@ -15,15 +15,17 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     public delegate void LevelUp();
     public static event LevelUp OnLevelUp;
     
-    
-    
+    //Editor editable
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] HudUpdater hudUpdater;
     [SerializeField] private ProgressionData progressionData;
     [SerializeField] private DamageIndicator damageIndicator;
     [SerializeField] private DamageIndicator xpIndicator;
     
-    public float m_currentLevel = 1;
+    //Public
+    [HideInInspector] public float m_currentLevel = 1;
+    
+    //Privates
     private float m_currentHealth;
     private float m_currentXp;
     private float m_currentMaxXp;

@@ -987,6 +987,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 8130840995259666465}
+    - target: {fileID: 5062246862317066823, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: spawnAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062246862317066823, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: attackFrequency
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5302195518390739692, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.666
@@ -1038,6 +1046,14 @@ PrefabInstance:
     - target: {fileID: 6105815762615347767, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: m_Center.z
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791530109601823146, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: spawnAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791530109601823146, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: attackFrequency
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 6922978005317278588, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: startLevel

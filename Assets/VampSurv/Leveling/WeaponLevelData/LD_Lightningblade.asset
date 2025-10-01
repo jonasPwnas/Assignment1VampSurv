@@ -13,18 +13,23 @@ MonoBehaviour:
   m_Name: LD_Lightningblade
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeaponLevelUp
   WeaponLevels:
-  - cooldownDecrease: 0
+  - levelUpDescription: You conjure blades of lightning that pierce your enemies
+    cooldownDecrease: 0
     damageIncrease: 0
     projectileIncrease: 0
-  - cooldownDecrease: 0.95
+  - levelUpDescription: 5% cooldown reduction, +1 projectile, +1 damage
+    cooldownDecrease: 0.95
     damageIncrease: 1
     projectileIncrease: 1
-  - cooldownDecrease: 0.95
+  - levelUpDescription: 5% cooldown reduction, +1 projectile, +1 damage
+    cooldownDecrease: 0.95
     damageIncrease: 1
     projectileIncrease: 1
-  - cooldownDecrease: 0.95
+  - levelUpDescription: 5% cooldown reduction, +1 projectile, +1 damage
+    cooldownDecrease: 0.95
     damageIncrease: 1
     projectileIncrease: 1
-  - cooldownDecrease: 0.9
+  - levelUpDescription: 10% cooldown reduction, +1 projectile, +1 damage
+    cooldownDecrease: 0.9
     damageIncrease: 1
     projectileIncrease: 1

@@ -13,33 +13,43 @@ MonoBehaviour:
   m_Name: LD_Fireball
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeaponLevelUp
   WeaponLevels:
-  - cooldownDecrease: 0
+  - levelUpDescription: You call upon Belcifer, spirits of flame, to burn your enemies.
+    cooldownDecrease: 0
     damageIncrease: 0
     projectileIncrease: 0
-  - cooldownDecrease: 0.95
+  - levelUpDescription: 5% cooldown reduction, +1 projectile, +2 damage
+    cooldownDecrease: 0.95
     damageIncrease: 1
     projectileIncrease: 2
-  - cooldownDecrease: 0.9
+  - levelUpDescription: 10% cooldown reduction, +1 projectile, +1 damage
+    cooldownDecrease: 0.9
     damageIncrease: 1
     projectileIncrease: 1
-  - cooldownDecrease: 0.99
+  - levelUpDescription: 10% cooldown reduction, +1 projectile, +1 damage
+    cooldownDecrease: 0.99
     damageIncrease: 1
     projectileIncrease: 1
-  - cooldownDecrease: 0.9
+  - levelUpDescription: 10% cooldown reduction, +1 projectile, +1 damage
+    cooldownDecrease: 0.9
     damageIncrease: 1
     projectileIncrease: 1
-  - cooldownDecrease: 0.89
+  - levelUpDescription: 10% cooldown reduction, +1 projectile, +5 damage
+    cooldownDecrease: 0.89
     damageIncrease: 5
     projectileIncrease: 1
-  - cooldownDecrease: 0.9
+  - levelUpDescription: 10% cooldown reduction, +1 projectile, +1 damage
+    cooldownDecrease: 0.9
     damageIncrease: 1
     projectileIncrease: 1
-  - cooldownDecrease: 0.9
+  - levelUpDescription: 10% cooldown reduction, +1 projectile, +1 damage
+    cooldownDecrease: 0.9
     damageIncrease: 1
     projectileIncrease: 1
-  - cooldownDecrease: 0.9
+  - levelUpDescription: 10% cooldown reduction, +1 projectile, +1 damage
+    cooldownDecrease: 0.9
     damageIncrease: 1
     projectileIncrease: 1
-  - cooldownDecrease: 0.8
+  - levelUpDescription: 20% cooldown reduction, +1 projectile, +5 damage
+    cooldownDecrease: 0.8
     damageIncrease: 5
     projectileIncrease: 1

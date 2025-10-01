@@ -13,13 +13,18 @@ MonoBehaviour:
   m_Name: LD_DragonSlayer
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeaponLevelUp
   WeaponLevels:
-  - damageIncrease: 1
-    rangeIncrease: 2
-  - damageIncrease: 2
+  - levelUpDescription: 
+    damageIncrease: 0
+    rangeIncrease: 0
+  - levelUpDescription: Your sword tingles from your amassed power
+    damageIncrease: 2
     rangeIncrease: 1
-  - damageIncrease: 2
+  - levelUpDescription: '"Sword? You can never have enough." - Wise man G'
+    damageIncrease: 2
+    rangeIncrease: 1
+  - levelUpDescription: The heavens will fear your reach
+    damageIncrease: 2
     rangeIncrease: 2
-  - damageIncrease: 3
-    rangeIncrease: 3
-  - damageIncrease: 5
-    rangeIncrease: 5
+  - levelUpDescription: Big. Bonk.
+    damageIncrease: 2.5
+    rangeIncrease: 2

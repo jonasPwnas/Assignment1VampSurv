@@ -63,9 +63,16 @@ public class DragonSlayerWeapon : EquipmentBase
     public override void LevelEquipmentUp(int level)
     {
         MeleeWeaponLevelUpData data = (MeleeWeaponLevelUpData)levelUpData.GetLevelUpData(level);
-        areaCollider.radius += data.rangeIncrease * 0.7f;
+        areaCollider.radius += data.rangeIncrease * 0.35f;
         forwardColliderTransform.localScale += new Vector3(data.rangeIncrease * 0.2f, 0f, data.rangeIncrease * 0.5f);
-        swordTransform.localScale += new Vector3(data.rangeIncrease * 40f, 10f, data.rangeIncrease * 25f);
+        swordTransform.localScale += new Vector3(data.rangeIncrease * 44f, 44f, data.rangeIncrease * 66f);
         baseDamage += data.damageIncrease;
+    }
+
+    [ContextMenu("DebugLevelUp")]
+    private void DebugLevelUp()
+    {
+        startLevel++;
+        LevelEquipmentUp(startLevel);
     }
 }

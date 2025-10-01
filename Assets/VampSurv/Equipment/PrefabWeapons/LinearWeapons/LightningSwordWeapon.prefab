@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeapon
   levelUpImage: {fileID: 21300000, guid: 8a83bcffed7a86a48a0840af687bcedc, type: 3}
+  EquipmentName: Lightningblades
+  levelUpDescription: 
   projectilePool: {fileID: 2745297092293960935}
   attackCooldown: 4
   spawnAmount: 1

@@ -46,9 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeapon
   levelUpImage: {fileID: 21300000, guid: 77beee8bcca788348a058ec67d9b062f, type: 3}
+  EquipmentName: Spirits of Flame
+  levelUpDescription: 
   projectilePool: {fileID: 5644267016604125418}
   attackCooldown: 6
-  spawnAmount: 2
+  spawnAmount: 1
   levelUpData: {fileID: 11400000, guid: 0163351309587a945b38b94deadd80a6, type: 2}
   WeaponDebugLevel: 0
 --- !u!1 &5644267016604125418

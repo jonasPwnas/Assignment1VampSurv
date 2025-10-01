@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &241629033 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1085908822410959645, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-  m_PrefabInstance: {fileID: 7601026853969543640}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &287218844
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,11 +223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845051541d11b2a4296b63c30f89870c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RandomEnemyPool
---- !u!4 &1459575873 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8881475746839527309, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-  m_PrefabInstance: {fileID: 7601026853969543640}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1584773816
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,12 +978,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8130840995259666465}
     - target: {fileID: 5062246862317066823, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: levelUpData
+      value: 
+      objectReference: {fileID: 11400000, guid: 0163351309587a945b38b94deadd80a6, type: 2}
+    - target: {fileID: 5062246862317066823, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: spawnAmount
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5062246862317066823, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: attackCooldown
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062246862317066823, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: attackFrequency
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062246862317066823, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: weaponStartingLevel
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5302195518390739692, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1048,29 +1050,25 @@ PrefabInstance:
       value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6791530109601823146, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: levelUpData
+      value: 
+      objectReference: {fileID: 11400000, guid: c84c6e4c791c009418d18f31864232dd, type: 2}
+    - target: {fileID: 6791530109601823146, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: spawnAmount
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791530109601823146, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: attackCooldown
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6791530109601823146, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: attackFrequency
       value: 4.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6922978005317278588, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-      propertyPath: startLevel
-      value: 0
+    - target: {fileID: 6791530109601823146, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: weaponStartingLevel
+      value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 6922978005317278588, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-      propertyPath: levelUpData
-      value: 
-      objectReference: {fileID: 11400000, guid: 48db6144589c5724cae5d8f1d90c1fa6, type: 2}
-    - target: {fileID: 6922978005317278588, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-      propertyPath: swordTransform
-      value: 
-      objectReference: {fileID: 241629033}
-    - target: {fileID: 6922978005317278588, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-      propertyPath: forwardColliderTransform
-      value: 
-      objectReference: {fileID: 1459575873}
     - target: {fileID: 7110957252731670791, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: hudUpdater
       value: 
@@ -1125,6 +1123,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RuntimeUi
       objectReference: {fileID: 0}
+    - target: {fileID: 4284610679427585061, guid: c86f4aa34c8954742b99d8c4d4b57dab, type: 3}
+      propertyPath: avalibleEquipment
+      value: 
+      objectReference: {fileID: 11400000, guid: 242123c53f8907a4f9c544feef727958, type: 2}
     - target: {fileID: 5401794025181381818, guid: c86f4aa34c8954742b99d8c4d4b57dab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.42033
@@ -1168,6 +1170,10 @@ PrefabInstance:
     - target: {fileID: 7454395142993051895, guid: c86f4aa34c8954742b99d8c4d4b57dab, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7481322996362200447, guid: c86f4aa34c8954742b99d8c4d4b57dab, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.8999939
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

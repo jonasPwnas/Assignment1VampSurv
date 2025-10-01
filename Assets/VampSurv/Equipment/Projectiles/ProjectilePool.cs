@@ -15,6 +15,7 @@ public class ProjectilePool : MonoBehaviour
     private ProjectileSpawnPositions m_spawnPositions;
     private Vector3 m_spawnPosition;
     private Vector3 m_spawnOffset;
+    private float m_projectileDamage;
 
 
     private void Awake()
@@ -30,19 +31,24 @@ public class ProjectilePool : MonoBehaviour
         m_avalibleProjectiles = new List<ProjectileBehavior>(12);
     }
 
+    public void SetProjectileDamage(float damageToAdd)
+    {
+        m_projectileDamage += damageToAdd;
+    }
+    
     public void SpawnProjectile(Transform target)
     {
         if (m_avalibleProjectiles.Count > 0)
         {
             ProjectileBehavior avalibleProjectile = m_avalibleProjectiles[0];
-            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), avalibleProjectile, GetRandomOffset(), target));
+            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), avalibleProjectile, GetRandomOffset(), target, m_projectileDamage));
             m_avalibleProjectiles.Remove(avalibleProjectile);
         }
         else
         {
             ProjectileBehavior newProjectile = Instantiate(projectilePrefab, GetProjectilePosition(m_spawnOffset), 
                 Quaternion.identity).GetComponent<ProjectileBehavior>();
-            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), newProjectile, GetRandomOffset(), target));
+            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), newProjectile, GetRandomOffset(), target, m_projectileDamage));
         }
     }
 
@@ -79,9 +85,9 @@ public class ProjectilePool : MonoBehaviour
         return spawnPosition + spawnOffset;
     }
 
-    IEnumerator LaunchAfterTime(float time, ProjectileBehavior projectile, Vector3 spawnOffset, Transform target)
+    IEnumerator LaunchAfterTime(float time, ProjectileBehavior projectile, Vector3 spawnOffset, Transform target, float damage)
     {
         yield return new WaitForSeconds(time);
-        projectile.LaunchProjectile(GetProjectilePosition(spawnOffset), target, this);
+        projectile.LaunchProjectile(GetProjectilePosition(spawnOffset), target, this, damage);
     }
 }

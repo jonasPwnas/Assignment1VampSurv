@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Enemies;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
 {
@@ -25,7 +26,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     [SerializeField] private List<EquipmentBase> currentEquipment;
     
     //Public
-    [HideInInspector] public float m_currentLevel = 1;
+    [HideInInspector] public float currentLevel = 1;
     
     //Privates
     private float m_currentHealth;
@@ -45,7 +46,19 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
         SimpleEnemyController.OnEnemyDeath -= EnemyDied;
     }
 
+    public void AddNewWeapon(GameObject newWeapon)
+    {
+        EquipmentBase newEquipment;
+        newEquipment = Instantiate(gameObject, transform.position, transform.rotation, transform).GetComponent<EquipmentBase>();
+        currentEquipment.Add(newEquipment);
+    }
 
+    public EquipmentBase GetRandomWeapon()
+    {
+        int randomIndex = Random.Range(0, currentEquipment.Count);
+        return currentEquipment[randomIndex];
+    }
+    
     private void EnemyDied()
     {
         m_sessionKills++;
@@ -55,27 +68,28 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     {
         m_currentHealth = maxHealth;
         hudUpdater.UpdateHealthBar(m_currentHealth, maxHealth);
+        currentEquipment.Add(GetComponentInChildren<EquipmentBase>());
         StartCoroutine(UpdateTimeEverySecond());
     }
     
     public void GainXp(float xp)
     {
         m_currentXp += xp;
-        m_currentMaxXp = progressionData.GetXpForLevel(m_currentLevel);
+        m_currentMaxXp = progressionData.GetXpForLevel(currentLevel);
         xpIndicator.PlayDamageEffect();
 
         if (m_currentXp >= m_currentMaxXp)
         {
             m_currentXp -= m_currentMaxXp;
-            m_currentLevel++; //DING DING DING
-            m_currentMaxXp = progressionData.GetXpForLevel(m_currentLevel);
-            hudUpdater.UpdateXpBar(m_currentXp, m_currentMaxXp, m_currentLevel);
+            currentLevel++; //DING DING DING
+            m_currentMaxXp = progressionData.GetXpForLevel(currentLevel);
+            hudUpdater.UpdateXpBar(m_currentXp, m_currentMaxXp, currentLevel);
             m_currentXp = 0;
             OnLevelUp?.Invoke();
         }
         else
         {
-            hudUpdater.UpdateXpBar(m_currentXp, m_currentMaxXp, m_currentLevel);
+            hudUpdater.UpdateXpBar(m_currentXp, m_currentMaxXp, currentLevel);
         }
     }
 

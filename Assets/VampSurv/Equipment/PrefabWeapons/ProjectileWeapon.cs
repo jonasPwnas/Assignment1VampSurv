@@ -1,7 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using static EquipmentLevelUp.EquipmentLevelUpStructs;
 
 public class ProjectileWeapon : EquipmentBase
 {
@@ -9,9 +10,11 @@ public class ProjectileWeapon : EquipmentBase
     [SerializeField] private GameObject projectilePool; //Probably should be instantiated? To reduce setup and prefab clutter
     
     [Tooltip("Weapon base interval, how often the weapon will be used")]
-    [SerializeField] private float attackFrequency = 1.2f;
+    [SerializeField] private float attackCooldown = 1.2f;
 
     [SerializeField] private int spawnAmount = 1;
+    [SerializeField] private ProjectileWeaponLevelUp levelUpData;
+    [SerializeField] private int WeaponDebugLevel;
     
     private ProjectilePool m_projectilePool;
     private int m_maxColliders = 20;
@@ -21,14 +24,19 @@ public class ProjectileWeapon : EquipmentBase
     private float m_targetLocationRadius = 20f;
     private List<Transform> m_targets = new List<Transform>();
     
-    public override void StartEquipment()
+    [ContextMenu("DebugLevelEquipmentUp")]
+    private void DebugLevelEquipmentUp()
     {
-        UseWeapon();
+        WeaponDebugLevel++;
+        LevelEquipmentUp(WeaponDebugLevel);
     }
-
+    
     public override void LevelEquipmentUp(int level)
     {
-        base.LevelEquipmentUp(0);
+        ProjectileWeaponLevelUpData data = (ProjectileWeaponLevelUpData)levelUpData.GetLevelUpData(level);
+        attackCooldown *= data.cooldownDecrease;
+        spawnAmount += data.projectileIncrease;
+        m_projectilePool.SetProjectileDamage(data.damageIncrease);
     }
 
     private void Start()
@@ -45,11 +53,9 @@ public class ProjectileWeapon : EquipmentBase
                 m_isTargeting = true;
                 break;
         }
-        Debug.Log("DEBUG STARTING WEAPONS!!!! BE AWARE");
-        StartEquipment();
+        UseWeapon();
     }
     
-
     private void UseWeapon()
     {
         Transform target = null;
@@ -108,7 +114,7 @@ public class ProjectileWeapon : EquipmentBase
     
     IEnumerator WaitForNextAttack()
     {
-        yield return new WaitForSeconds(attackFrequency);
+        yield return new WaitForSeconds(attackCooldown);
         UseWeapon();
     }
 }

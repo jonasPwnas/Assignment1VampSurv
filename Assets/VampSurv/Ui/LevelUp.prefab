@@ -100,7 +100,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 120
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -255,6 +255,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUpMenu
   pauseMenu: {fileID: 0}
+  levelUpOptions:
+  - {fileID: 1739017044953677210}
+  - {fileID: 3331493314823116404}
+  - {fileID: 1662058871739246493}
 --- !u!1 &1471937033625372064
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,10 +371,10 @@ RectTransform:
   - {fileID: 6534637796578466482}
   m_Father: {fileID: 6711896375369518790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.29860476, y: 0.5444209}
-  m_AnchorMax: {x: 0.7016048, y: 0.7411121}
-  m_AnchoredPosition: {x: 0.633667, y: -0.048000336}
-  m_SizeDelta: {x: 1.267395, y: -0.952301}
+  m_AnchorMin: {x: 0.29860476, y: 0.574}
+  m_AnchorMax: {x: 0.7016048, y: 0.762}
+  m_AnchoredPosition: {x: 0.633667, y: 0.35199356}
+  m_SizeDelta: {x: 1.267395, y: 2.047699}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4453783648971765198
 GameObject:
@@ -472,7 +476,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 120
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -611,7 +615,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 120
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -747,7 +751,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 120
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -886,7 +890,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 120
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -1024,7 +1028,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 120
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -1094,10 +1098,10 @@ RectTransform:
   - {fileID: 7196927660098411043}
   m_Father: {fileID: 6711896375369518790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.402419, y: 0.032575224}
-  m_AnchorMax: {x: 0.59800005, y: 0.47038615}
-  m_AnchoredPosition: {x: 0, y: 1.2639923}
-  m_SizeDelta: {x: -0.027893066, y: 2.335205}
+  m_AnchorMin: {x: 0.402419, y: 0}
+  m_AnchorMax: {x: 0.59800005, y: 0.5621892}
+  m_AnchoredPosition: {x: 0, y: 0.2689972}
+  m_SizeDelta: {x: -0.02789998, y: 0.53699875}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6916234446737124708
 GameObject:
@@ -1198,7 +1202,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 120
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -1272,10 +1276,10 @@ RectTransform:
   - {fileID: 4713209430604346558}
   m_Father: {fileID: 6711896375369518790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.29860476, y: 0.7411121}
-  m_AnchorMax: {x: 0.7016048, y: 0.93600005}
-  m_AnchoredPosition: {x: -0.000015258789, y: -0.5}
-  m_SizeDelta: {x: 1.267395, y: 0.047698975}
+  m_AnchorMin: {x: 0.29860476, y: 0.762}
+  m_AnchorMax: {x: 0.7016048, y: 0.96000004}
+  m_AnchoredPosition: {x: -0.000015258789, y: 0.9000015}
+  m_SizeDelta: {x: 1.267395, y: -0.952301}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7571668156908557121
 GameObject:
@@ -1308,10 +1312,10 @@ RectTransform:
   - {fileID: 6542491844914867146}
   m_Father: {fileID: 6711896375369518790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.09460475, y: 0.032575224}
-  m_AnchorMax: {x: 0.28881425, y: 0.47038615}
-  m_AnchoredPosition: {x: 0.5, y: 1.2639923}
-  m_SizeDelta: {x: 0.97210693, y: 2.335205}
+  m_AnchorMin: {x: 0.09460475, y: 0}
+  m_AnchorMax: {x: 0.2915588, y: 0.5621892}
+  m_AnchoredPosition: {x: -0.5, y: 0.26860046}
+  m_SizeDelta: {x: -1.0279, y: 0.53710175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7902154364952918186
 GameObject:
@@ -1344,10 +1348,10 @@ RectTransform:
   - {fileID: 6195109061727859149}
   m_Father: {fileID: 6711896375369518790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.71139526, y: 0.032575224}
-  m_AnchorMax: {x: 0.9072096, y: 0.47038615}
-  m_AnchoredPosition: {x: -1, y: 0.76400757}
-  m_SizeDelta: {x: -0.027893066, y: 3.335205}
+  m_AnchorMin: {x: 0.71139526, y: 0}
+  m_AnchorMax: {x: 0.9058373, y: 0.5621892}
+  m_AnchoredPosition: {x: -0.5, y: 0.2689972}
+  m_SizeDelta: {x: 0.9721, y: 0.53699875}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &5779017963858797327
 PrefabInstance:
@@ -1439,7 +1443,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1512445213054767261, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
       propertyPath: m_fontSize
-      value: 15.9
+      value: 15.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348889064656845049, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Continue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348889064656845049, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenuNav, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6903828990532144255, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
       propertyPath: m_Name
@@ -1447,13 +1459,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7143051129233786390, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
       propertyPath: m_fontSize
-      value: 19.05
+      value: 17.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434524204754265280, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+      propertyPath: m_fontSize
+      value: 12.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+--- !u!114 &1739017044953677210 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5192941680016727701, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+  m_PrefabInstance: {fileID: 5779017963858797327}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5664035ee2826444c9ffdcecece1bc51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelUpOption
 --- !u!224 &6195109061727859149 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 417217273941463746, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
@@ -1547,19 +1574,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1512445213054767261, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+      propertyPath: m_fontSize
+      value: 15.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348889064656845049, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Continue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348889064656845049, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenuNav, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6903828990532144255, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
       propertyPath: m_Name
       value: LevelUpOption
       objectReference: {fileID: 0}
     - target: {fileID: 7143051129233786390, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
       propertyPath: m_fontSize
-      value: 19
+      value: 17.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434524204754265280, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+      propertyPath: m_fontSize
+      value: 12.55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+--- !u!114 &1662058871739246493 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5192941680016727701, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+  m_PrefabInstance: {fileID: 6845991834212792584}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5664035ee2826444c9ffdcecece1bc51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelUpOption
 --- !u!224 &6542491844914867146 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 417217273941463746, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
@@ -1653,19 +1707,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1512445213054767261, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+      propertyPath: m_fontSize
+      value: 15.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348889064656845049, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Continue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348889064656845049, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenuNav, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6903828990532144255, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
       propertyPath: m_Name
       value: LevelUpOption
       objectReference: {fileID: 0}
     - target: {fileID: 7143051129233786390, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
       propertyPath: m_fontSize
-      value: 19
+      value: 17.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434524204754265280, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+      propertyPath: m_fontSize
+      value: 12.55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+--- !u!114 &3331493314823116404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5192941680016727701, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}
+  m_PrefabInstance: {fileID: 7361942234514147553}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5664035ee2826444c9ffdcecece1bc51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelUpOption
 --- !u!224 &7196927660098411043 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 417217273941463746, guid: 7664ff9c3247f654f9af4e7dd18a625c, type: 3}

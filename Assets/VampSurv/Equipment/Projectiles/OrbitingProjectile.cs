@@ -25,7 +25,7 @@ public class OrbitingProjectile : ProjectileBehavior
         projectilePool.ReturnToPool(this);
     }
     
-    public override void LaunchProjectile(Vector3 spawnPosition, Transform target, ProjectilePool pool)
+    public override void LaunchProjectile(Vector3 spawnPosition, Transform target, ProjectilePool pool, float damage)
     {
         projectilePool = pool;
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2705445583466398534}
   - component: {fileID: 9134391238590693055}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LightningSwordWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,8 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa19aa7f6670cd548addd296c1a951ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeapon
+  levelUpImage: {fileID: 21300000, guid: 8a83bcffed7a86a48a0840af687bcedc, type: 3}
   projectilePool: {fileID: 2745297092293960935}
-  attackFrequency: 2.3
+  attackCooldown: 4
+  spawnAmount: 1
+  levelUpData: {fileID: 11400000, guid: c84c6e4c791c009418d18f31864232dd, type: 2}
+  WeaponDebugLevel: 0
 --- !u!1001 &4403209876577173742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58,6 +62,10 @@ PrefabInstance:
     - target: {fileID: 1946145634369659913, guid: 6161eedf38be4514aa723f8bda3961f7, type: 3}
       propertyPath: m_Name
       value: LightningSwordPool
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946145634369659913, guid: 6161eedf38be4514aa723f8bda3961f7, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4259031335129451228, guid: 6161eedf38be4514aa723f8bda3961f7, type: 3}
       propertyPath: m_LocalPosition.x

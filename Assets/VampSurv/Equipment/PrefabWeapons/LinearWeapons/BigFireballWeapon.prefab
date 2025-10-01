@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1383354178770771941}
   - component: {fileID: 7855317953777694301}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BigFireballWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929764349997055287}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.30136, y: -1.564, z: 22.50247}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,8 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa19aa7f6670cd548addd296c1a951ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeapon
+  levelUpImage: {fileID: 21300000, guid: 77beee8bcca788348a058ec67d9b062f, type: 3}
   projectilePool: {fileID: 5644267016604125418}
-  attackFrequency: 6
+  attackCooldown: 6
+  spawnAmount: 2
+  levelUpData: {fileID: 11400000, guid: 0163351309587a945b38b94deadd80a6, type: 2}
+  WeaponDebugLevel: 0
 --- !u!1 &5644267016604125418
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +61,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2217984243408099696}
   - component: {fileID: 7804417492619061991}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FireballPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,4 +96,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectilePool
   projectilePrefab: {fileID: 2575768212724158710, guid: 609bd3c54d6f5dc478d3e2d31df698d3, type: 3}
-  m_spawnLocation: 3
+  projectileData: {fileID: 0}

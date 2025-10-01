@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class LinearProjectile : ProjectileBehavior
 {
+    
     [Tooltip("Find object in VampSurv/Utility/Prefabs")]
     [SerializeField] private GameObject genericParticlePool;
     
     private Vector3 m_startPosition;
     private Vector3 m_lastPosition;
     private ParticleSystemPool m_projectilePool;
+    private float m_damage = 2f;
 
     [ContextMenu("UpdateVisuals")]
     private void UpdateVisuals()
@@ -35,7 +37,7 @@ public class LinearProjectile : ProjectileBehavior
         m_projectilePool.SetParticleSystemPrefab(projectileData.projectileImpactSystem);
     }
     
-    public override void LaunchProjectile(Vector3 spawnPosition, Transform target, ProjectilePool pool)
+    public override void LaunchProjectile(Vector3 spawnPosition, Transform target, ProjectilePool pool, float damage)
     {
         renderer.enabled = true;
         transform.localScale = new Vector3(projectileData.projectileUniformScale, projectileData.projectileUniformScale,
@@ -156,12 +158,16 @@ public class LinearProjectile : ProjectileBehavior
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        other.GetComponent<IHealthAndDamage>()?.TakeDamage(m_damage, transform.forward);
+    }
+    
     IEnumerator WaitThenDisable(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
         DisableProjectile();
     }
-    
     
     private void OnDestroy()
     {

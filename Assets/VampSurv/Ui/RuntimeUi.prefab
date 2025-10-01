@@ -480,33 +480,13 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2325122258613510495}
-    - target: {fileID: 511740999769375217, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Continue
-      objectReference: {fileID: 0}
-    - target: {fileID: 511740999769375217, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PauseMenuNav, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2325122258613510495}
-    - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Continue
-      objectReference: {fileID: 0}
-    - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PauseMenuNav, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 1154930848978096760, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_Name
       value: LevelUp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1154930848978096760, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3105961803091015206, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_Pivot.x
@@ -592,30 +572,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2325122258613510495}
-    - target: {fileID: 4481388953069613080, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Continue
-      objectReference: {fileID: 0}
-    - target: {fileID: 4481388953069613080, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PauseMenuNav, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 5476809433397135018, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 2325122258613510495}
-    - target: {fileID: 7196927660098411043, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7196927660098411043, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7196927660098411043, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -0.027893066
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

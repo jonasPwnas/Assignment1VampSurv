@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class EquipmentBase : MonoBehaviour
 {
+    [SerializeField] public Sprite levelUpImage;
+    [SerializeField] public string EquipmentName = "Equipment";
+    [HideInInspector] public string levelUpDescription;
+    
     private void OnEnable()
     {
         PlayerData.OnPlayerDeath += StopEquipment;

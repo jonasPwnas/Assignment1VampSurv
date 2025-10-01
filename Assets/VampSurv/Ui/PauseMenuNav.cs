@@ -49,6 +49,7 @@ public class PauseMenuNav : MonoBehaviour
         deathMenu.gameObject.SetActive(true);
         hud.gameObject.SetActive(false);
         pauseMenu.gameObject.SetActive(false);
+        Time.timeScale = 0;
         Cursor.visible = true;
     }
     

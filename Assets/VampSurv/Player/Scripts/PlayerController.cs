@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using DG.Tweening;
 using Input;
 using Tiny;
 using UnityEngine;
@@ -25,6 +27,7 @@ namespace Player
         [Tooltip("The camera used by the player")] [SerializeField] private Camera playerCamera;
         [SerializeField] Trail trail;
         [SerializeField] private PauseMenuNav pauseMenuNav;
+        [SerializeField] private Transform deathCamTransform;
         
         //Privates
         private Animator m_animator;
@@ -84,6 +87,8 @@ namespace Player
         private void OnDeath()
         {
             //Death animation
+            StartCoroutine(MovecameraOnDeath());
+            m_animator.updateMode = AnimatorUpdateMode.UnscaledTime;
             m_animator.SetTrigger(Died);
             m_isDead = true;
         }
@@ -221,5 +226,14 @@ namespace Player
         {
             m_inputWindowOpen = false;
         }
+        
+        IEnumerator MovecameraOnDeath()
+        {
+            float time = 1.2f;
+            playerCamera.transform.DOMove(deathCamTransform.position, time);
+            playerCamera.transform.DORotate(deathCamTransform.eulerAngles, time);
+            yield return new WaitForSecondsRealtime(time);
+        }
+        
     }
 }

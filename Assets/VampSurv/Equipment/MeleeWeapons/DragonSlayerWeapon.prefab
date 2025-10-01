@@ -181,14 +181,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9571bd244fa1804fbc07e1f0f17d545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageFIeld
+  levelUpData: {fileID: 0}
   levelUpImage: {fileID: 21300000, guid: da220405a2dff874bbcab5a39091a4f9, type: 3}
-  EquipmentName: Drakbane
+  equipmentName: Drakbane
   levelUpDescription: 
+  equipmentIndex: 0
   forwardColliders:
   - {fileID: 835183382712732788}
   - {fileID: 7486324101130207205}
   areaCollider: {fileID: 3657091274105808302}
-  levelUpData: {fileID: 0}
   swordTransform: {fileID: 0}
   forwardColliderTransform: {fileID: 0}
   baseDamage: 1.1

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: LD_DragonSlayer
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeaponLevelUp
   WeaponLevels:
-  - levelUpDescription: 
-    damageIncrease: 0
-    rangeIncrease: 0
   - levelUpDescription: Your sword tingles from your amassed power
-    damageIncrease: 2
-    rangeIncrease: 1
+    damageIncrease: 1
+    rangeIncrease: 0.5
+  - levelUpDescription: A hunk of metal, indeed.
+    damageIncrease: 1
+    rangeIncrease: 0.5
   - levelUpDescription: '"Sword? You can never have enough." - Wise man G'
     damageIncrease: 2
     rangeIncrease: 1

@@ -23,7 +23,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     [SerializeField] private ProgressionData progressionData;
     [SerializeField] private DamageIndicator damageIndicator;
     [SerializeField] private DamageIndicator xpIndicator;
-    [SerializeField] private List<EquipmentBase> currentEquipment;
+    [SerializeField] public List<GameObject> currentEquipment;
     
     //Public
     [HideInInspector] public float currentLevel = 1;
@@ -39,21 +39,33 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     private void OnEnable()
     {
         SimpleEnemyController.OnEnemyDeath += EnemyDied;
+        LevelUpOption.OnOptionSelected += AddOrLevelWeapon;
     }
 
     private void OnDisable()
     {
         SimpleEnemyController.OnEnemyDeath -= EnemyDied;
+        LevelUpOption.OnOptionSelected -= AddOrLevelWeapon;
     }
 
-    public void AddNewWeapon(GameObject newWeapon)
+    public void AddOrLevelWeapon(GameObject newWeapon)
     {
-        EquipmentBase newEquipment;
-        newEquipment = Instantiate(gameObject, transform.position, transform.rotation, transform).GetComponent<EquipmentBase>();
-        currentEquipment.Add(newEquipment);
+        EquipmentBase equipment = newWeapon.GetComponent<EquipmentBase>();
+        if (!equipment.GetIsEquipped())
+        {
+            print("Make New WEAPON!!! AAAAAH");
+            GameObject newEquipment;
+            newEquipment = Instantiate(newWeapon, transform.position, transform.rotation, transform);
+            currentEquipment.Add(newEquipment);
+        }
+        else
+        {
+            print("Level up existing weapon POOOWEEEERR!!!");
+            equipment.LevelEquipmentUp(equipment.GetLevel()+1);
+        }
     }
 
-    public EquipmentBase GetRandomWeapon()
+    public GameObject GetRandomWeapon()
     {
         int randomIndex = Random.Range(0, currentEquipment.Count);
         return currentEquipment[randomIndex];
@@ -68,7 +80,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     {
         m_currentHealth = maxHealth;
         hudUpdater.UpdateHealthBar(m_currentHealth, maxHealth);
-        currentEquipment.Add(GetComponentInChildren<EquipmentBase>());
+        currentEquipment.Add(GetComponentInChildren<EquipmentBase>().gameObject);
         StartCoroutine(UpdateTimeEverySecond());
     }
     

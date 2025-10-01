@@ -1069,6 +1069,10 @@ PrefabInstance:
       propertyPath: weaponStartingLevel
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6922978005317278588, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
+      propertyPath: startLevel
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7110957252731670791, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: hudUpdater
       value: 

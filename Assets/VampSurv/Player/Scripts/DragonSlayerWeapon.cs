@@ -7,17 +7,22 @@ public class DragonSlayerWeapon : EquipmentBase
 {
     [SerializeField] private List<Collider> forwardColliders;
     [SerializeField] private SphereCollider areaCollider;
-    [SerializeField] private EquipmentLevelUpData levelUpData;
     [SerializeField] private Transform swordTransform;
     [SerializeField] private Transform forwardColliderTransform;
     [SerializeField] private float baseDamage = 1.1f;
     [SerializeField] private int startLevel;
-    
+    //Woopers
     private List<GameObject> m_overlappedObjects = new List<GameObject>();
 
     private void Start()
     {
-        LevelEquipmentUp(startLevel);
+        SetIsEquipped(true);
+    }
+
+    public override string GetLevelUpDescription(int level)
+    {
+        MeleeWeaponLevelUpData data = (MeleeWeaponLevelUpData)levelUpData.GetLevelUpData(level);
+        return data.levelUpDescription;
     }
     
     public void EnableCollider(bool areaDamage)
@@ -62,6 +67,7 @@ public class DragonSlayerWeapon : EquipmentBase
 
     public override void LevelEquipmentUp(int level)
     {
+        SetLevel(level);
         MeleeWeaponLevelUpData data = (MeleeWeaponLevelUpData)levelUpData.GetLevelUpData(level);
         areaCollider.radius += data.rangeIncrease * 0.35f;
         forwardColliderTransform.localScale += new Vector3(data.rangeIncrease * 0.2f, 0f, data.rangeIncrease * 0.5f);

@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 503610872001624304}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.549, y: -0.404, z: 20.309}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45,13 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa19aa7f6670cd548addd296c1a951ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeapon
+  levelUpData: {fileID: 11400000, guid: c84c6e4c791c009418d18f31864232dd, type: 2}
   levelUpImage: {fileID: 21300000, guid: 8a83bcffed7a86a48a0840af687bcedc, type: 3}
-  EquipmentName: Lightningblades
-  levelUpDescription: 
+  equipmentName: Lightningblade
   projectilePool: {fileID: 2745297092293960935}
   attackCooldown: 4
   spawnAmount: 1
-  levelUpData: {fileID: 11400000, guid: c84c6e4c791c009418d18f31864232dd, type: 2}
   WeaponDebugLevel: 0
 --- !u!1001 &4403209876577173742
 PrefabInstance:
@@ -71,15 +70,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4259031335129451228, guid: 6161eedf38be4514aa723f8bda3961f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.21072006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4259031335129451228, guid: 6161eedf38be4514aa723f8bda3961f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00017997622
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4259031335129451228, guid: 6161eedf38be4514aa723f8bda3961f7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.5522194
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4259031335129451228, guid: 6161eedf38be4514aa723f8bda3961f7, type: 3}
       propertyPath: m_LocalRotation.w

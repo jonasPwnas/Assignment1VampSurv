@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeaponLevelUp
   WeaponLevels:
   - levelUpDescription: You call upon Belcifer, spirits of flame, to burn your enemies.
-    cooldownDecrease: 0
+    cooldownDecrease: 1
     damageIncrease: 0
     projectileIncrease: 0
   - levelUpDescription: 5% cooldown reduction, +1 projectile, +2 damage

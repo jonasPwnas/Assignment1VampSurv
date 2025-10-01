@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 324237310054058268}
   - component: {fileID: 5541115460722060141}
-  - component: {fileID: 7857587243844780725}
   - component: {fileID: 8421084520015488455}
   m_Layer: 0
   m_Name: FireballProjectile
@@ -55,19 +54,6 @@ MonoBehaviour:
   trailChild: {fileID: 0}
   renderer: {fileID: 0}
   genericParticlePool: {fileID: 4428260854416681844, guid: 63eb20a2c78876e4c85f8f0d86d50a3f, type: 3}
---- !u!114 &7857587243844780725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2575768212724158710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9989f400e00595744a6ed83d488759ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DamageOnOverlap
-  damage: 10
 --- !u!135 &8421084520015488455
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -13,7 +13,6 @@ public class ProjectileWeapon : EquipmentBase
     [SerializeField] private float attackCooldown = 1.2f;
 
     [SerializeField] private int spawnAmount = 1;
-    [SerializeField] private ProjectileWeaponLevelUp levelUpData;
     [SerializeField] private int WeaponDebugLevel;
     
     private ProjectilePool m_projectilePool;
@@ -33,10 +32,17 @@ public class ProjectileWeapon : EquipmentBase
     
     public override void LevelEquipmentUp(int level)
     {
+        SetLevel(level);
         ProjectileWeaponLevelUpData data = (ProjectileWeaponLevelUpData)levelUpData.GetLevelUpData(level);
         attackCooldown *= data.cooldownDecrease;
         spawnAmount += data.projectileIncrease;
         m_projectilePool.SetProjectileDamage(data.damageIncrease);
+    }
+
+    public override string GetLevelUpDescription(int level)
+    {
+        ProjectileWeaponLevelUpData data = (ProjectileWeaponLevelUpData)levelUpData.GetLevelUpData(level);
+        return data.levelUpDescription;
     }
 
     private void Start()
@@ -53,6 +59,7 @@ public class ProjectileWeapon : EquipmentBase
                 m_isTargeting = true;
                 break;
         }
+        SetIsEquipped(true);
         UseWeapon();
     }
     

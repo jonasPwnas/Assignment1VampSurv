@@ -28,36 +28,30 @@ public class LevelUpMenu : MonoBehaviour
 
     private void SetLevelUptions()
     {
-        EquipmentBase currentRando1 = playerData.GetRandomWeapon();
-        EquipmentBase currentRando2 = playerData.GetRandomWeapon();
-        EquipmentBase newRando1 = avalibleEquipment.avalibleEquipment[Random.Range(0, avalibleEquipment.avalibleEquipment.Count)].
-            GetComponent<EquipmentBase>();
-        EquipmentBase newRando2 = avalibleEquipment.avalibleEquipment[Random.Range(0, avalibleEquipment.avalibleEquipment.Count)].
-            GetComponent<EquipmentBase>();
-        
-        switch ((int)playerData.currentLevel)
+        List<GameObject> equipmentList = new List<GameObject>();
+        foreach (var equip in avalibleEquipment.avalibleEquipment)
         {
-            case 2:
-                levelUpOptions[0].SetOption(currentRando1.levelUpImage, currentRando1.EquipmentName, "Greatness awaits");
-                levelUpOptions[1].SetOption(newRando1.levelUpImage, newRando1.EquipmentName, "Greatness awaits even moar");
-                levelUpOptions[2].SetOption(newRando2.levelUpImage, newRando2.EquipmentName, "!!??!?");
-                break;
-            case 3:
-                levelUpOptions[0].SetOption(currentRando1.levelUpImage, currentRando1.EquipmentName, "Greatness awaits");
-                levelUpOptions[1].SetOption(newRando1.levelUpImage, newRando1.EquipmentName, "Greatness awaits even moar");
-                levelUpOptions[2].SetOption(newRando2.levelUpImage, newRando2.EquipmentName, "!!??!?");
-                break;
-            case 4:
-                levelUpOptions[0].SetOption(currentRando1.levelUpImage, currentRando1.EquipmentName, "Greatness awaits");
-                levelUpOptions[1].SetOption(newRando1.levelUpImage, newRando1.EquipmentName, "Greatness awaits even moar");
-                levelUpOptions[2].SetOption(newRando2.levelUpImage, newRando2.EquipmentName, "!!??!?");
-                break;
-            case 5:
-                levelUpOptions[0].SetOption(currentRando1.levelUpImage, currentRando1.EquipmentName, "Greatness awaits");
-                levelUpOptions[1].SetOption(newRando1.levelUpImage, newRando1.EquipmentName, "Greatness awaits even moar");
-                levelUpOptions[2].SetOption(newRando2.levelUpImage, newRando2.EquipmentName, "!!??!?");
-                break;
+            equipmentList.Add(equip);
         }
+        foreach (var equip in playerData.currentEquipment)
+        {
+            equipmentList.Add(equip);
+        }
+        
+        EquipmentBase rando1 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
+        equipmentList.Remove(rando1.gameObject);
+        EquipmentBase rando2 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
+        equipmentList.Remove(rando2.gameObject);
+        EquipmentBase rando3 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
+        
+        levelUpOptions[0].SetOption(rando1.levelUpImage, rando1.equipmentName, 
+            rando1.GetLevelUpDescription(rando1.GetLevel()+1), rando1.gameObject);
+        
+        levelUpOptions[1].SetOption(rando2.levelUpImage, rando2.equipmentName, 
+            rando2.GetLevelUpDescription(rando2.GetLevel()+1), rando2.gameObject);
+        
+        levelUpOptions[2].SetOption(rando3.levelUpImage, rando3.equipmentName, 
+            rando3.GetLevelUpDescription(rando3.GetLevel()+1), rando3.gameObject);
     }
 
     public void FinishedLevelUp()

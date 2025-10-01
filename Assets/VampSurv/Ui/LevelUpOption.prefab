@@ -599,9 +599,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelUpMenu, Assembly-CSharp
-        m_MethodName: FinishedLevelUp
+      - m_Target: {fileID: 5192941680016727701}
+        m_TargetAssemblyTypeName: LevelUpOption, Assembly-CSharp
+        m_MethodName: ChoseOption
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

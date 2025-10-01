@@ -160,6 +160,7 @@ public class LinearProjectile : ProjectileBehavior
 
     private void OnTriggerEnter(Collider other)
     {
+        //damage on overlap
         other.GetComponent<IHealthAndDamage>()?.TakeDamage(m_damage, transform.forward);
     }
     

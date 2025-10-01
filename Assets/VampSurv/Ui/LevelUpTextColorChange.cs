@@ -10,13 +10,17 @@ public class LevelUpTextColorChange : MonoBehaviour
 {
     private TMP_Text m_text;
 
-    private void Start()
+    private void OnEnable()
     {
         DOTween.Init();
         m_text = GetComponent<TMP_Text>();
         StartCoroutine(ChangeColorsDuringTime(Random.Range(0.3f, 0.6f)));
     }
-
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+    
     private IEnumerator ChangeColorsDuringTime(float time)
     {
         m_text.DOColor(Random.ColorHSV(0f,1f,1f,1f,1f,1f,1f,1f), time);
@@ -24,8 +28,5 @@ public class LevelUpTextColorChange : MonoBehaviour
         StartCoroutine(ChangeColorsDuringTime(Random.Range(0.3f, 0.6f)));
     }
 
-    private void OnDisable()
-    {
-        StopAllCoroutines();
-    }
+    
 }

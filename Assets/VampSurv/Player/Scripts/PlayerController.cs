@@ -9,6 +9,9 @@ namespace Player
 { 
     public class PlayerController : MonoBehaviour
     {
+        public delegate void DeathCamMoved();
+        public static event DeathCamMoved OnDeathCamMoved;
+        
         //Animator parameters
         private static readonly int NormalAttack = Animator.StringToHash("Attack");
         private static readonly int Jump = Animator.StringToHash("Jump");
@@ -231,8 +234,10 @@ namespace Player
         {
             float time = 1.2f;
             playerCamera.transform.DOMove(deathCamTransform.position, time);
-            playerCamera.transform.DORotate(deathCamTransform.eulerAngles, time);
+            playerCamera.transform.DORotate(deathCamTransform.eulerAngles, time, RotateMode.FastBeyond360);
             yield return new WaitForSecondsRealtime(time);
+            print("After cam death move");
+            OnDeathCamMoved?.Invoke();
         }
         
     }

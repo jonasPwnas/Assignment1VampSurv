@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
@@ -7,9 +8,17 @@ using UnityEngine.UI;
 public class MainMenuNav : MonoBehaviour
 {
     [SerializeField] private Image faderImage;
-    
+
+    private PersistentAudioPlayer m_audioPlayer;
+    private void Start()
+    {
+        m_audioPlayer = PersistentAudioPlayer.Instance;
+        m_audioPlayer.SetIsMenu();
+    }
+
     public void LoadGameplay()
     {
+        m_audioPlayer.SetIsGameplay();
         StartCoroutine(FadeVisibility(false, 0.7f, false));
     }
 

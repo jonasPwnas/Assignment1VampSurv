@@ -94,6 +94,7 @@ namespace Player
             m_animator.updateMode = AnimatorUpdateMode.UnscaledTime;
             m_animator.SetTrigger(Died);
             m_isDead = true;
+            trail.gameObject.SetActive(false);
         }
         
         void Attack()

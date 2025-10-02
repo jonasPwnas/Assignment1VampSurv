@@ -16,13 +16,13 @@ public class EnemySpawner : MonoBehaviour
     
     private void OnEnable()
     {
-        PlayerData.OnTimeThresholdReached += UpdateSpawnSettings;
+        PlayerData.OnSessionTimeThresholdReached += UpdateSpawnSettings;
         PlayerData.OnPlayerDeath += OnDeath;
     }
     
     private void OnDisable()
     {
-        PlayerData.OnTimeThresholdReached -= UpdateSpawnSettings;
+        PlayerData.OnSessionTimeThresholdReached -= UpdateSpawnSettings;
         PlayerData.OnPlayerDeath -= OnDeath;
     }
 

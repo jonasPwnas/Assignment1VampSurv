@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,14 +13,16 @@ public class PauseMenuNav : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerData.OnPlayerDeath += DeathMenu;
+        PlayerData.OnPlayerDeath += OnDeath;
         PlayerData.OnLevelUp += DoLevelUp;
+        PlayerController.OnDeathCamMoved += DeathMenu;
     }
 
     private void OnDisable()
     {
-        PlayerData.OnPlayerDeath -= DeathMenu;
+        PlayerData.OnPlayerDeath -= OnDeath;
         PlayerData.OnLevelUp -= DoLevelUp;
+        PlayerController.OnDeathCamMoved -= DeathMenu;
     }
 
     private void DoLevelUp()
@@ -44,12 +48,15 @@ public class PauseMenuNav : MonoBehaviour
         Cursor.visible = true;
     }
     
-    public void DeathMenu()
+    private void OnDeath()
     {
-        deathMenu.gameObject.SetActive(true);
         hud.gameObject.SetActive(false);
         pauseMenu.gameObject.SetActive(false);
         Time.timeScale = 0;
+    }
+    public void DeathMenu()
+    {
+        deathMenu.gameObject.SetActive(true);
         Cursor.visible = true;
     }
     

@@ -8,14 +8,19 @@ using Random = UnityEngine.Random;
 public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
 {
     //Delegates
-    public delegate void TimeThresholdReached(int timeThresholdIndex);
-    public static event TimeThresholdReached OnTimeThresholdReached;
+    public delegate void SessionTimeThresholdReached(int sessionTimeThresholdIndex);
+    public static event SessionTimeThresholdReached OnSessionTimeThresholdReached;
 
     public delegate void PlayerDeath();
     public static event PlayerDeath OnPlayerDeath;
     
     public delegate void LevelUp();
     public static event LevelUp OnLevelUp;
+    
+    public delegate void FinishedLevelUp();
+    public static event FinishedLevelUp OnFinishedLevelUp;
+    public delegate void DidGainXp();
+    public static event DidGainXp OnDidGainXp;
     
     //Editor editable
     [SerializeField] private float maxHealth = 100f;
@@ -35,6 +40,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     private float m_currentTime = 0f;
     private bool m_isDead;
     private int m_sessionKills = 0;
+    private PersistentAudioPlayer m_AudioPlayer;
 
     private void OnEnable()
     {
@@ -50,6 +56,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
 
     public void AddOrLevelWeapon(GameObject newWeapon)
     {
+        OnFinishedLevelUp?.Invoke();
         EquipmentBase equipment = newWeapon.GetComponent<EquipmentBase>();
         if (!equipment.GetIsEquipped())
         {
@@ -81,6 +88,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
         m_currentHealth = maxHealth;
         hudUpdater.UpdateHealthBar(m_currentHealth, maxHealth);
         currentEquipment.Add(GetComponentInChildren<EquipmentBase>().gameObject);
+        m_AudioPlayer = PersistentAudioPlayer.Instance;
         StartCoroutine(UpdateTimeEverySecond());
     }
     
@@ -89,6 +97,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
         m_currentXp += xp;
         m_currentMaxXp = progressionData.GetXpForLevel(currentLevel);
         xpIndicator.PlayDamageEffect();
+        OnDidGainXp?.Invoke();
 
         if (m_currentXp >= m_currentMaxXp)
         {
@@ -114,7 +123,9 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
             damageIndicator.PlayDamageEffect();
             if (m_currentHealth < 0)
             {
+                damageIndicator.gameObject.SetActive(false);
                 OnPlayerDeath?.Invoke();
+                m_AudioPlayer.OnPlayerDied();
                 m_isDead = true;
             }
         }
@@ -136,7 +147,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
         if (testTime < 0.1)
         {
             thirtySecMarker = (int) m_currentTime / 30;
-            OnTimeThresholdReached?.Invoke(thirtySecMarker);
+            OnSessionTimeThresholdReached?.Invoke(thirtySecMarker);
         }
         
         hudUpdater.DisplayNewTime(m_currentTime);

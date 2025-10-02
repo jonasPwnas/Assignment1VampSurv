@@ -11,7 +11,6 @@ public class DragonSlayerWeapon : EquipmentBase
     [SerializeField] private Transform forwardColliderTransform;
     [SerializeField] private float baseDamage = 1.1f;
     [SerializeField] private int startLevel;
-    //Woopers
     private List<GameObject> m_overlappedObjects = new List<GameObject>();
 
     private void Start()

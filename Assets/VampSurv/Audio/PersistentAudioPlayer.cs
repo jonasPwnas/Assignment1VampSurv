@@ -4,16 +4,18 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class PersistentAudioManager : MonoBehaviour
+public class PersistentAudioPlayer : MonoBehaviour
 {
     //Singleton pattern
-    private static PersistentAudioManager m_instance;
-    public static PersistentAudioManager Instance => m_instance;
+    private static PersistentAudioPlayer m_instance;
+    public static PersistentAudioPlayer Instance => m_instance;
     
     private AudioSource m_audioSource;
 
     [SerializeField] private bool isGameplay;
     private float m_startPitch = 0.45f;
+    private float m_startVolume = 0.01f;
+    private float m_normalVolume = 0.7f;
     
     private void Awake()
     {
@@ -37,12 +39,13 @@ public class PersistentAudioManager : MonoBehaviour
         {
             SetIsGameplay();
         }
-        else
-        {
-            SetIsMenu();
-        }
     }
 
+    public void OnPlayerDied()
+    {
+        StartCoroutine(WaitThenFadeVolume(0f, 0.7f));
+    }
+    
     public void SetIsGameplay()
     {
         if(m_audioSource.isPlaying == false)
@@ -51,7 +54,7 @@ public class PersistentAudioManager : MonoBehaviour
         }
         
         StopCoroutine(CheckMusicTime());
-        PitchShift();
+        PitchShiftUp();
     }
 
     public void SetIsMenu()
@@ -63,14 +66,18 @@ public class PersistentAudioManager : MonoBehaviour
     private void InitializeAudio()
     {
         m_audioSource.Play();
-        m_audioSource.volume = 0.01f;
+        m_audioSource.volume = m_startVolume;
         m_audioSource.pitch = m_startPitch;
-        StartCoroutine(WaitThenFadeIn());
+        StartCoroutine(WaitThenFadeVolume(m_normalVolume, 2f));
     }
     
-    private void PitchShift()
+    private void PitchShiftUp()
     {
-        StartCoroutine(WaitThenPitchShift());
+        StartCoroutine(WaitThenPitchShift(0.9f, 2.5f));
+    }
+    private void PitchShiftDown()
+    {
+        StartCoroutine(WaitThenPitchShift(m_startPitch, 2.5f));
     }
 
     IEnumerator CheckMusicTime()
@@ -82,15 +89,21 @@ public class PersistentAudioManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
     }
 
-    IEnumerator WaitThenFadeIn()
+    IEnumerator WaitThenFadeVolume(float fadeTarget, float duration)
     {
         yield return new WaitForSecondsRealtime(0.6f);
-        m_audioSource.DOFade(0.6f, 2f).SetEase(Ease.InOutSine);
+        m_audioSource.DOFade(fadeTarget, duration).SetEase(Ease.InOutSine);
+        yield return new WaitForSecondsRealtime(duration);
+        if (m_audioSource.volume < 0.1f)
+        {
+            m_audioSource.loop = false;
+            m_audioSource.Stop();
+            m_audioSource.volume = m_normalVolume;
+        }
     }
-    IEnumerator WaitThenPitchShift()
+    IEnumerator WaitThenPitchShift(float pitchTarget, float duration)
     {
         yield return new WaitForSecondsRealtime(0.6f);
-        float duration = 4f;
-        m_audioSource.DOPitch(0.9f, duration).SetEase(Ease.Linear);
+        m_audioSource.DOPitch(pitchTarget, duration).SetEase(Ease.Linear);
     }
 }

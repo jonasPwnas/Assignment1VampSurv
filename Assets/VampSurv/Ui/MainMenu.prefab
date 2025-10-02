@@ -941,7 +941,7 @@ GameObject:
   - component: {fileID: 1582931527232725071}
   - component: {fileID: 2908457504592931639}
   - component: {fileID: 1613304878433260790}
-  - component: {fileID: 2647633789732866228}
+  - component: {fileID: 1059038951852542678}
   m_Layer: 5
   m_Name: ButtonsBackground
   m_TagString: Untagged
@@ -1038,8 +1038,9 @@ MonoBehaviour:
   onAccept: {fileID: 8300000, guid: e1678189c480ba64186b1503430b3494, type: 3}
   onGainXp: {fileID: 8300000, guid: 0a43b18c1e1c9dd46a01f30a00b76f7b, type: 3}
   onLevelUp: {fileID: 8300000, guid: d947efa312dcedf40bb63c6392ab0e06, type: 3}
+  onEquipChoice: {fileID: 0}
   onDeath: {fileID: 8300000, guid: e62a62c7af49c3d4c8824b69a35829f0, type: 3}
---- !u!82 &2647633789732866228
+--- !u!82 &1059038951852542678
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1051,7 +1052,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -2168891542927156454, guid: 55efbd95baf56a249b07f8b988eea801, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

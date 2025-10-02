@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,6 +7,12 @@ public class AttackReciever : MonoBehaviour
     [SerializeField] private DragonSlayerWeapon dragonSlayerWeapon;
     
     private Vector3 m_attackDirection;
+    private PlayerWorldAudio m_swordAudio;
+
+    private void Start()
+    {
+        m_swordAudio = GetComponent<PlayerWorldAudio>();
+    }
 
     public void EnableDamageField(int AttackDirection)
     {
@@ -44,5 +51,6 @@ public class AttackReciever : MonoBehaviour
                 break;
         }
         dragonSlayerWeapon.DealDamage(m_attackDirection);
+        m_swordAudio.OnSwordHit();
     }
 }

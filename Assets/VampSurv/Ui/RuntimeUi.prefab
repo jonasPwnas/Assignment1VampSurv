@@ -60,13 +60,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5401794025181381818}
     m_Modifications:
+    - target: {fileID: 138097297000473466, guid: 21cd2fbd7761ee84cbfb432e71dcdee9, type: 3}
+      propertyPath: m_fontSize
+      value: 21.85
+      objectReference: {fileID: 0}
     - target: {fileID: 157072020506707231, guid: 21cd2fbd7761ee84cbfb432e71dcdee9, type: 3}
       propertyPath: currentKillsText
       value: 
       objectReference: {fileID: 389923484025111778}
     - target: {fileID: 801449911656735785, guid: 21cd2fbd7761ee84cbfb432e71dcdee9, type: 3}
       propertyPath: m_fontSize
-      value: 24
+      value: 21.85
       objectReference: {fileID: 0}
     - target: {fileID: 801449911656735785, guid: 21cd2fbd7761ee84cbfb432e71dcdee9, type: 3}
       propertyPath: m_fontSizeMax
@@ -167,6 +171,10 @@ PrefabInstance:
     - target: {fileID: 5968225904072021921, guid: 21cd2fbd7761ee84cbfb432e71dcdee9, type: 3}
       propertyPath: m_Name
       value: Hud
+      objectReference: {fileID: 0}
+    - target: {fileID: 5968225904072021921, guid: 21cd2fbd7761ee84cbfb432e71dcdee9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7170639961507767311, guid: 21cd2fbd7761ee84cbfb432e71dcdee9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -326,6 +334,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4298420129429027457, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.085998535
+      objectReference: {fileID: 0}
     - target: {fileID: 5606500162695139771, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -337,6 +349,14 @@ PrefabInstance:
     - target: {fileID: 5606500162695139771, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PauseMenuNav, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252246135122065839, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
+      propertyPath: m_fontSize
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855147866974623505, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
+      propertyPath: m_fontSize
+      value: 27.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -364,6 +384,10 @@ PrefabInstance:
     - target: {fileID: 1154930848978096760, guid: 9c12717aaf952c54b858fdb753e09b51, type: 3}
       propertyPath: m_Name
       value: PausMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154930848978096760, guid: 9c12717aaf952c54b858fdb753e09b51, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3105961803091015206, guid: 9c12717aaf952c54b858fdb753e09b51, type: 3}
       propertyPath: m_Pivot.x
@@ -445,6 +469,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3512187930111328201, guid: 9c12717aaf952c54b858fdb753e09b51, type: 3}
+      propertyPath: m_fontSize
+      value: 27.95
+      objectReference: {fileID: 0}
     - target: {fileID: 5606500162695139771, guid: 9c12717aaf952c54b858fdb753e09b51, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -453,6 +481,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2325122258613510495}
+    - target: {fileID: 8855147866974623505, guid: 9c12717aaf952c54b858fdb753e09b51, type: 3}
+      propertyPath: m_fontSize
+      value: 27.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -559,6 +591,10 @@ PrefabInstance:
     - target: {fileID: 1154930848978096760, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_Name
       value: LevelUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154930848978096760, guid: 5d1217e59b965fc488f3950143960358, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3105961803091015206, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_Pivot.x

@@ -42,13 +42,20 @@ public class DragonSlayerWeapon : EquipmentBase
     {
         if(m_overlappedObjects.Count < 1)
             return;
-        
+
         m_overlappedObjects.ForEach(obj =>
         {
+            bool canInteract = true;
             IHealthAndDamage healthAndDamage = obj.GetComponent<IHealthAndDamage>();
             if (healthAndDamage != null)
             {
                 healthAndDamage.TakeDamage(baseDamage, hitDirection);
+                canInteract = false;
+            }
+            if (canInteract)
+            {
+                IInteractable interactable = obj.GetComponent<IInteractable>();
+                interactable?.Interact(transform);
             }
         });
         m_overlappedObjects.Clear();

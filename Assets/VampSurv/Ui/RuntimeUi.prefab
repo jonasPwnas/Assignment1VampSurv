@@ -179,7 +179,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 138097297000473466, guid: 21cd2fbd7761ee84cbfb432e71dcdee9, type: 3}
       propertyPath: m_fontSize
-      value: 21.85
+      value: 27.15
       objectReference: {fileID: 0}
     - target: {fileID: 157072020506707231, guid: 21cd2fbd7761ee84cbfb432e71dcdee9, type: 3}
       propertyPath: currentKillsText
@@ -187,7 +187,7 @@ PrefabInstance:
       objectReference: {fileID: 389923484025111778}
     - target: {fileID: 801449911656735785, guid: 21cd2fbd7761ee84cbfb432e71dcdee9, type: 3}
       propertyPath: m_fontSize
-      value: 21.85
+      value: 28.6
       objectReference: {fileID: 0}
     - target: {fileID: 801449911656735785, guid: 21cd2fbd7761ee84cbfb432e71dcdee9, type: 3}
       propertyPath: m_fontSizeMax
@@ -196,6 +196,10 @@ PrefabInstance:
     - target: {fileID: 801449911656735785, guid: 21cd2fbd7761ee84cbfb432e71dcdee9, type: 3}
       propertyPath: m_VerticalAlignment
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 2157115340372071591, guid: 21cd2fbd7761ee84cbfb432e71dcdee9, type: 3}
+      propertyPath: m_fontSize
+      value: 15.95
       objectReference: {fileID: 0}
     - target: {fileID: 3214326059527069277, guid: 21cd2fbd7761ee84cbfb432e71dcdee9, type: 3}
       propertyPath: m_Pivot.x
@@ -835,15 +839,15 @@ PrefabInstance:
     - target: {fileID: 511740999769375217, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2325122258613510495}
+      objectReference: {fileID: 6945859195200124178}
     - target: {fileID: 511740999769375217, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 6945859195200124178}
+      objectReference: {fileID: 468744438279266336}
     - target: {fileID: 511740999769375217, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 468744438279266336}
+      objectReference: {fileID: 2325122258613510495}
     - target: {fileID: 511740999769375217, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -854,27 +858,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 511740999769375217, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Continue
-      objectReference: {fileID: 0}
-    - target: {fileID: 511740999769375217, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ChoseOption
       objectReference: {fileID: 0}
     - target: {fileID: 511740999769375217, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: PlayOnAccept
       objectReference: {fileID: 0}
     - target: {fileID: 511740999769375217, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PauseMenuNav, Assembly-CSharp
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: FinishLevelUp
       objectReference: {fileID: 0}
     - target: {fileID: 511740999769375217, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: LevelUpOption, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 511740999769375217, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: TwoDimensionalAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 511740999769375217, guid: 5d1217e59b965fc488f3950143960358, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: PauseMenuNav, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 511740999769375217, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -899,15 +903,15 @@ PrefabInstance:
     - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2325122258613510495}
+      objectReference: {fileID: 8022684818621165333}
     - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 8022684818621165333}
+      objectReference: {fileID: 468744438279266336}
     - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 468744438279266336}
+      objectReference: {fileID: 2325122258613510495}
     - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -918,27 +922,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Continue
-      objectReference: {fileID: 0}
-    - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ChoseOption
       objectReference: {fileID: 0}
     - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: PlayOnAccept
       objectReference: {fileID: 0}
     - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PauseMenuNav, Assembly-CSharp
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: FinishLevelUp
       objectReference: {fileID: 0}
     - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: LevelUpOption, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: TwoDimensionalAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: PauseMenuNav, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 587995519936895990, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1071,15 +1075,15 @@ PrefabInstance:
     - target: {fileID: 4481388953069613080, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2325122258613510495}
+      objectReference: {fileID: 6435538430655694075}
     - target: {fileID: 4481388953069613080, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 6435538430655694075}
+      objectReference: {fileID: 468744438279266336}
     - target: {fileID: 4481388953069613080, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 468744438279266336}
+      objectReference: {fileID: 2325122258613510495}
     - target: {fileID: 4481388953069613080, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -1090,27 +1094,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4481388953069613080, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Continue
-      objectReference: {fileID: 0}
-    - target: {fileID: 4481388953069613080, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ChoseOption
       objectReference: {fileID: 0}
     - target: {fileID: 4481388953069613080, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: PlayOnAccept
       objectReference: {fileID: 0}
     - target: {fileID: 4481388953069613080, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PauseMenuNav, Assembly-CSharp
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: FinishLevelUp
       objectReference: {fileID: 0}
     - target: {fileID: 4481388953069613080, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: LevelUpOption, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4481388953069613080, guid: 5d1217e59b965fc488f3950143960358, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: TwoDimensionalAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481388953069613080, guid: 5d1217e59b965fc488f3950143960358, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: PauseMenuNav, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4481388953069613080, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName

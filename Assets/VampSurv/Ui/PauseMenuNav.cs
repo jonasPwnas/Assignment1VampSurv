@@ -30,6 +30,7 @@ public class PauseMenuNav : MonoBehaviour
         levelUpMenu.SetActive(true);
         hud.gameObject.SetActive(false);
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void LoadMainMenu()
@@ -46,6 +47,7 @@ public class PauseMenuNav : MonoBehaviour
         hud.gameObject.SetActive(false);
         Time.timeScale = 0;
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
     
     private void OnDeath()
@@ -58,6 +60,7 @@ public class PauseMenuNav : MonoBehaviour
     {
         deathMenu.gameObject.SetActive(true);
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
     
     public void Continue()
@@ -67,5 +70,19 @@ public class PauseMenuNav : MonoBehaviour
         hud.gameObject.SetActive(true);
         Time.timeScale = 1;
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void FinishLevelUp()
+    {
+        float duration = 0.7f;
+        levelUpMenu.GetComponent<LevelUpMenu>().AnimateAndDisable(duration);
+        StartCoroutine(ContinueAfterTime(duration));
+    }
+    
+    IEnumerator ContinueAfterTime(float time)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        Continue();
     }
 }

@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,7 +10,7 @@ public class LevelUpMenu : MonoBehaviour
     [SerializeField] private PauseMenuNav pauseMenu;
     [SerializeField] private List<LevelUpOption> levelUpOptions;
     [SerializeField] private AvalibleEquipment avalibleStartEquipment;
-    
+    [SerializeField] private RectTransform m_bgRectTransform;
     private PlayerData playerData;
     private List<GameObject> m_avalibleEquipmentList = new List<GameObject>();
     
@@ -17,27 +19,42 @@ public class LevelUpMenu : MonoBehaviour
     {
         if (playerData == null)
             playerData = FindFirstObjectByType<PlayerData>();
-        
-        if((int)playerData.currentLevel == 2)
-            m_avalibleEquipmentList = avalibleStartEquipment.avalibleEquipment;
+
+        if ((int)playerData.currentLevel == 2)
+        {
+            //New solution
+            foreach (var equip in avalibleStartEquipment.avalibleEquipment)
+            {
+                m_avalibleEquipmentList.Add(equip);
+            }
+        }
         
         LevelUpOption.OnOptionSelected += RemoveChosenEquipment;
+        
         Time.timeScale = 0f;
         
+        m_bgRectTransform.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
+        m_bgRectTransform.DOScale(1f, 0.7f).SetEase(Ease.OutBack);
         
         SetLevelUptions();
     }
 
+    public void AnimateAndDisable(float animationTime)
+    {
+        StartCoroutine(AnimateAndDisableMenu(animationTime));
+    }
+    
     private void OnDisable()
     {
         LevelUpOption.OnOptionSelected -= RemoveChosenEquipment;
         Time.timeScale = 1f;
     }
 
-    private void RemoveChosenEquipment(GameObject equipment) //This probably never runs because the game object gets disabled before :')
-    {//FIIIIIIIIIIIIIIIIX IIIIIIIIIIIT
+    private void RemoveChosenEquipment(GameObject equipment)
+    {
         if(m_avalibleEquipmentList.Exists(equipment => equipment == equipment))
         {
+            //Is the fix really to animate the ui object? yes, probably.
             print("Removed: "+ equipment.name + " from avalible weapons list");
             m_avalibleEquipmentList.Remove(equipment);
         }
@@ -75,4 +92,12 @@ public class LevelUpMenu : MonoBehaviour
     {
         pauseMenu.Continue();
     }
+    
+    IEnumerator AnimateAndDisableMenu(float duration)
+    {
+        m_bgRectTransform.DOScale(0.0001f, duration).SetEase(Ease.InBack);
+        yield return new WaitForSecondsRealtime(duration);
+        gameObject.SetActive(false);
+    }
+    
 }

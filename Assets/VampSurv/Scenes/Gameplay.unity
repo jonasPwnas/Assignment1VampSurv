@@ -867,7 +867,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 894089534960672409, guid: 8e5c3d702a199c448816a7a87fdbf463, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.68
+      value: 13.4
       objectReference: {fileID: 0}
     - target: {fileID: 894089534960672409, guid: 8e5c3d702a199c448816a7a87fdbf463, type: 3}
       propertyPath: m_LocalPosition.y
@@ -875,7 +875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 894089534960672409, guid: 8e5c3d702a199c448816a7a87fdbf463, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.42
+      value: 37.5
       objectReference: {fileID: 0}
     - target: {fileID: 894089534960672409, guid: 8e5c3d702a199c448816a7a87fdbf463, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1044,7 +1044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5617226958839021519, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.68
+      value: 13.4
       objectReference: {fileID: 0}
     - target: {fileID: 5617226958839021519, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1052,7 +1052,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5617226958839021519, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.42
+      value: 43.5
       objectReference: {fileID: 0}
     - target: {fileID: 5617226958839021519, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1084,7 +1084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7110957252731670791, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: maxHealth
-      value: 1
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 7110957252731670791, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: hudUpdater
@@ -1124,10 +1124,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RuntimeUi
       objectReference: {fileID: 0}
-    - target: {fileID: 4284610679427585061, guid: c86f4aa34c8954742b99d8c4d4b57dab, type: 3}
-      propertyPath: avalibleEquipment
-      value: 
-      objectReference: {fileID: 11400000, guid: 242123c53f8907a4f9c544feef727958, type: 2}
     - target: {fileID: 5401794025181381818, guid: c86f4aa34c8954742b99d8c4d4b57dab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.42033

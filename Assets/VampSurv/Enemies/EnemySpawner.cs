@@ -64,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnBatEnemy()
     {
         float distance = GetMidRandomSpawnRange();
-        Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(90f, 270f), Vector3.up) * transform.forward * distance;
+        Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(0f, 360f), Vector3.up) * transform.forward * distance;
         spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
         batPool.SpawnEnemy(spawnPos);
         StartCoroutine(BatSpawnWait(batFrequency));
@@ -72,7 +72,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnSlimeEnemy()
     {
         float distance = GetMidRandomSpawnRange();
-        Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(90f, 270f), Vector3.up) * transform.forward * distance;
+        Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(0f, 360f), Vector3.up) * transform.forward * distance;
         spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
         slimePool.SpawnEnemy(spawnPos);
         StartCoroutine(SlimeSpawnWait(slimeFrequency));
@@ -80,7 +80,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnGhostEnemy()
     {
         float distance = GetMidRandomSpawnRange();
-        Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(90f, 270f), Vector3.up) * transform.forward * distance;
+        Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(0f, 360f), Vector3.up) * transform.forward * distance;
         spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
         ghostPool.SpawnEnemy(spawnPos);
         StartCoroutine(GhostSpawnWait(ghostFrequency));
@@ -111,6 +111,11 @@ public class EnemySpawner : MonoBehaviour
                 batFrequency *= 0.3f;
                 ghostFrequency*= 0.3f;
                 slimeFrequency*= 0.3f;
+                break;
+            case 10:
+                batFrequency *= 0.5f;
+                ghostFrequency*= 0.5f;
+                slimeFrequency*= 0.5f;
                 break;
         }
     }

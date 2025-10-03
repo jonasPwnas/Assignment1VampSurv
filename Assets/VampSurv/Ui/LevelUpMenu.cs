@@ -7,29 +7,46 @@ public class LevelUpMenu : MonoBehaviour
 {
     [SerializeField] private PauseMenuNav pauseMenu;
     [SerializeField] private List<LevelUpOption> levelUpOptions;
-    [SerializeField] private AvalibleEquipment avalibleEquipment;
+    [SerializeField] private AvalibleEquipment avalibleStartEquipment;
     
     private PlayerData playerData;
+    private List<GameObject> m_avalibleEquipmentList = new List<GameObject>();
     
 
     private void OnEnable()
     {
-        Time.timeScale = 0f;
         if (playerData == null)
             playerData = FindFirstObjectByType<PlayerData>();
+        
+        if((int)playerData.currentLevel == 2)
+            m_avalibleEquipmentList = avalibleStartEquipment.avalibleEquipment;
+        
+        LevelUpOption.OnOptionSelected += RemoveChosenEquipment;
+        Time.timeScale = 0f;
+        
         
         SetLevelUptions();
     }
 
     private void OnDisable()
     {
+        LevelUpOption.OnOptionSelected -= RemoveChosenEquipment;
         Time.timeScale = 1f;
     }
 
+    private void RemoveChosenEquipment(GameObject equipment) //This probably never runs because the game object gets disabled before :')
+    {//FIIIIIIIIIIIIIIIIX IIIIIIIIIIIT
+        if(m_avalibleEquipmentList.Exists(equipment => equipment == equipment))
+        {
+            print("Removed: "+ equipment.name + " from avalible weapons list");
+            m_avalibleEquipmentList.Remove(equipment);
+        }
+    }
+    
     private void SetLevelUptions()
     {
         List<GameObject> equipmentList = new List<GameObject>();
-        foreach (var equip in avalibleEquipment.avalibleEquipment)
+        foreach (var equip in m_avalibleEquipmentList)
         {
             equipmentList.Add(equip);
         }

@@ -13,6 +13,8 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
 
     public delegate void PlayerDeath();
     public static event PlayerDeath OnPlayerDeath;
+    public delegate void PlayerTakeDamage();
+    public static event PlayerTakeDamage OnPlayerTakeDamage;
     
     public delegate void LevelUp();
     public static event LevelUp OnLevelUp;
@@ -124,6 +126,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
             m_currentHealth -= damage;
             hudUpdater.UpdateHealthBar(m_currentHealth, maxHealth);
             damageIndicator.PlayDamageEffect();
+            OnPlayerTakeDamage?.Invoke();
             if (m_currentHealth < 0)
             {
                 damageIndicator.gameObject.SetActive(false);

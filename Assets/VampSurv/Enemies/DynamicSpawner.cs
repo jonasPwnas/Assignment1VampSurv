@@ -92,19 +92,19 @@ public class DynamicSpawner : MonoBehaviour
     {
         switch (timeThreshold)
         {
-            case 1:
+            case 1://30sec
                 batFrequency *= 0.8f;
                 StartCoroutine(GhostSpawnWait(ghostFrequency));
                 StartCoroutine(RandomSpawnWait(0.1f));
                 break;
-            case 2:
+            case 2: //1min
                 batFrequency *= 0.6f;
                 ghostFrequency*= 0.7f;
                 break;
             case 4:
                 StartCoroutine(SlimeSpawnWait(slimeFrequency));
                 break;
-            case 6:
+            case 6:                
                 SpawnTorch();
                 batFrequency = 1.5f;
                 ghostFrequency = 2f;
@@ -116,14 +116,9 @@ public class DynamicSpawner : MonoBehaviour
                 slimeFrequency*= 0.3f;
                 break;
             case 10:
-                batFrequency *= 0.5f;
-                ghostFrequency*= 0.5f;
-                slimeFrequency*= 0.5f;
-                break;
-            case 12:
-                batFrequency *= 0.7f;
-                ghostFrequency*= 0.7f;
-                slimeFrequency*= 0.7f;
+                batFrequency = 3f;
+                ghostFrequency = 3f;
+                slimeFrequency = 3f;
                 break;
         }
     }

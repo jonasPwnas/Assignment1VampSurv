@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Player;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class PauseMenuNav : MonoBehaviour
@@ -13,11 +14,13 @@ public class PauseMenuNav : MonoBehaviour
     [SerializeField] private GameObject faderObj;
 
     private HudFader m_hudFader;
+    private EventSystem m_eventSystem;
     
     private void Awake()
     {
         faderObj.SetActive(true);
         m_hudFader = faderObj.GetComponent<HudFader>();
+        m_eventSystem = EventSystem.current;
     }
 
     private void Start()
@@ -79,6 +82,7 @@ public class PauseMenuNav : MonoBehaviour
     
     private void LoadMainMenu()
     {
+        m_eventSystem.gameObject.SetActive(false);
         QuitGameplay();
     }
 

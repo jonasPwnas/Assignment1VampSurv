@@ -3786,6 +3786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWorldAudio
   swordStrike: {fileID: 8300000, guid: 42f49ad63e5626d4da2da2b75730c856, type: 3}
+  playerDamaged: {fileID: 8300000, guid: 01c6949e76ac9bb48a1537c62959c84f, type: 3}
 --- !u!82 &3775053806406557119
 AudioSource:
   m_ObjectHideFlags: 0

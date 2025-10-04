@@ -4,9 +4,21 @@ using UnityEngine;
 public class PlayerWorldAudio : MonoBehaviour
 {
     [SerializeField] private AudioClip swordStrike;
+    [SerializeField] private AudioClip playerDamaged;
     
     private AudioSource m_audioSource;
-    private float m_volume = 0.6f;
+    private float m_lowVolume = 0.6f;
+    private float m_highVolume = 1f;
+
+    private void OnEnable()
+    {
+        PlayerData.OnPlayerTakeDamage += OnDamaged;
+    }
+
+    private void OnDisable()
+    {
+        PlayerData.OnPlayerTakeDamage -= OnDamaged;
+    }
 
     private void Awake()
     {
@@ -15,6 +27,11 @@ public class PlayerWorldAudio : MonoBehaviour
 
     public void OnSwordHit()
     {
-        m_audioSource.PlayOneShot(swordStrike, m_volume);
+        m_audioSource.PlayOneShot(swordStrike, m_lowVolume);
+    }
+
+    public void OnDamaged()
+    {
+        m_audioSource.PlayOneShot(playerDamaged, m_highVolume);
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,9 +10,11 @@ public class MainMenuNav : MonoBehaviour
 {
     [SerializeField] private Image faderImage;
     private PersistentAudioPlayer m_audioPlayer;
+    private EventSystem m_eventSystem;
     
     private void Start()
     {
+        m_eventSystem = EventSystem.current;
         faderImage.gameObject.SetActive(true);
         m_audioPlayer = PersistentAudioPlayer.Instance;
         m_audioPlayer.SetIsMenu();
@@ -20,6 +23,7 @@ public class MainMenuNav : MonoBehaviour
 
     public void LoadGameplay()
     {
+        m_eventSystem.gameObject.SetActive(false);
         m_audioPlayer.SetIsGameplay();
         StartCoroutine(FadeVisibility(false, 0.7f, false, 0.1f));
     }
@@ -31,6 +35,7 @@ public class MainMenuNav : MonoBehaviour
     
     public void QuitGame()
     {
+        m_eventSystem.gameObject.SetActive(false);
         StartCoroutine(FadeVisibility(false, 0.7f, true, 0.3f));
     }
 

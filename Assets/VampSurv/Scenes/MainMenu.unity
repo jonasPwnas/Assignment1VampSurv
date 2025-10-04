@@ -644,10 +644,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 1758926865778851005, guid: 4becf2126efc30c4495b60983615a2d6, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2908457504592931639, guid: 4becf2126efc30c4495b60983615a2d6, type: 3}
       propertyPath: faderImage
       value: 
       objectReference: {fileID: 993712867}
+    - target: {fileID: 3101009546369464662, guid: 4becf2126efc30c4495b60983615a2d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3105961803091015206, guid: 4becf2126efc30c4495b60983615a2d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0

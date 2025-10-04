@@ -8,18 +8,20 @@ using UnityEngine.UI;
 public class MainMenuNav : MonoBehaviour
 {
     [SerializeField] private Image faderImage;
-
     private PersistentAudioPlayer m_audioPlayer;
+    
     private void Start()
     {
+        faderImage.gameObject.SetActive(true);
         m_audioPlayer = PersistentAudioPlayer.Instance;
         m_audioPlayer.SetIsMenu();
+        StartCoroutine(FadeVisibility(true, 0.7f, false, 0.6f));
     }
 
     public void LoadGameplay()
     {
         m_audioPlayer.SetIsGameplay();
-        StartCoroutine(FadeVisibility(false, 0.7f, false));
+        StartCoroutine(FadeVisibility(false, 0.7f, false, 0.1f));
     }
 
     public void ScoreMenu()
@@ -29,11 +31,13 @@ public class MainMenuNav : MonoBehaviour
     
     public void QuitGame()
     {
-        StartCoroutine(FadeVisibility(false, 0.7f, true));
+        StartCoroutine(FadeVisibility(false, 0.7f, true, 0.3f));
     }
 
-    IEnumerator FadeVisibility(bool fadeIn, float duration, bool quitGame)
+    IEnumerator FadeVisibility(bool fadeIn, float duration, bool quitGame, float delay)
     {
+        yield return new WaitForSecondsRealtime(delay);
+        
         if(fadeIn)
         {
             faderImage.DOFade(0f, duration);
@@ -42,13 +46,13 @@ public class MainMenuNav : MonoBehaviour
         {
             faderImage.DOFade(1f, duration);
         }
-        yield return new WaitForSecondsRealtime(duration);
+        yield return new WaitForSecondsRealtime(duration + 0.1f);
 
         if (quitGame)
         {
             Application.Quit();
         }
-        else
+        if(!quitGame && !fadeIn)
         {
             SceneManager.LoadScene("Gameplay");
         }

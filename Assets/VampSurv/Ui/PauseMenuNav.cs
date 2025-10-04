@@ -10,12 +10,28 @@ public class PauseMenuNav : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject deathMenu;
     [SerializeField] private GameObject levelUpMenu;
+    [SerializeField] private GameObject faderObj;
+
+    private HudFader m_hudFader;
+    
+    private void Awake()
+    {
+        faderObj.SetActive(true);
+        m_hudFader = faderObj.GetComponent<HudFader>();
+    }
+
+    private void Start()
+    {
+        Time.timeScale = 0.7f;
+        m_hudFader.StartFade(1.2f, true, 2f);
+    }
 
     private void OnEnable()
     {
         PlayerData.OnPlayerDeath += OnDeath;
         PlayerData.OnLevelUp += DoLevelUp;
         PlayerController.OnDeathCamMoved += DeathMenu;
+        HudFader.OnFadeComplete += FadeFinished;
     }
 
     private void OnDisable()
@@ -23,8 +39,30 @@ public class PauseMenuNav : MonoBehaviour
         PlayerData.OnPlayerDeath -= OnDeath;
         PlayerData.OnLevelUp -= DoLevelUp;
         PlayerController.OnDeathCamMoved -= DeathMenu;
+        HudFader.OnFadeComplete -= FadeFinished;
     }
 
+    private void FadeFinished(bool fadeIn)
+    {
+        if(fadeIn)
+        {
+            Time.timeScale = 1;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            pauseMenu.gameObject.SetActive(false);
+            deathMenu.gameObject.SetActive(false);
+            levelUpMenu.SetActive(false);
+            faderObj.SetActive(false);
+            hud.gameObject.SetActive(true);
+        }
+        else
+        {
+            Cursor.visible = true;
+            Time.timeScale = 1;
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+    
     private void DoLevelUp()
     {
         levelUpMenu.SetActive(true);
@@ -33,12 +71,15 @@ public class PauseMenuNav : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-    public void LoadMainMenu()
+    public void QuitGameplay()
     {
-        Cursor.visible = true;
-        Time.timeScale = 1;
-        SceneManager.LoadScene("MainMenu");
-        
+        faderObj.SetActive(true);
+        m_hudFader.StartFade(1.2f, false, 0.3f);
+    }
+    
+    private void LoadMainMenu()
+    {
+        QuitGameplay();
     }
 
     public void PauseGame()

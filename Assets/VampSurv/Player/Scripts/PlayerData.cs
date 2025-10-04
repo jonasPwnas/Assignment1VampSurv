@@ -21,6 +21,8 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     public static event FinishedLevelUp OnFinishedLevelUp;
     public delegate void DidGainXp();
     public static event DidGainXp OnDidGainXp;
+    public delegate void DidHeal();
+    public static event DidHeal OnDidHeal;
     
     //Editor editable
     [SerializeField] private float maxHealth = 100f;
@@ -29,6 +31,7 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
     [SerializeField] private DamageIndicator damageIndicator;
     [SerializeField] private DamageIndicator xpIndicator;
     [SerializeField] public List<GameObject> currentEquipment;
+    [SerializeField] private ParticleSystem healingEffect;
     
     //Public
     [HideInInspector] public float currentLevel = 1;
@@ -133,8 +136,12 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
 
     public void Heal(float healAmount)
     {
+        print("DID HEAL");
         m_currentHealth += healAmount;
+        m_currentHealth = Mathf.Clamp(m_currentHealth, 0, maxHealth);
         hudUpdater.UpdateHealthBar(m_currentHealth, maxHealth);
+        OnDidHeal?.Invoke();
+        healingEffect.Play();
     }
     
     IEnumerator UpdateTimeEverySecond()

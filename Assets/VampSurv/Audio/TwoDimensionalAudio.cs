@@ -9,6 +9,7 @@ public class TwoDimensionalAudio : MonoBehaviour
     [SerializeField] private AudioClip onLevelUp;
     [SerializeField] private AudioClip onEquipChoice;
     [SerializeField] private AudioClip onDeath;
+    [SerializeField] private AudioClip onHeal;
     
     private AudioSource m_audioSource;
     private float m_menuVolume = 0.5f;
@@ -20,14 +21,16 @@ public class TwoDimensionalAudio : MonoBehaviour
         PlayerData.OnLevelUp += PlayOnLevelUp;
         PlayerData.OnDidGainXp += PlayOnGainXp;
         PlayerData.OnFinishedLevelUp += PlayOnEquipChoice;
+        PlayerData.OnDidHeal += PlayHeal;
     }
-
+    
     private void OnDisable()
     {
         PlayerData.OnPlayerDeath -= PlayOnDeath;
         PlayerData.OnLevelUp -= PlayOnLevelUp;
         PlayerData.OnDidGainXp -= PlayOnGainXp;
         PlayerData.OnFinishedLevelUp -= PlayOnEquipChoice;
+        PlayerData.OnDidHeal -= PlayHeal;
     }
 
     private void Start()
@@ -35,6 +38,11 @@ public class TwoDimensionalAudio : MonoBehaviour
         m_audioSource = GetComponent<AudioSource>();
     }
 
+    private void PlayHeal()
+    {
+        m_audioSource.PlayOneShot(onHeal, m_gameplayVolume);
+    }
+    
     public void PlayOnHover()
     {
         m_audioSource.PlayOneShot(onHover, m_menuVolume);
@@ -45,7 +53,7 @@ public class TwoDimensionalAudio : MonoBehaviour
     }
     public void PlayOnEquipChoice()
     {
-        m_audioSource.PlayOneShot(onEquipChoice, m_gameplayVolume);
+        m_audioSource.PlayOneShot(onEquipChoice, m_menuVolume);
     }
     public void PlayOnGainXp()
     {

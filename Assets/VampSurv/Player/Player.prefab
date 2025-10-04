@@ -3079,13 +3079,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7196835839436911417}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.24619262, y: -0, z: -0, w: 0.969221}
-  m_LocalPosition: {x: 0, y: 2.737, z: -2.72}
+  m_LocalRotation: {x: 0.37360346, y: -0, z: -0, w: 0.9275885}
+  m_LocalPosition: {x: 0, y: 3.931, z: -2.048}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5617226958839021519}
-  m_LocalEulerAnglesHint: {x: 28.505, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 43.876, y: 0, z: 0}
 --- !u!1 &7264070619248076906
 GameObject:
   m_ObjectHideFlags: 0
@@ -3551,6 +3551,7 @@ Transform:
   - {fileID: 8224704499472402581}
   - {fileID: 5449717090348283014}
   - {fileID: 5434746947762184061}
+  - {fileID: 437881302148833998}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1626275760750393062
@@ -3748,12 +3749,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279b7fbd9b0659e48bfbb77dcee4cd0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  maxHealth: 1
+  maxHealth: 75
   hudUpdater: {fileID: 0}
   progressionData: {fileID: 11400000, guid: 741cec46b74fc1d46974d4a08ee98e38, type: 2}
   damageIndicator: {fileID: 8829706612119940554}
   xpIndicator: {fileID: 8406630500105628069}
   currentEquipment: []
+  healingEffect: {fileID: 4034437152529334055}
   currentLevel: 1
 --- !u!114 &4334546055449194437
 MonoBehaviour:
@@ -3841,7 +3843,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4518,6 +4520,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 1.1
       objectReference: {fileID: 0}
+    - target: {fileID: 835183382712732788, guid: d6b52063fb27e7041ad3a10a5197b4a7, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 328
+      objectReference: {fileID: 0}
     - target: {fileID: 2954528088119631041, guid: d6b52063fb27e7041ad3a10a5197b4a7, type: 3}
       propertyPath: m_Name
       value: DragonSlayerWeapon
@@ -4525,6 +4531,10 @@ PrefabInstance:
     - target: {fileID: 3657091274105808302, guid: d6b52063fb27e7041ad3a10a5197b4a7, type: 3}
       propertyPath: m_Center.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3657091274105808302, guid: d6b52063fb27e7041ad3a10a5197b4a7, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 328
       objectReference: {fileID: 0}
     - target: {fileID: 5195364169611307615, guid: d6b52063fb27e7041ad3a10a5197b4a7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4705,6 +4715,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464313ef03185a94581fa199ad8cd107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageIndicator
+--- !u!1001 &8581263522470329148
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5617226958839021519}
+    m_Modifications:
+    - target: {fileID: 8144037599045065202, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.12365
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144037599045065202, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.000009894371
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144037599045065202, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.700138
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144037599045065202, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144037599045065202, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144037599045065202, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144037599045065202, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144037599045065202, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144037599045065202, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144037599045065202, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+      propertyPath: m_Name
+      value: Healing
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+--- !u!4 &437881302148833998 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8144037599045065202, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+  m_PrefabInstance: {fileID: 8581263522470329148}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4034437152529334055 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4678103677468820507, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
+  m_PrefabInstance: {fileID: 8581263522470329148}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9042371887741842586
 PrefabInstance:
   m_ObjectHideFlags: 0

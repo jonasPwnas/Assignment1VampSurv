@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemySpawner : MonoBehaviour
+public class DynamicSpawner : MonoBehaviour
 {
     [SerializeField] private SimpleEnemyPool batPool;
     [SerializeField] private SimpleEnemyPool slimePool;
@@ -12,7 +12,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float batFrequency = 0.8f;
     [SerializeField] private float ghostFrequency = 2f;
     [SerializeField] private float slimeFrequency = 3f;
-    [SerializeField] private float randomFrequency = 3.5f;
+    [SerializeField] private float randomEnemyFrequency = 3.5f;
+    [SerializeField] private GameObject destructibleTorch;
+    [SerializeField] private float torchFrequency = 40f;
     
     private void OnEnable()
     {
@@ -58,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(-90f, 90f), Vector3.up) * transform.forward * distance;
         spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
         randomPool.SpawnEnemy(spawnPos);
-        StartCoroutine(RandomSpawnWait(randomFrequency));
+        StartCoroutine(RandomSpawnWait(randomEnemyFrequency));
     }
     
     private void SpawnBatEnemy()
@@ -103,6 +105,7 @@ public class EnemySpawner : MonoBehaviour
                 StartCoroutine(SlimeSpawnWait(slimeFrequency));
                 break;
             case 6:
+                SpawnTorch();
                 batFrequency = 1.5f;
                 ghostFrequency = 2f;
                 slimeFrequency = 4f;
@@ -117,6 +120,11 @@ public class EnemySpawner : MonoBehaviour
                 ghostFrequency*= 0.5f;
                 slimeFrequency*= 0.5f;
                 break;
+            case 12:
+                batFrequency *= 0.7f;
+                ghostFrequency*= 0.7f;
+                slimeFrequency*= 0.7f;
+                break;
         }
     }
 
@@ -130,6 +138,15 @@ public class EnemySpawner : MonoBehaviour
             spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
             batPool.SpawnEnemy(spawnPos);
         }
+    }
+
+    private void SpawnTorch()
+    {
+        float distance = GetFarRandomSpawnRange();
+        Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(-90f, 90f), Vector3.up) * transform.forward * distance;
+        spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
+        Instantiate(destructibleTorch, spawnPos, Quaternion.identity);
+        StartCoroutine(TorchSpawnWait(torchFrequency));
     }
     
     IEnumerator BatSpawnWait(float time)
@@ -152,6 +169,13 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(time);
         SpawnRandomFarEnemy();
     }
+    
+    IEnumerator TorchSpawnWait(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SpawnTorch();
+    }
+    
 
     private void OnDestroy()
     {

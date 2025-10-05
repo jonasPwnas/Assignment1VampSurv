@@ -10,12 +10,13 @@ public class EquipmentBase : MonoBehaviour
     private int m_currentLevel = 0;
     private bool m_isEquipped = false;
     
-    private void OnEnable()
+    public virtual void OnEnable()
     {
+        print("THIS WAS STILL CALLED YAY");
         PlayerData.OnPlayerDeath += StopEquipment;
     }
 
-    private void OnDisable()
+    public virtual void OnDisable()
     {
         PlayerData.OnPlayerDeath -= StopEquipment;
     }
@@ -50,7 +51,7 @@ public class EquipmentBase : MonoBehaviour
     public virtual string GetLevelUpDescription(int level)
     {
         Debug.Log("Please implement GetDescription in: "+ gameObject.name);
-        return "this is great thing, kill big";
+        return "this is great thing, kill big, fight much (you should probably implement this)";
     }
 
     public virtual void StartEquipment()

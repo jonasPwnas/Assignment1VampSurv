@@ -31,9 +31,14 @@ public class ProjectilePool : MonoBehaviour
         m_avalibleProjectiles = new List<ProjectileBehavior>(12);
     }
 
-    public void SetProjectileDamage(float damageToAdd)
+    public void AddProjectileDamage(float damageToAdd)
     {
         m_projectileDamage += damageToAdd;
+    }
+
+    public void MultiplyProjectileDamage(float damageMultiplier)
+    {
+        m_projectileDamage *= damageMultiplier;
     }
     
     public void SpawnProjectile(Transform target)

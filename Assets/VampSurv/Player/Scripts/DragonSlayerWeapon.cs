@@ -12,7 +12,25 @@ public class DragonSlayerWeapon : EquipmentBase
     [SerializeField] private float baseDamage = 1.1f;
     [SerializeField] private int startLevel;
     private List<GameObject> m_overlappedObjects = new List<GameObject>();
+    private float m_damageMultiplier = 1f;
+    
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        AttackBoost.OnAttackBoostPowerUp += SetDamageMultiplier;
+    }
 
+    private void SetDamageMultiplier(float multiplier)
+    {
+        m_damageMultiplier = multiplier;
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        AttackBoost.OnAttackBoostPowerUp -= SetDamageMultiplier;
+    }
+    
     private void Start()
     {
         SetIsEquipped(true);
@@ -49,7 +67,7 @@ public class DragonSlayerWeapon : EquipmentBase
             IHealthAndDamage healthAndDamage = obj.GetComponent<IHealthAndDamage>();
             if (healthAndDamage != null)
             {
-                healthAndDamage.TakeDamage(baseDamage, hitDirection);
+                healthAndDamage.TakeDamage(baseDamage * m_damageMultiplier, hitDirection);
                 canInteract = false;
             }
             if (canInteract)

@@ -21,6 +21,7 @@ public class ProjectileWeapon : EquipmentBase
     private bool m_isTargeting;
     private float m_targetLocationOffset = 10f;
     private float m_targetLocationRadius = 20f;
+    private float m_damageMultiplier = 1f;
     private List<Transform> m_targets = new List<Transform>();
     
     [ContextMenu("DebugLevelEquipmentUp")]
@@ -29,14 +30,32 @@ public class ProjectileWeapon : EquipmentBase
         WeaponDebugLevel++;
         LevelEquipmentUp(WeaponDebugLevel);
     }
-    
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        AttackBoost.OnAttackBoostPowerUp += SetDamageMultiplier;
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        AttackBoost.OnAttackBoostPowerUp -= SetDamageMultiplier;
+    }
+
+    private void SetDamageMultiplier(float damageMultiplier)
+    {
+        m_damageMultiplier = damageMultiplier;
+        m_projectilePool.MultiplyProjectileDamage(m_damageMultiplier);
+    }
+
     public override void LevelEquipmentUp(int level)
     {
         SetLevel(level);
         ProjectileWeaponLevelUpData data = (ProjectileWeaponLevelUpData)levelUpData.GetLevelUpData(level);
         attackCooldown *= data.cooldownDecrease;
         spawnAmount += data.projectileIncrease;
-        m_projectilePool.SetProjectileDamage(data.damageIncrease);
+        m_projectilePool.AddProjectileDamage(data.damageIncrease);
     }
 
     public override string GetLevelUpDescription(int level)

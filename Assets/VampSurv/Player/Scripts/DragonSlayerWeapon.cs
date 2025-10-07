@@ -17,7 +17,7 @@ public class DragonSlayerWeapon : EquipmentBase
     public override void OnEnable()
     {
         base.OnEnable();
-        AttackBoost.OnAttackBoostPowerUp += SetDamageMultiplier;
+        BroccoliAtkBoost.OnBroccoliAtkBoostPowerUp += SetDamageMultiplier;
     }
 
     private void SetDamageMultiplier(float multiplier)
@@ -28,7 +28,7 @@ public class DragonSlayerWeapon : EquipmentBase
     public override void OnDisable()
     {
         base.OnDisable();
-        AttackBoost.OnAttackBoostPowerUp -= SetDamageMultiplier;
+        BroccoliAtkBoost.OnBroccoliAtkBoostPowerUp -= SetDamageMultiplier;
     }
     
     private void Start()
@@ -38,7 +38,7 @@ public class DragonSlayerWeapon : EquipmentBase
 
     public override string GetLevelUpDescription(int level)
     {
-        MeleeWeaponLevelUpData data = (MeleeWeaponLevelUpData)levelUpData.GetLevelUpData(level);
+        MeleeWeaponLevelUpData data = (MeleeWeaponLevelUpData)levelUpData.GetLevelUpData(level); //Cache this
         return data.levelUpDescription;
     }
     

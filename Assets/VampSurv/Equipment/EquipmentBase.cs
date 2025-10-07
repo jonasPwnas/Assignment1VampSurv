@@ -12,7 +12,6 @@ public class EquipmentBase : MonoBehaviour
     
     public virtual void OnEnable()
     {
-        print("THIS WAS STILL CALLED YAY");
         PlayerData.OnPlayerDeath += StopEquipment;
     }
 
@@ -47,18 +46,18 @@ public class EquipmentBase : MonoBehaviour
             return m_currentLevel;
         }
     }
+
+    public int GetMaxLevel()
+    {
+        return levelUpData.GetMaxLevel();
+    }
     
     public virtual string GetLevelUpDescription(int level)
     {
         Debug.Log("Please implement GetDescription in: "+ gameObject.name);
         return "this is great thing, kill big, fight much (you should probably implement this)";
     }
-
-    public virtual void StartEquipment()
-    {
-        //Cool base implementation
-    }
-
+    
     public virtual void LevelEquipmentUp(int level)
     {
         Debug.Log("Please implement LevelEquipmentUp in: " + gameObject.name);

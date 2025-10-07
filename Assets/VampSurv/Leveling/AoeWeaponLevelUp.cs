@@ -11,4 +11,9 @@ public class AoeWeaponLevelUp : EquipmentLevelUpData
     {
         return WeaponLevels[level];
     }
+    
+    public override int GetMaxLevel()
+    {
+        return WeaponLevels.Count;
+    }
 }

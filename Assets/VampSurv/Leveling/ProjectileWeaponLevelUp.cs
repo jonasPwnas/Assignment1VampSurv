@@ -11,4 +11,9 @@ public class ProjectileWeaponLevelUp : EquipmentLevelUpData
     {
         return WeaponLevels[level];
     }
+    
+    public override int GetMaxLevel()
+    {
+        return WeaponLevels.Count;
+    }
 }

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 174e9581f9d24244aad76455707c605a, type: 3}
+  m_Name: BroccoliLevelUpData
+  m_EditorClassIdentifier: Assembly-CSharp::ItemLevelUp
+  EquipmentLevels:
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 1.1
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 1.2
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 1.3
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 1.4
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 1.5
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 1.6
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 1.7
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 1.8
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 1.9
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 1.95
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 2
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 2.05
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 2.1
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 2.15
+  - levelUpDescription: EAT IT! Increase your overall attack power with 10%
+    effectIncrease: 2.2

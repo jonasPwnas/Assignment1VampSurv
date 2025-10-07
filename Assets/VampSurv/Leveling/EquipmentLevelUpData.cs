@@ -8,4 +8,9 @@ public class EquipmentLevelUpData : ScriptableObject
         Debug.Log("Please implement GetLevelUpData in " + name + "");
         return null;
     }
+    
+    public virtual int GetMaxLevel()
+    {
+        return 1;
+    }
 }

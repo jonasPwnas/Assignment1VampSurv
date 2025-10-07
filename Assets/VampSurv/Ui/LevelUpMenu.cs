@@ -54,7 +54,7 @@ public class LevelUpMenu : MonoBehaviour
     {
         if(m_avalibleEquipmentList.Exists(equipment => equipment == equipment))
         {
-            //Is the fix really to animate the ui object? yes, probably.
+            //Is the fix really to animate the ui object? yes, probably. (it was)
             print("Removed: "+ equipment.name + " from avalible weapons list");
             m_avalibleEquipmentList.Remove(equipment);
         }
@@ -87,11 +87,6 @@ public class LevelUpMenu : MonoBehaviour
         levelUpOptions[2].SetOption(rando3.levelUpImage, rando3.equipmentName, 
             rando3.GetLevelUpDescription(rando3.GetLevel()+1), rando3.gameObject);
     }
-
-    public void FinishedLevelUp()
-    {
-        pauseMenu.Continue();
-    }
     
     IEnumerator AnimateAndDisableMenu(float duration)
     {
@@ -99,5 +94,4 @@ public class LevelUpMenu : MonoBehaviour
         yield return new WaitForSecondsRealtime(duration);
         gameObject.SetActive(false);
     }
-    
 }

@@ -1,15 +1,16 @@
+using System;
 using UnityEngine;
 using static EquipmentLevelUp.EquipmentLevelUpStructs;
 
-public class AttackBoost : EquipmentBase
+public class BroccoliAtkBoost : EquipmentBase
 {
-    public delegate void AttackBoostPowerUp(float multiplier);
-    public static event AttackBoostPowerUp OnAttackBoostPowerUp;
+    public delegate void BroccoliAtkBoostPowerUp(float multiplier);
+    public static event BroccoliAtkBoostPowerUp OnBroccoliAtkBoostPowerUp;
     private float m_damageMultiplier = 1.1f;
-    
-    public override void StartEquipment()
+
+    private void Start()
     {
-        OnAttackBoostPowerUp.Invoke(m_damageMultiplier);
+        OnBroccoliAtkBoostPowerUp.Invoke(m_damageMultiplier);
     }
     
     public override string GetLevelUpDescription(int level)

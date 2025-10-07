@@ -10,6 +10,7 @@ public class HudFader : MonoBehaviour
     public static event FadeComplete OnFadeComplete;
     
     [SerializeField] private Image faderImage;
+    private float m_dotweenExtraWaitTime = 0.1f;
     
     public void StartFade(float duration, bool fadeIn, float delay)
     {
@@ -21,7 +22,7 @@ public class HudFader : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(delay);
         faderImage.DOFade(targetAlpha, duration);
-        yield return new WaitForSecondsRealtime(duration);
+        yield return new WaitForSecondsRealtime(duration+m_dotweenExtraWaitTime);
         OnFadeComplete?.Invoke(fadeIn);
     }
 }

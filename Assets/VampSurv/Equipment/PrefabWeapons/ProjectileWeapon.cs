@@ -34,13 +34,13 @@ public class ProjectileWeapon : EquipmentBase
     public override void OnEnable()
     {
         base.OnEnable();
-        AttackBoost.OnAttackBoostPowerUp += SetDamageMultiplier;
+        BroccoliAtkBoost.OnBroccoliAtkBoostPowerUp += SetDamageMultiplier;
     }
 
     public override void OnDisable()
     {
         base.OnDisable();
-        AttackBoost.OnAttackBoostPowerUp -= SetDamageMultiplier;
+        BroccoliAtkBoost.OnBroccoliAtkBoostPowerUp -= SetDamageMultiplier;
     }
 
     private void SetDamageMultiplier(float damageMultiplier)

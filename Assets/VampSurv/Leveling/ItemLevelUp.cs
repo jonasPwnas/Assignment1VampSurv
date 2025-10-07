@@ -11,4 +11,9 @@ public class ItemLevelUp : EquipmentLevelUpData
     {
         return EquipmentLevels[level];
     }
+
+    public override int GetMaxLevel()
+    {
+        return EquipmentLevels.Count;
+    }
 }

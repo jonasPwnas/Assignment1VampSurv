@@ -11,6 +11,7 @@ public class BroccoliAtkBoost : EquipmentBase
     private void Start()
     {
         OnBroccoliAtkBoostPowerUp.Invoke(m_damageMultiplier);
+        SetIsEquipped(true);
     }
     
     public override string GetLevelUpDescription(int level)

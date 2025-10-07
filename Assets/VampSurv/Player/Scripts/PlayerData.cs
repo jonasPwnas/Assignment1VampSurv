@@ -74,9 +74,10 @@ public class PlayerData : MonoBehaviour, IGainXp, IHealthAndDamage
         {
             print("Level up existing weapon POOOWEEEERR!!!");
             equipment.LevelEquipmentUp(equipment.GetLevel()+1);
-            if (equipment.GetMaxLevel() == equipment.GetLevel())
+            if (equipment.GetMaxLevel() == equipment.GetLevel()+1)
             {
                 currentEquipment.Remove(equipment.gameObject);
+                print("Equipment reached max level, removing from list");
             }
         }
     }

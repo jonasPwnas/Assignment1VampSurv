@@ -72,18 +72,28 @@ public class LevelUpMenu : MonoBehaviour
             equipmentList.Add(equip);
         }
         
-        EquipmentBase rando1 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
-        equipmentList.Remove(rando1.gameObject);
-        EquipmentBase rando2 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
-        equipmentList.Remove(rando2.gameObject);
+        if(equipmentList.Count >= 1)
+        {
+            EquipmentBase rando1 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
+            equipmentList.Remove(rando1.gameObject);
+            
+            levelUpOptions[0].SetOption(rando1.levelUpImage, rando1.equipmentName, 
+                rando1.GetLevelUpDescription(rando1.GetLevel()+1), rando1.gameObject);
+            
+        }
+        if(equipmentList.Count >= 2)
+        {
+            EquipmentBase rando2 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
+            equipmentList.Remove(rando2.gameObject);
+
+            levelUpOptions[1].SetOption(rando2.levelUpImage, rando2.equipmentName,
+                rando2.GetLevelUpDescription(rando2.GetLevel() + 1), rando2.gameObject);
+        }
+        return;
+        
+        
         EquipmentBase rando3 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
-        
-        levelUpOptions[0].SetOption(rando1.levelUpImage, rando1.equipmentName, 
-            rando1.GetLevelUpDescription(rando1.GetLevel()+1), rando1.gameObject);
-        
-        levelUpOptions[1].SetOption(rando2.levelUpImage, rando2.equipmentName, 
-            rando2.GetLevelUpDescription(rando2.GetLevel()+1), rando2.gameObject);
-        
+       
         levelUpOptions[2].SetOption(rando3.levelUpImage, rando3.equipmentName, 
             rando3.GetLevelUpDescription(rando3.GetLevel()+1), rando3.gameObject);
     }

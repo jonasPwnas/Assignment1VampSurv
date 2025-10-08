@@ -326,6 +326,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4876144086326325179, guid: 3ee1c7ceed6390e4a8158ce365c59370, type: 3}
+      propertyPath: maxSpawnAmount
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8696492145427946893, guid: 3ee1c7ceed6390e4a8158ce365c59370, type: 3}
       propertyPath: m_Name
       value: BatPool

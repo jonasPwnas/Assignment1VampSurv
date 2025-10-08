@@ -52,6 +52,8 @@ namespace Enemies
         private Rigidbody m_rigidbody;
         private SimpleEnemyPool m_pool;
         private bool m_startHappaned;
+        private float m_maxDistance = 185f;
+        private float m_distanceCheckTimer = 4f;
 
         public void OnSpawn(SimpleEnemyPool pool, Vector3 spawnPosition)
         {
@@ -82,8 +84,9 @@ namespace Enemies
             m_collider.enabled = true;
             m_renderer.enabled = true;
             m_isDead = false;
-                                m_renderer.material.color = Color.white;
+            m_renderer.material.color = Color.white;
             gameObject.SetActive(true);
+            StartCheckDistance();
         }
 
         void FixedUpdate()
@@ -228,10 +231,27 @@ namespace Enemies
 
         IEnumerator WaitThenSendToPool(float waitTime)
         {
+            StopCoroutine(CheckDistanceToPlayer());
             yield return new WaitForSeconds(waitTime);
             m_rigidbody.linearVelocity = Vector3.zero;
             m_pool.ReturnToPool(this);
             gameObject.SetActive(false);
+        }
+
+        private void StartCheckDistance()
+        {
+            StartCoroutine(CheckDistanceToPlayer());
+        }
+        
+        IEnumerator CheckDistanceToPlayer()
+        {
+            yield return new WaitForSeconds(m_distanceCheckTimer);
+            
+            float distance = Vector3.Distance(m_player.position, transform.position);
+            if (distance > m_maxDistance)
+            {
+                WaitThenSendToPool(0.1f);
+            }
         }
         
         private void OnDestroy()

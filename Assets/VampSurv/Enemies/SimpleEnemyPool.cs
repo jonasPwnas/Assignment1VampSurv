@@ -5,7 +5,9 @@ using UnityEngine;
 public class SimpleEnemyPool : MonoBehaviour
 {
     [SerializeField] private GameObject simpleEnemyPrefab;
-
+    [SerializeField] private int maxSpawnAmount = 100;
+    private int m_currentAmountSpawned;
+    
     [HideInInspector] public List<SimpleEnemyController> m_enemyPool = new List<SimpleEnemyController>();
     [HideInInspector] public SimpleEnemyController m_currentEnemy;
     
@@ -19,8 +21,15 @@ public class SimpleEnemyPool : MonoBehaviour
         }
         else
         {
+            if (m_currentAmountSpawned == maxSpawnAmount)
+            {
+                print("MAX SPAWN REACHED IN POOL: " + name);
+                return;
+            }
+            
             m_currentEnemy = Instantiate(simpleEnemyPrefab, spawnPos, Quaternion.identity).GetComponent<SimpleEnemyController>();
             m_currentEnemy.OnSpawn(this, spawnPos);
+            m_currentAmountSpawned++;
         }
     }
 

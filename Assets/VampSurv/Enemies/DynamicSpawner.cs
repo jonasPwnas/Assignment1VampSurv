@@ -116,9 +116,19 @@ public class DynamicSpawner : MonoBehaviour
                 slimeFrequency*= 0.3f;
                 break;
             case 10:
-                batFrequency = 3f;
+                batFrequency = 1f;
                 ghostFrequency = 3f;
                 slimeFrequency = 3f;
+                break;
+            case 12:
+                batFrequency = 0.7f;
+                ghostFrequency = 0.7f;
+                slimeFrequency = 0.7f;
+                break;
+            case 14:
+                batFrequency = 0.4f;
+                ghostFrequency = 0.4f;
+                slimeFrequency = 0.4f;
                 break;
         }
     }

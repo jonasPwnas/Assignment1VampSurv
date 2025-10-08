@@ -11,7 +11,6 @@ public class ProjectileWeapon : EquipmentBase
     
     [Tooltip("Weapon base interval, how often the weapon will be used")]
     [SerializeField] private float attackCooldown = 1.2f;
-
     [SerializeField] private int spawnAmount = 1;
     [SerializeField] private int WeaponDebugLevel;
     
@@ -92,7 +91,16 @@ public class ProjectileWeapon : EquipmentBase
             if (m_isTargeting)
                 target = GetTargetEnemy();
             
-            m_projectilePool.SpawnProjectile(target);
+            float xOffset = 0;
+            xOffset = i;
+            int rem = i % 2;
+            
+            if (rem == 0)
+            {
+                xOffset *= -1;
+            }
+            
+            m_projectilePool.SpawnProjectile(target, xOffset);
         }
         StartCoroutine(WaitForNextAttack());
     }

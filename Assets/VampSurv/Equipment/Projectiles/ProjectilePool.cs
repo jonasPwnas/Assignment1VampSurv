@@ -41,26 +41,23 @@ public class ProjectilePool : MonoBehaviour
         m_projectileDamage *= damageMultiplier;
     }
     
-    public void SpawnProjectile(Transform target)
+    public void SpawnProjectile(Transform target, float xOffset)
     {
+        Vector3 offset = Vector3.zero;
+        offset.x = xOffset;
+        
         if (m_avalibleProjectiles.Count > 0)
         {
             ProjectileBehavior avalibleProjectile = m_avalibleProjectiles[0];
-            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), avalibleProjectile, GetRandomOffset(), target, m_projectileDamage));
+            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), avalibleProjectile, offset, target, m_projectileDamage));
             m_avalibleProjectiles.Remove(avalibleProjectile);
         }
         else
         {
             ProjectileBehavior newProjectile = Instantiate(projectilePrefab, GetProjectilePosition(m_spawnOffset), 
                 Quaternion.identity).GetComponent<ProjectileBehavior>();
-            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), newProjectile, GetRandomOffset(), target, m_projectileDamage));
+            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), newProjectile, offset, target, m_projectileDamage));
         }
-    }
-
-    private Vector3 GetRandomOffset()
-    {
-        Vector3 offset = new Vector3(Random.Range(0.7f, 2f), 0f, 0f);
-        return offset;
     }
     
     public void ReturnToPool(ProjectileBehavior projectile)

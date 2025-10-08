@@ -11,6 +11,7 @@ public class LevelUpMenu : MonoBehaviour
     [SerializeField] private List<LevelUpOption> levelUpOptions;
     [SerializeField] private AvalibleEquipment avalibleStartEquipment;
     [SerializeField] private RectTransform m_bgRectTransform;
+    [SerializeField] private GameObject nothingOption;
     private PlayerData playerData;
     private List<GameObject> m_avalibleEquipmentList = new List<GameObject>();
     
@@ -46,6 +47,11 @@ public class LevelUpMenu : MonoBehaviour
     
     private void OnDisable()
     {
+        foreach (var levelOption in levelUpOptions)
+        {
+            levelOption.gameObject.SetActive(false);
+        }
+        
         LevelUpOption.OnOptionSelected -= RemoveChosenEquipment;
         Time.timeScale = 1f;
     }
@@ -62,6 +68,7 @@ public class LevelUpMenu : MonoBehaviour
     
     private void SetLevelUptions()
     {
+        print("SETTING OPTIONS");
         List<GameObject> equipmentList = new List<GameObject>();
         foreach (var equip in m_avalibleEquipmentList)
         {
@@ -72,38 +79,40 @@ public class LevelUpMenu : MonoBehaviour
             equipmentList.Add(equip);
         }
         
-        print("Avalible equipments; " + equipmentList.Count);
-        
-        //FIX ALL THIS. Spawn level slots dynamixally, but max 3
+        if(equipmentList.Count==0)
+        {
+            nothingOption.SetActive(true);
+            return;
+        }
         
         if(equipmentList.Count >= 1)
         {
             EquipmentBase rando1 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
-            
             levelUpOptions[0].SetOption(rando1.levelUpImage, rando1.equipmentName, 
                 rando1.GetLevelUpDescription(rando1.GetLevel()+1), rando1.gameObject);
+            
             equipmentList.Remove(rando1.gameObject);
-            
-            
-            if(equipmentList.Count >= 1)
-            {
-                equipmentList.Remove(rando1.gameObject);
-                EquipmentBase rando2 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
-                equipmentList.Remove(rando2.gameObject);
-
-                levelUpOptions[1].SetOption(rando2.levelUpImage, rando2.equipmentName,
-                    rando2.GetLevelUpDescription(rando2.GetLevel() + 1), rando2.gameObject);
-            }
-            
+            levelUpOptions[0].gameObject.SetActive(true);
         }
         
-        return; //ASS aSS ASS ASS
+        if(equipmentList.Count >= 1)
+        {
+            EquipmentBase rando2 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
+            levelUpOptions[1].SetOption(rando2.levelUpImage, rando2.equipmentName,
+                rando2.GetLevelUpDescription(rando2.GetLevel() + 1), rando2.gameObject);
+            
+            equipmentList.Remove(rando2.gameObject);            
+            levelUpOptions[1].gameObject.SetActive(true);
+        }
         
-        
-        EquipmentBase rando3 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
-       
-        levelUpOptions[2].SetOption(rando3.levelUpImage, rando3.equipmentName, 
-            rando3.GetLevelUpDescription(rando3.GetLevel()+1), rando3.gameObject);
+        if(equipmentList.Count >= 1)
+        {
+            EquipmentBase rando3 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
+            levelUpOptions[2].SetOption(rando3.levelUpImage, rando3.equipmentName,
+                rando3.GetLevelUpDescription(rando3.GetLevel() + 1), rando3.gameObject);
+            
+            levelUpOptions[2].gameObject.SetActive(true);
+        }
     }
     
     IEnumerator AnimateAndDisableMenu(float duration)

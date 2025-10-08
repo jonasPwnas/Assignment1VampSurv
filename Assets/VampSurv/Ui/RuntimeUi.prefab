@@ -1162,6 +1162,14 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PlayOnHover
       objectReference: {fileID: 0}
+    - target: {fileID: 2262371272823543802, guid: 5d1217e59b965fc488f3950143960358, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 468744438279266336}
+    - target: {fileID: 2262371272823543802, guid: 5d1217e59b965fc488f3950143960358, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 2325122258613510495}
     - target: {fileID: 2656685954547732111, guid: 5d1217e59b965fc488f3950143960358, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1326,6 +1334,10 @@ PrefabInstance:
       propertyPath: avalibleStartEquipment
       value: 
       objectReference: {fileID: 11400000, guid: 242123c53f8907a4f9c544feef727958, type: 2}
+    - target: {fileID: 9188045710300067304, guid: 5d1217e59b965fc488f3950143960358, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 468744438279266336}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

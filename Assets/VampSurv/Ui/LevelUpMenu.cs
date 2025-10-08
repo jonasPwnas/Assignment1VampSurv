@@ -72,24 +72,32 @@ public class LevelUpMenu : MonoBehaviour
             equipmentList.Add(equip);
         }
         
+        print("Avalible equipments; " + equipmentList.Count);
+        
+        //FIX ALL THIS. Spawn level slots dynamixally, but max 3
+        
         if(equipmentList.Count >= 1)
         {
             EquipmentBase rando1 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
-            equipmentList.Remove(rando1.gameObject);
             
             levelUpOptions[0].SetOption(rando1.levelUpImage, rando1.equipmentName, 
                 rando1.GetLevelUpDescription(rando1.GetLevel()+1), rando1.gameObject);
+            equipmentList.Remove(rando1.gameObject);
+            
+            
+            if(equipmentList.Count >= 1)
+            {
+                equipmentList.Remove(rando1.gameObject);
+                EquipmentBase rando2 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
+                equipmentList.Remove(rando2.gameObject);
+
+                levelUpOptions[1].SetOption(rando2.levelUpImage, rando2.equipmentName,
+                    rando2.GetLevelUpDescription(rando2.GetLevel() + 1), rando2.gameObject);
+            }
             
         }
-        if(equipmentList.Count >= 2)
-        {
-            EquipmentBase rando2 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();
-            equipmentList.Remove(rando2.gameObject);
-
-            levelUpOptions[1].SetOption(rando2.levelUpImage, rando2.equipmentName,
-                rando2.GetLevelUpDescription(rando2.GetLevel() + 1), rando2.gameObject);
-        }
-        return;
+        
+        return; //ASS aSS ASS ASS
         
         
         EquipmentBase rando3 = equipmentList[Random.Range(0, equipmentList.Count)].GetComponent<EquipmentBase>();

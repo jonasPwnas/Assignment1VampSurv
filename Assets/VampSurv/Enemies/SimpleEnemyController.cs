@@ -187,7 +187,7 @@ namespace Enemies
             damageIndicator.PlayDamageEffect();
             m_health -= damage;
             m_damagedMoveToPosition = hitDirection * m_damageMovementIntensity + transform.position;
-            m_renderer.material.color = Color.crimson;
+            m_renderer.material.color = Color.red;
             m_doDamagedMove = true;
             animator.SetTrigger(Damaged);
         }

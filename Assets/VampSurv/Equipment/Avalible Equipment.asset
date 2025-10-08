@@ -14,5 +14,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AvalibleEquipment
   avalibleEquipment:
   - {fileID: 503610872001624304, guid: b77f769e2eb01ab488272a5ebc229160, type: 3}
-  - {fileID: 929764349997055287, guid: 15f3300f2024a844bb3d60e6e3d09815, type: 3}
-  - {fileID: 4010123063052471635, guid: f3506ba158db6b543a50e87a9fd6cf99, type: 3}

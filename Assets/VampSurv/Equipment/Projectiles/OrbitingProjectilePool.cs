@@ -4,44 +4,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ProjectilePool : MonoBehaviour
+public class OrbitingProjectilePool : BaseProjectilePool
 {
-    [Tooltip("What projectile to fire?")]
-    [SerializeField] private GameObject projectilePrefab;
-    
-    [HideInInspector] public ProjectileData projectileData;
-    
-    private List<ProjectileBehavior> m_avalibleProjectiles;
-    private ProjectileSpawnPositions m_spawnPositions;
-    private Vector3 m_spawnPosition;
-    private Vector3 m_spawnOffset;
-    private float m_projectileDamage;
-
-
-    private void Awake()
+    public override void Awake()
     {
         projectileData = projectilePrefab.GetComponent<ProjectileBehavior>().projectileData;
         m_avalibleProjectiles = new List<ProjectileBehavior>(12);
         m_spawnPositions = FindFirstObjectByType<ProjectileSpawnPositions>();
     }
 
-    private void Start()
+    public override void Start()
     {
         m_spawnPositions = FindFirstObjectByType<ProjectileSpawnPositions>();
         m_avalibleProjectiles = new List<ProjectileBehavior>(12);
     }
 
-    public void AddProjectileDamage(float damageToAdd)
+    public override void AddProjectileDamage(float damageToAdd)
     {
         m_projectileDamage += damageToAdd;
     }
 
-    public void MultiplyProjectileDamage(float damageMultiplier)
+    public override void MultiplyProjectileDamage(float damageMultiplier)
     {
         m_projectileDamage *= damageMultiplier;
     }
     
-    public void SpawnProjectile(Transform target, float xOffset)
+    public override void SpawnProjectile(Transform target, float xOffset)
     {
         Vector3 offset = Vector3.zero;
         offset.x = xOffset;
@@ -60,7 +48,7 @@ public class ProjectilePool : MonoBehaviour
         }
     }
     
-    public void ReturnToPool(ProjectileBehavior projectile)
+    public override void ReturnToPool(ProjectileBehavior projectile)
     {
         m_avalibleProjectiles.Add(projectile);
         projectile.gameObject.SetActive(false);
@@ -90,6 +78,6 @@ public class ProjectilePool : MonoBehaviour
     IEnumerator LaunchAfterTime(float time, ProjectileBehavior projectile, Vector3 spawnOffset, Transform target, float damage)
     {
         yield return new WaitForSeconds(time);
-        projectile.LaunchProjectile(GetProjectilePosition(spawnOffset), target, this, damage);
+        //projectile.LaunchProjectile(GetProjectilePosition(spawnOffset), target, this, damage);
     }
 }

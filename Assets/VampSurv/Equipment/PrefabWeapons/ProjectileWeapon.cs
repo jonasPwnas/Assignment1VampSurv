@@ -14,7 +14,7 @@ public class ProjectileWeapon : EquipmentBase
     [SerializeField] private int spawnAmount = 1;
     [SerializeField] private int WeaponDebugLevel;
     
-    private ProjectilePool m_projectilePool;
+    private LinearProjectilePool _mLinearProjectilePool;
     private int m_maxColliders = 20;
     private Collider[] colliders;
     private bool m_isTargeting;
@@ -45,7 +45,7 @@ public class ProjectileWeapon : EquipmentBase
     private void SetDamageMultiplier(float damageMultiplier)
     {
         m_damageMultiplier = damageMultiplier;
-        m_projectilePool.MultiplyProjectileDamage(m_damageMultiplier);
+        _mLinearProjectilePool.MultiplyProjectileDamage(m_damageMultiplier);
     }
 
     public override void LevelEquipmentUp(int level)
@@ -54,7 +54,7 @@ public class ProjectileWeapon : EquipmentBase
         ProjectileWeaponLevelUpData data = (ProjectileWeaponLevelUpData)levelUpData.GetLevelUpData(level);
         attackCooldown *= data.cooldownDecrease;
         spawnAmount += data.projectileIncrease;
-        m_projectilePool.AddProjectileDamage(data.damageIncrease);
+        _mLinearProjectilePool.AddProjectileDamage(data.damageIncrease);
     }
 
     public override string GetLevelUpDescription(int level)
@@ -65,10 +65,10 @@ public class ProjectileWeapon : EquipmentBase
 
     private void Start()
     {
-        m_projectilePool = projectilePool.GetComponent<ProjectilePool>();
+        _mLinearProjectilePool = projectilePool.GetComponent<LinearProjectilePool>();
         colliders = new Collider[m_maxColliders];
 
-        switch (m_projectilePool.projectileData.projectileTargeting)
+        switch (_mLinearProjectilePool.projectileData.projectileTargeting)
         {
             case ProjectileData.ProjectileTargeting.None:
                 m_isTargeting = false;
@@ -100,7 +100,7 @@ public class ProjectileWeapon : EquipmentBase
                 xOffset *= -1;
             }
             
-            m_projectilePool.SpawnProjectile(target, xOffset);
+            _mLinearProjectilePool.SpawnProjectile(target, xOffset);
         }
         StartCoroutine(WaitForNextAttack());
     }
@@ -110,7 +110,7 @@ public class ProjectileWeapon : EquipmentBase
         float furthestDistance = 0;
         Transform targetEnemy = null;
         int numColliders = Physics.OverlapSphereNonAlloc(GetTargetingPosition(), m_targetLocationRadius, colliders, 
-            m_projectilePool.projectileData.projectileHitLayerMask);
+            _mLinearProjectilePool.projectileData.projectileHitLayerMask);
         
         for(int i = 0; i < numColliders; i++)
         {

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class LinearProjectile : ProjectileBehavior
 {
-    
     [Tooltip("Find object in VampSurv/Utility/Prefabs")]
     [SerializeField] private GameObject genericParticlePool;
     
@@ -22,7 +21,7 @@ public class LinearProjectile : ProjectileBehavior
 
     private void OnDisable()
     {
-        projectilePool.ReturnToPool(this);
+        linearProjectilePool.ReturnToPool(this);
     }
     
     public override void DisableProjectile()
@@ -37,7 +36,7 @@ public class LinearProjectile : ProjectileBehavior
         m_projectilePool.SetParticleSystemPrefab(projectileData.projectileImpactSystem);
     }
     
-    public override void LaunchProjectile(Vector3 spawnPosition, Transform target, ProjectilePool pool, float damage)
+    public override void LaunchProjectile(Vector3 spawnPosition, Transform target, BaseProjectilePool pool, float damage)
     {
         renderer.enabled = true;
         transform.localScale = new Vector3(projectileData.projectileUniformScale, projectileData.projectileUniformScale,
@@ -45,8 +44,8 @@ public class LinearProjectile : ProjectileBehavior
         transform.position = spawnPosition;
         m_startPosition = spawnPosition;
         m_lastPosition = spawnPosition;
-        projectilePool = pool;
-        transform.rotation = projectilePool.transform.rotation;
+        linearProjectilePool = pool;
+        transform.rotation = linearProjectilePool.transform.rotation;
         gameObject.SetActive(true);
         projectileTarget = target;
         StartCoroutine(WaitThenFire());

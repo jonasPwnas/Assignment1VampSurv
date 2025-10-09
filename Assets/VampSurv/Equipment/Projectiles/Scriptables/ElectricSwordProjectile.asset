@@ -16,11 +16,13 @@ MonoBehaviour:
   projectileRadius: 0.5
   projectileDamage: 5
   impactRadius: 2
+  projectileUniformScale: 1
   timeToImpact: 0.8
   linearProjectileSpeed: 44
   linearProjectileTravelDistance: 100
+  spawnLocation: 2
   projectileTargeting: 0
-  projectileMovement: 5
+  projectileMovement: 6
   customProjectileMovementDirection: {x: 0, y: -0.1, z: 1}
   projectileHitLayerMask:
     serializedVersion: 2

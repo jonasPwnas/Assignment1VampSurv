@@ -22,12 +22,12 @@ public class OrbitingProjectile : ProjectileBehavior
 
     private void OnDisable()
     {
-        projectilePool.ReturnToPool(this);
+        linearProjectilePool.ReturnToPool(this);
     }
     
-    public override void LaunchProjectile(Vector3 spawnPosition, Transform target, ProjectilePool pool, float damage)
+    public override void LaunchProjectile(Vector3 spawnPosition, Transform target, BaseProjectilePool pool, float damage)
     {
-        projectilePool = pool;
+        linearProjectilePool = pool;
     }
 
     public override void DisableProjectile()

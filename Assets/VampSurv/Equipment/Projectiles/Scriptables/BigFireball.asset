@@ -22,7 +22,7 @@ MonoBehaviour:
   linearProjectileTravelDistance: 50
   spawnLocation: 3
   projectileTargeting: 1
-  projectileMovement: 5
+  projectileMovement: 6
   customProjectileMovementDirection: {x: 0, y: -0.3, z: 1}
   projectileHitLayerMask:
     serializedVersion: 2

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bc04906c9bbea47b07fb72bd19c479, type: 3}
+  m_Name: HeavyBook
+  m_EditorClassIdentifier: 
+  launchTime: 1
+  projectileRadius: 0.5
+  projectileDamage: 1
+  impactRadius: 1
+  projectileUniformScale: 1
+  timeToImpact: 0.6
+  linearProjectileSpeed: 25
+  linearProjectileTravelDistance: 100
+  spawnLocation: 1
+  projectileTargeting: 0
+  projectileMovement: 5
+  customProjectileMovementDirection: {x: 0, y: 0, z: 0}
+  projectileHitLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  projectileMesh: {fileID: -8456742474324051699, guid: 17564267dab55814c8c4e5098e50924b, type: 3}
+  projectileMaterial: {fileID: 2100000, guid: 15d265219b2b47242ab5a392ff9ee87e, type: 2}
+  projectileTrailSystem: {fileID: 9184200509209669, guid: 7a49c737435e63348aac4a4d52bddda0, type: 3}
+  projectileImpactSystem: {fileID: 1373870050534156, guid: 2b149968402aee24dad7c50fda26dbcf, type: 3}

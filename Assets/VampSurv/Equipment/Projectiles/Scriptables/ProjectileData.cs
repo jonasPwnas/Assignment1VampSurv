@@ -4,7 +4,7 @@ using UnityEngine;
 public class ProjectileData : ScriptableObject
 {
     public enum ProjectileTargeting {None, ClosestEnemy}
-    public enum ProjectileMovement {Forward, Down, DiagonalDown, DiagonalUp, Up, Custom}
+    public enum ProjectileMovement {Forward, Down, DiagonalDown, DiagonalUp, Up, Orbiting, Custom}
     public enum SpawnLocation{OnTheGround, MiddleOfPlayer, AbovePlayer, SkyHigh}
     
     [Header("Projectile Settings")]

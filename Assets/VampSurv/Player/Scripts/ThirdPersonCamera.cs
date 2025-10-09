@@ -108,5 +108,4 @@ public class ThirdPersonCamera : MonoBehaviour
         // Subtract the forward vector of the GameObject to point its forward vector to the target
         transform.position = player.transform.position - transform.forward * m_distanceToTarget + transform.up * heightOffset;
     }
-    
 }

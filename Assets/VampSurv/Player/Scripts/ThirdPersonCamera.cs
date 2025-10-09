@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-    [SerializeField] private float mouseSensitivity = 3.0f;
     [SerializeField] private PlayerController player;
     [SerializeField] private float stationaryDistanceFromTarget = 6.0f;
     [SerializeField] private float movingDistanceFromTarget = 8.5f;
@@ -15,7 +14,9 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] private float distanceSmoothTime = 0.2f;
     [SerializeField] private Vector2 rotationXMinMax = new Vector2(-7, 40);
     [SerializeField] ScriptableFloatCurve smoothCurve;
+    [SerializeField] private ScriptablePlayerPrefsKeys playerPrefsKeys;
 
+    private float m_cameraRotSensitivity = 0.151f;
     private float m_rotationY;
     private float m_rotationX;
     private Vector3 m_currentRotation;
@@ -29,23 +30,35 @@ public class ThirdPersonCamera : MonoBehaviour
     private void OnEnable()
     {
         PlayerData.OnPlayerDeath += OnDeath;
+        SetCamRotSpeed.OnCamRotSpeedChanged += UpdateCamRotSpeed;
     }
 
     private void OnDisable()
     {
         PlayerData.OnPlayerDeath -= OnDeath;
+        SetCamRotSpeed.OnCamRotSpeedChanged -= UpdateCamRotSpeed;
     }
 
     private void OnDeath()
     {
         m_isDead = true;
     }
-    
+
+    private void UpdateCamRotSpeed()
+    {
+        if (!PlayerPrefs.HasKey(playerPrefsKeys.cameraRotationSpeedKey))
+        {
+            PlayerPrefs.SetFloat(playerPrefsKeys.cameraRotationSpeedKey, m_cameraRotSensitivity);
+        }
+        m_cameraRotSensitivity = PlayerPrefs.GetFloat(playerPrefsKeys.cameraRotationSpeedKey);
+        print("updated cam rot speed??");
+    }
 
     private void Start()
     {
         m_cameraInputHandler = GetComponent<CameraInputHandler>();
         Cursor.visible = false;
+        UpdateCamRotSpeed();
     }
 
     void Update()
@@ -62,8 +75,8 @@ public class ThirdPersonCamera : MonoBehaviour
             transform.localEulerAngles = m_currentRotation;
         }
         
-        float mouseX = m_cameraInputHandler.lookAction.ReadValue<Vector2>().x * mouseSensitivity;
-        float mouseY = m_cameraInputHandler.lookAction.ReadValue<Vector2>().y * mouseSensitivity * -1f;
+        float mouseX = m_cameraInputHandler.lookAction.ReadValue<Vector2>().x * m_cameraRotSensitivity;
+        float mouseY = m_cameraInputHandler.lookAction.ReadValue<Vector2>().y * m_cameraRotSensitivity * -1f;
 
         m_rotationY += mouseX;
         m_rotationX += mouseY;

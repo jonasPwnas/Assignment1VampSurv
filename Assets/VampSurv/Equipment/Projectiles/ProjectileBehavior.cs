@@ -5,7 +5,7 @@ public abstract class ProjectileBehavior : MonoBehaviour
     public ProjectileData projectileData;
     [HideInInspector] public Transform projectileTarget;
     [HideInInspector] public Collider[] colliders;
-    [HideInInspector] public BaseProjectilePool linearProjectilePool;
+    [HideInInspector] public BaseProjectilePool projectilePool;
     [HideInInspector] public GameObject meshChild;
     [HideInInspector] public GameObject trailChild;
     [HideInInspector] public MeshRenderer renderer;

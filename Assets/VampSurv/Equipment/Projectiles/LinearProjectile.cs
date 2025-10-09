@@ -21,7 +21,7 @@ public class LinearProjectile : ProjectileBehavior
 
     private void OnDisable()
     {
-        linearProjectilePool.ReturnToPool(this);
+        projectilePool.ReturnToPool(this);
     }
     
     public override void DisableProjectile()
@@ -44,8 +44,8 @@ public class LinearProjectile : ProjectileBehavior
         transform.position = spawnPosition;
         m_startPosition = spawnPosition;
         m_lastPosition = spawnPosition;
-        linearProjectilePool = pool;
-        transform.rotation = linearProjectilePool.transform.rotation;
+        projectilePool = pool;
+        transform.rotation = projectilePool.transform.rotation;
         gameObject.SetActive(true);
         projectileTarget = target;
         StartCoroutine(WaitThenFire());

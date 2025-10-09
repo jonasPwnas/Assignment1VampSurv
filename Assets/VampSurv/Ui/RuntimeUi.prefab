@@ -580,10 +580,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 1154930848978096760, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3105961803091015206, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -664,14 +660,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3715424713884738625, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
-      propertyPath: m_Name
-      value: FullScore
-      objectReference: {fileID: 0}
-    - target: {fileID: 4055161118335417012, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
-      propertyPath: m_Name
-      value: KillsScore
-      objectReference: {fileID: 0}
+    - target: {fileID: 5405541908758051866, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 468744438279266336}
     - target: {fileID: 5606500162695139771, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -680,56 +672,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 468744438279266336}
-    - target: {fileID: 6150029344985032531, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 67.2664
-      objectReference: {fileID: 0}
-    - target: {fileID: 6150029344985032531, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -4.678
-      objectReference: {fileID: 0}
-    - target: {fileID: 6150029344985032531, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 33.072266
-      objectReference: {fileID: 0}
-    - target: {fileID: 6241684071848682780, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
-      propertyPath: m_Name
-      value: TimeScore
-      objectReference: {fileID: 0}
     - target: {fileID: 6300245172113572081, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
       propertyPath: hudUpdater
       value: 
       objectReference: {fileID: 889481880091731412}
-    - target: {fileID: 6456447468185408515, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456447468185408515, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456447468185408515, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 7009249269062584292, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 468744438279266336}
     - target: {fileID: 8576701905086437775, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 468744438279266336}
-    - target: {fileID: 8651368373236343035, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 157.3293
-      objectReference: {fileID: 0}
-    - target: {fileID: 8651368373236343035, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -78.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8763681349001213169, guid: d0e62ddf98808d74b8c0d136ceee8bf1, type: 3}
-      propertyPath: m_text
-      value: '0000000
-
-'
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

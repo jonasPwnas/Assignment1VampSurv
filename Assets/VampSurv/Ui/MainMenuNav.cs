@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class MainMenuNav : MonoBehaviour
 {
+    [SerializeField] private GameObject menuObj;
+    [SerializeField] private GameObject scoreObj;
     [SerializeField] private Image faderImage;
     private PersistentAudioPlayer m_audioPlayer;
     private EventSystem m_eventSystem;
@@ -28,9 +30,16 @@ public class MainMenuNav : MonoBehaviour
         StartCoroutine(FadeVisibility(false, 0.7f, false, 0.1f));
     }
 
-    public void ScoreMenu()
+    public void ShowScoreMenu()
     {
-        Debug.Log("Tried Enter Score Menu");
+        menuObj.SetActive(false);
+        scoreObj.SetActive(true);
+    }
+    
+    public void ShowMainMenu()
+    {
+        menuObj.SetActive(true);
+        scoreObj.SetActive(false);
     }
     
     public void QuitGame()

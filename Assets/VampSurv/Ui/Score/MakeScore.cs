@@ -8,6 +8,7 @@ public class MakeScore : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text killsText;
     [SerializeField] private TMP_Text timeText;
+    [HideInInspector] public int finalScore = 44;
     
     private int m_kills;
     private float m_time;
@@ -40,7 +41,9 @@ public class MakeScore : MonoBehaviour
         if (kills == 0)
             kills = 1;
         
+        
         int score = (int)time * kills + 666;
+        finalScore = score;
         return score.ToString("0000000");
     }
 }

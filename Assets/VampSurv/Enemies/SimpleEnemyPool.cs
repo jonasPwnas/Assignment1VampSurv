@@ -13,9 +13,17 @@ public class SimpleEnemyPool : MonoBehaviour
     
     public virtual void SpawnEnemy(Vector3 spawnPos)
     {
+
+        
         if (m_enemyPool.Count > 0)
         {
             m_currentEnemy = m_enemyPool[0];
+            
+            if(m_currentAmountSpawned > 35 && m_currentAmountSpawned < 41)
+            {
+                m_currentEnemy.SetAsLevelTwo();
+            }
+            
             m_currentEnemy.OnRespawn(spawnPos);
             m_enemyPool.Remove(m_currentEnemy);
         }

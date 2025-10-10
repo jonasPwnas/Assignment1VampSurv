@@ -1085,30 +1085,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 437881302148833998, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 437881302148833998, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 437881302148833998, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 768405295544329526, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2762971635373269557, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4034437152529334055, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4707190851120594925, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1154,17 +1130,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7110957252731670791, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-      propertyPath: maxHealth
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 7110957252731670791, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: hudUpdater
       value: 
       objectReference: {fileID: 1964602102}
-    - target: {fileID: 8039828625646574126, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 8039828625646574126, guid: 4b537f52e8e6e824381a9820802b4e7b, type: 3}
       propertyPath: m_Name
       value: Player

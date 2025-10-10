@@ -5,6 +5,10 @@ using Random = UnityEngine.Random;
 
 public class DynamicSpawner : MonoBehaviour
 {
+    public delegate void TimeForLevelTwo();
+    public static event TimeForLevelTwo OnTimeForLevelTwo;
+    
+    
     [SerializeField] private SimpleEnemyPool batPool;
     [SerializeField] private SimpleEnemyPool slimePool;
     [SerializeField] private SimpleEnemyPool ghostPool;
@@ -117,18 +121,36 @@ public class DynamicSpawner : MonoBehaviour
                 break;
             case 10:
                 batFrequency = 1f;
-                ghostFrequency = 3f;
-                slimeFrequency = 3f;
+                ghostFrequency = 2f;
+                slimeFrequency = 2f;
                 break;
             case 12:
                 batFrequency = 0.7f;
                 ghostFrequency = 0.7f;
                 slimeFrequency = 0.7f;
                 break;
-            case 14:
-                batFrequency = 0.4f;
-                ghostFrequency = 0.4f;
-                slimeFrequency = 0.4f;
+            case 14: //7min
+                batFrequency = 0.3f;
+                ghostFrequency = 0.3f;
+                slimeFrequency = 0.3f;
+                break;
+            case 16:
+                batFrequency = 3f;
+                ghostFrequency = 3f;
+                slimeFrequency = 3f;
+                OnTimeForLevelTwo?.Invoke();
+                break;
+            case 20:
+                torchFrequency = 120;
+                batFrequency = 1f;
+                ghostFrequency = 1f;
+                slimeFrequency = 1f;
+                break;
+            case 28:
+                torchFrequency = 240;
+                batFrequency = 0.3f;
+                ghostFrequency = 0.3f;
+                slimeFrequency = 0.3f;
                 break;
         }
     }

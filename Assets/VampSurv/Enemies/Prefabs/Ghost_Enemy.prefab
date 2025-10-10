@@ -90,10 +90,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   maxHealth: 3
-  damagedMoveSpeed: 50
   damageToDeal: 1
+  damageToDealLvlTwo: 3
+  maxHealthLvlTwo: 6
+  sizeLvlTwo: 1
+  damagedMoveSpeed: 50
   damageIndicator: {fileID: 7850863851883014284}
   xpDrop: {fileID: 4848289639577851003, guid: 8fc0d744a84a75e42a632f504d713c56, type: 3}
+  meshRenderer: {fileID: 7189479294944006028}
+  lvlTwoMaterial: {fileID: 2100000, guid: d2b7dde03ec3f2944b36f585daf401ed, type: 2}
+  rig: {fileID: 4622443908695163462}
 --- !u!95 &7455817545353489160
 Animator:
   serializedVersion: 7
@@ -123,10 +129,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 493443656972554806}
-  serializedVersion: 5
+  serializedVersion: 4
   m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_Drag: 0
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -162,7 +168,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.014
+  m_Radius: 0.01
   m_Height: 0.028
   m_Direction: 1
   m_Center: {x: 0, y: 0.0145, z: 0}
@@ -251,8 +257,6 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -274,7 +278,6 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0

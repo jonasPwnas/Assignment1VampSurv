@@ -28,10 +28,16 @@ namespace Enemies
         [SerializeField] private LayerMask traceMask;
         [SerializeField] private LayerMask deadMask;
         [SerializeField] private float maxHealth = 100f;
-        [SerializeField] private float damagedMoveSpeed = 25f;
         [SerializeField] private float damageToDeal = 1f;
+        [SerializeField] private float damageToDealLvlTwo = 3f;
+        [SerializeField] private float maxHealthLvlTwo = 5f;
+        [SerializeField] private float sizeLvlTwo = 1.2f;
+        [SerializeField] private float damagedMoveSpeed = 25f;
         [SerializeField] private DamageIndicator damageIndicator;
-        [SerializeField] private GameObject xpDrop; //Have to pool this
+        [SerializeField] private GameObject xpDrop; //Have to pool this, maybe?
+        [SerializeField] private SkinnedMeshRenderer meshRenderer;
+        [SerializeField] private Material lvlTwoMaterial;
+        [SerializeField] private GameObject rig;
 
         //Privates
         private SkinnedMeshRenderer m_renderer;
@@ -55,6 +61,17 @@ namespace Enemies
         private bool m_startHappaned;
         private float m_maxDistance = 185f;
         private float m_distanceCheckTimer = 4f;
+        private bool m_isLevelTwo;
+
+        private void OnEnable()
+        {
+            DynamicSpawner.OnTimeForLevelTwo += SetAsLevelTwo;
+        }
+
+        private void OnDisable()
+        {
+            DynamicSpawner.OnTimeForLevelTwo -= SetAsLevelTwo;
+        }
 
         public void OnSpawn(SimpleEnemyPool pool, Vector3 spawnPosition)
         {
@@ -74,8 +91,21 @@ namespace Enemies
             ResetEnemy();
         }
 
+        
+        public void SetAsLevelTwo()
+        {
+            m_isLevelTwo = true;
+        }
+        
         private void ResetEnemy()
         {
+            if (m_isLevelTwo)
+            {
+                m_renderer.material = lvlTwoMaterial;
+                maxHealth = 5;
+                damageToDeal = damageToDealLvlTwo;;
+                rig.transform.localScale = new Vector3(sizeLvlTwo, sizeLvlTwo, sizeLvlTwo);
+            }
             m_doDamagedMove = false;
             m_targetPosition = transform.position;
             m_health = maxHealth;

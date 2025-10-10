@@ -32,13 +32,13 @@ public static class ScoreFileHandler
         {
             List<ScoreEntry> tempList = new List<ScoreEntry>(10);
             
-            tempList.Add(new ScoreEntry("Bobson", 100612));
-            tempList.Add(new ScoreEntry("Guts", 19777666));
-            tempList.Add(new ScoreEntry("Biff", 1900612));
-            tempList.Add(new ScoreEntry("Åke J", 17323411));
-            tempList.Add(new ScoreEntry("Ulla-Klas", Random.Range(160000, 15251634)));
-            tempList.Add(new ScoreEntry("Sniper-Bengt", Random.Range(160000, 15251634)));
-            tempList.Add(new ScoreEntry("Naruto", Random.Range(160000, 15251634)));
+            tempList.Add(new ScoreEntry("Guts", 1777666));
+            tempList.Add(new ScoreEntry("Biff", 1220612));
+            tempList.Add(new ScoreEntry("Åke J", 173231));
+            tempList.Add(new ScoreEntry("Bobson", 10612));
+            tempList.Add(new ScoreEntry("Ulla-Klas", Random.Range(16000, 122516)));
+            tempList.Add(new ScoreEntry("Sniper-Bengt", Random.Range(16000, 122516)));
+            tempList.Add(new ScoreEntry("Naruto", Random.Range(16001, 122516)));
             tempList.Add(new ScoreEntry("Griffith", 33));
             
             return tempList as List<T>;

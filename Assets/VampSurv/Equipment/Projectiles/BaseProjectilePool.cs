@@ -35,7 +35,7 @@ public class BaseProjectilePool : MonoBehaviour
         
     }
 
-    public virtual void SpawnProjectile(Transform target, float xOffset)
+    public virtual void SpawnProjectile(Transform target, float offset)
     {
         
     }

@@ -6,15 +6,18 @@ using static EquipmentLevelUp.EquipmentLevelUpStructs;
 
 public class ProjectileWeapon : EquipmentBase
 {
+    private enum SpawnBehavior{positionOffset, timeoffset}
+    
     [Tooltip("What projectile-pool will the weapon use?")]
     [SerializeField] private GameObject projectilePool; //Probably should be instantiated? To reduce setup and prefab clutter
     
     [Tooltip("Weapon base interval, how often the weapon will be used")]
     [SerializeField] private float attackCooldown = 1.2f;
     [SerializeField] private int spawnAmount = 1;
-    [SerializeField] private int WeaponDebugLevel;
+    [SerializeField] private int weaponDebugLevel;
+    [SerializeField] private SpawnBehavior spawnBehavior = SpawnBehavior.positionOffset;
     
-    private LinearProjectilePool _mLinearProjectilePool;
+    private BaseProjectilePool m_projectilePool;
     private int m_maxColliders = 20;
     private Collider[] colliders;
     private bool m_isTargeting;
@@ -26,8 +29,8 @@ public class ProjectileWeapon : EquipmentBase
     [ContextMenu("DebugLevelEquipmentUp")]
     private void DebugLevelEquipmentUp()
     {
-        WeaponDebugLevel++;
-        LevelEquipmentUp(WeaponDebugLevel);
+        weaponDebugLevel++;
+        LevelEquipmentUp(weaponDebugLevel);
     }
 
     public override void OnEnable()
@@ -45,7 +48,7 @@ public class ProjectileWeapon : EquipmentBase
     private void SetDamageMultiplier(float damageMultiplier)
     {
         m_damageMultiplier = damageMultiplier;
-        _mLinearProjectilePool.MultiplyProjectileDamage(m_damageMultiplier);
+        m_projectilePool.MultiplyProjectileDamage(m_damageMultiplier);
     }
 
     public override void LevelEquipmentUp(int level)
@@ -54,7 +57,7 @@ public class ProjectileWeapon : EquipmentBase
         ProjectileWeaponLevelUpData data = (ProjectileWeaponLevelUpData)levelUpData.GetLevelUpData(level);
         attackCooldown *= data.cooldownDecrease;
         spawnAmount += data.projectileIncrease;
-        _mLinearProjectilePool.AddProjectileDamage(data.damageIncrease);
+        m_projectilePool.AddProjectileDamage(data.damageIncrease);
     }
 
     public override string GetLevelUpDescription(int level)
@@ -65,10 +68,10 @@ public class ProjectileWeapon : EquipmentBase
 
     private void Start()
     {
-        _mLinearProjectilePool = projectilePool.GetComponent<LinearProjectilePool>();
+        m_projectilePool = projectilePool.GetComponent<BaseProjectilePool>();
         colliders = new Collider[m_maxColliders];
 
-        switch (_mLinearProjectilePool.projectileData.projectileTargeting)
+        switch (m_projectilePool.projectileData.projectileTargeting)
         {
             case ProjectileData.ProjectileTargeting.None:
                 m_isTargeting = false;
@@ -89,18 +92,27 @@ public class ProjectileWeapon : EquipmentBase
         for (int i = 0; i < spawnAmount; i++)
         {
             if (m_isTargeting)
-                target = GetTargetEnemy();
-            
-            float xOffset = 0;
-            xOffset = i;
-            int rem = i % 2;
-            
-            if (rem == 0)
             {
-                xOffset *= -1;
+                target = GetTargetEnemy();
             }
             
-            _mLinearProjectilePool.SpawnProjectile(target, xOffset);
+            float offset = 0;
+            
+            switch (spawnBehavior)
+            {
+                case SpawnBehavior.positionOffset:
+                    offset = i;
+                    int rem = i % 2;
+                    if (rem == 0)
+                    {
+                        offset *= -1;
+                    }
+                    break;
+                case SpawnBehavior.timeoffset:
+                    offset = i + 1;
+                    break;
+            }
+            m_projectilePool.SpawnProjectile(target, offset);
         }
         StartCoroutine(WaitForNextAttack());
     }
@@ -110,7 +122,7 @@ public class ProjectileWeapon : EquipmentBase
         float furthestDistance = 0;
         Transform targetEnemy = null;
         int numColliders = Physics.OverlapSphereNonAlloc(GetTargetingPosition(), m_targetLocationRadius, colliders, 
-            _mLinearProjectilePool.projectileData.projectileHitLayerMask);
+            m_projectilePool.projectileData.projectileHitLayerMask);
         
         for(int i = 0; i < numColliders; i++)
         {

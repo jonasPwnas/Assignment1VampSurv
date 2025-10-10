@@ -41,7 +41,8 @@ namespace Enemies
         private Quaternion m_targetRotation;
         private Vector3 m_damagedMoveToPosition;
         private Vector3 m_targetPosition;
-        private float m_damageMovementIntensity = 20f;
+        private float m_maxDamageMovementIntensity = 10f;
+        private float m_minDamageMovementIntensity = 4f;
         private float m_attackThreshold = 3f;
         private bool m_canMove;
         private float m_health;
@@ -137,7 +138,8 @@ namespace Enemies
 
             if (m_canMove && !m_doDamagedMove)
             {
-                m_targetPosition = Vector3.MoveTowards(transform.position, m_player.transform.position,movementSpeed * Time.deltaTime);
+                m_targetPosition = Vector3.MoveTowards(transform.position, 
+                    m_player.transform.position,movementSpeed * Time.deltaTime);
             }
             
             RotateTowardPlayer();
@@ -154,7 +156,8 @@ namespace Enemies
             if (m_isDead)
                 return;
             
-            m_targetRotation = Quaternion.LookRotation(m_player.transform.position - transform.position, Vector3.up);
+            m_targetRotation = Quaternion.LookRotation(m_player.transform.position - 
+                                                       transform.position, Vector3.up);
         }
 
         private void LateUpdate()
@@ -189,7 +192,8 @@ namespace Enemies
         {
             damageIndicator.PlayDamageEffect();
             m_health -= damage;
-            m_damagedMoveToPosition = hitDirection * m_damageMovementIntensity + transform.position;
+            m_damagedMoveToPosition = hitDirection * Random.Range(m_minDamageMovementIntensity, 
+                m_maxDamageMovementIntensity) + transform.position;
             m_renderer.material.color = Color.red;
             m_doDamagedMove = true;
             animator.SetTrigger(Damaged);

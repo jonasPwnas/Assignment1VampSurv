@@ -30,22 +30,22 @@ public class LinearProjectilePool : BaseProjectilePool
         m_projectileDamage *= damageMultiplier;
     }
     
-    public override void SpawnProjectile(Transform target, float xOffset)
+    public override void SpawnProjectile(Transform target, float offset)
     {
-        Vector3 offset = Vector3.zero;
-        offset.x = xOffset;
+        Vector3 newOffset = Vector3.zero;
+        newOffset.x = offset;
         
         if (m_avalibleProjectiles.Count > 0)
         {
             ProjectileBehavior avalibleProjectile = m_avalibleProjectiles[0];
-            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), avalibleProjectile, offset, target, m_projectileDamage));
+            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), avalibleProjectile, newOffset, target, m_projectileDamage));
             m_avalibleProjectiles.Remove(avalibleProjectile);
         }
         else
         {
             ProjectileBehavior newProjectile = Instantiate(projectilePrefab, GetProjectilePosition(m_spawnOffset), 
                 Quaternion.identity).GetComponent<ProjectileBehavior>();
-            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), newProjectile, offset, target, m_projectileDamage));
+            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), newProjectile, newOffset, target, m_projectileDamage));
         }
     }
     

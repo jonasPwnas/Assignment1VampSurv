@@ -29,22 +29,20 @@ public class OrbitingProjectilePool : BaseProjectilePool
         m_projectileDamage *= damageMultiplier;
     }
     
-    public override void SpawnProjectile(Transform target, float xOffset)
+    public override void SpawnProjectile(Transform target, float offset)
     {
-        Vector3 offset = Vector3.zero;
-        offset.x = xOffset;
         
         if (m_avalibleProjectiles.Count > 0)
         {
             ProjectileBehavior avalibleProjectile = m_avalibleProjectiles[0];
-            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), avalibleProjectile, offset, target, m_projectileDamage));
+            StartCoroutine(LaunchAfterTime(offset, avalibleProjectile, target, m_projectileDamage));
             m_avalibleProjectiles.Remove(avalibleProjectile);
         }
         else
         {
-            ProjectileBehavior newProjectile = Instantiate(projectilePrefab, GetProjectilePosition(m_spawnOffset), 
+            ProjectileBehavior newProjectile = Instantiate(projectilePrefab, GetProjectilePosition(), 
                 Quaternion.identity).GetComponent<ProjectileBehavior>();
-            StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), newProjectile, offset, target, m_projectileDamage));
+            StartCoroutine(LaunchAfterTime(offset, newProjectile, target, m_projectileDamage));
         }
     }
     
@@ -54,7 +52,7 @@ public class OrbitingProjectilePool : BaseProjectilePool
         projectile.gameObject.SetActive(false);
     }
     
-    private Vector3 GetProjectilePosition(Vector3 spawnOffset)
+    private Vector3 GetProjectilePosition()
     {
         Vector3 spawnPosition = Vector3.zero;
         switch (projectileData.spawnLocation)
@@ -72,12 +70,12 @@ public class OrbitingProjectilePool : BaseProjectilePool
                 spawnPosition = m_spawnPositions.skyHighSpawn.position;
                 break;
         }
-        return spawnPosition + spawnOffset;
+        return spawnPosition;
     }
 
-    IEnumerator LaunchAfterTime(float time, ProjectileBehavior projectile, Vector3 spawnOffset, Transform target, float damage)
+    IEnumerator LaunchAfterTime(float time, ProjectileBehavior projectile, Transform target, float damage)
     {
         yield return new WaitForSeconds(time);
-        //projectile.LaunchProjectile(GetProjectilePosition(spawnOffset), target, this, damage);
+        projectile.LaunchProjectile(GetProjectilePosition(), target, this, damage);
     }
 }

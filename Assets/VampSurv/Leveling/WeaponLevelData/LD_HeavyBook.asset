@@ -14,34 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponLevels:
   - levelUpDescription: This heavy book floats around you, smiting your unholy foes.
-    cooldownDecrease: 0.9
+    cooldownDecrease: 0.95
     damageIncrease: 1
     projectileIncrease: 1
-  - levelUpDescription: Another book, and 10% faster cooldown
-    cooldownDecrease: 0.9
+  - levelUpDescription: Another book, and 5% faster cooldown
+    cooldownDecrease: 0.95
     damageIncrease: 1
     projectileIncrease: 1
-  - levelUpDescription: Another book, and 10% faster cooldown
-    cooldownDecrease: 0.9
+  - levelUpDescription: YET another book, and 5% faster cooldown
+    cooldownDecrease: 0.95
     damageIncrease: 1
     projectileIncrease: 1
-  - levelUpDescription: Another book, and 10% faster cooldown
-    cooldownDecrease: 0.9
+  - levelUpDescription: And another book, and 5% faster cooldown
+    cooldownDecrease: 0.95
     damageIncrease: 1
     projectileIncrease: 1
-  - levelUpDescription: Another book, and 10% faster cooldown
-    cooldownDecrease: 0.9
+  - levelUpDescription: Soon a library! And 5% faster cooldown
+    cooldownDecrease: 0.95
     damageIncrease: 1
     projectileIncrease: 1
-  - levelUpDescription: Another book, and 10% faster cooldown
-    cooldownDecrease: 0.9
+  - levelUpDescription: BOOKS! And 5% faster cooldown
+    cooldownDecrease: 0.95
     damageIncrease: 1
     projectileIncrease: 1
-  - levelUpDescription: Another book, and 10% faster cooldown
-    cooldownDecrease: 0.9
-    damageIncrease: 1
-    projectileIncrease: 1
-  - levelUpDescription: Another book, and 10% faster cooldown
-    cooldownDecrease: 0.9
+  - levelUpDescription: Another book, and 5% faster cooldown, you're a reader huh.
+    cooldownDecrease: 0.95
     damageIncrease: 1
     projectileIncrease: 1

@@ -106,6 +106,7 @@ public class ThirdPersonCamera : MonoBehaviour
         m_distanceToTarget = Mathf.SmoothDamp(m_distanceToTarget, m_targetDistanceToTarget, ref m_refVelocity, distanceSmoothTime);
         
         // Subtract the forward vector of the GameObject to point its forward vector to the target
-        transform.position = player.transform.position - transform.forward * m_distanceToTarget + transform.up * heightOffset;
+        transform.position = player.transform.position - 
+            transform.forward * m_distanceToTarget + transform.up * heightOffset;
     }
 }

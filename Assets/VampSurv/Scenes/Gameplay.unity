@@ -920,6 +920,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1226707674}
     - target: {fileID: 4976495730280171281, guid: 8e5c3d702a199c448816a7a87fdbf463, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 4976495730280171281, guid: 8e5c3d702a199c448816a7a87fdbf463, type: 3}
       propertyPath: m_Name
       value: CameraAndSpawner
       objectReference: {fileID: 0}

@@ -41,15 +41,15 @@ MonoBehaviour:
     cooldownDecrease: 0.9
     damageIncrease: 1
     projectileIncrease: 1
-  - levelUpDescription: 10% cooldown reduction, +1 projectile, +1 damage
+  - levelUpDescription: 10% cooldown reduction, +1 projectile, +2 damage
     cooldownDecrease: 0.9
-    damageIncrease: 1
+    damageIncrease: 2
     projectileIncrease: 1
-  - levelUpDescription: 10% cooldown reduction, +1 projectile, +1 damage
+  - levelUpDescription: 10% cooldown reduction, +2 projectile, +2 damage
     cooldownDecrease: 0.9
-    damageIncrease: 1
-    projectileIncrease: 1
-  - levelUpDescription: 20% cooldown reduction, +1 projectile, +5 damage
+    damageIncrease: 2
+    projectileIncrease: 2
+  - levelUpDescription: 20% cooldown reduction, +2 projectile, +5 damage
     cooldownDecrease: 0.8
     damageIncrease: 5
-    projectileIncrease: 1
+    projectileIncrease: 2

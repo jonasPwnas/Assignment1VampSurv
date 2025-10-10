@@ -26,5 +26,5 @@ MonoBehaviour:
     damageIncrease: 2
     rangeIncrease: 2
   - levelUpDescription: Big. Bonk.
-    damageIncrease: 2.5
+    damageIncrease: 2
     rangeIncrease: 2

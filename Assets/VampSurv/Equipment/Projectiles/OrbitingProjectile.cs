@@ -34,7 +34,10 @@ public class OrbitingProjectile : ProjectileBehavior
     private void Start()
     {
         m_player = FindFirstObjectByType<PlayerController>();
+        Vector3 dumbOffset = new Vector3(0f, -6f, 0f);
+        transform.position += dumbOffset;
     }
+    
     
     private void OnDisable()
     {

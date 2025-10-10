@@ -8,7 +8,6 @@ public class DynamicSpawner : MonoBehaviour
     public delegate void TimeForLevelTwo();
     public static event TimeForLevelTwo OnTimeForLevelTwo;
     
-    
     [SerializeField] private SimpleEnemyPool batPool;
     [SerializeField] private SimpleEnemyPool slimePool;
     [SerializeField] private SimpleEnemyPool ghostPool;
@@ -114,12 +113,17 @@ public class DynamicSpawner : MonoBehaviour
                 ghostFrequency = 2f;
                 slimeFrequency = 4f;
                 break;
+            case 7:
+                batFrequency = 1f;
+                ghostFrequency = 1.4f;
+                slimeFrequency = 1.4f;
+                break;
             case 8:
                 batFrequency *= 0.3f;
-                ghostFrequency*= 0.3f;
-                slimeFrequency*= 0.3f;
+                ghostFrequency *= 0.3f;
+                slimeFrequency *= 0.3f;
                 break;
-            case 10:
+            case 10: //5min
                 batFrequency = 1f;
                 ghostFrequency = 2f;
                 slimeFrequency = 2f;
@@ -129,25 +133,26 @@ public class DynamicSpawner : MonoBehaviour
                 ghostFrequency = 0.7f;
                 slimeFrequency = 0.7f;
                 break;
-            case 14: //7min
+            case 14: 
+                torchFrequency = 80f;
                 batFrequency = 0.3f;
                 ghostFrequency = 0.3f;
                 slimeFrequency = 0.3f;
                 break;
             case 16:
-                batFrequency = 3f;
-                ghostFrequency = 3f;
-                slimeFrequency = 3f;
+                batFrequency = 1.2f;
+                ghostFrequency = 1.2f;
+                slimeFrequency = 1.2f;
                 OnTimeForLevelTwo?.Invoke();
                 break;
-            case 20:
-                torchFrequency = 120;
-                batFrequency = 1f;
-                ghostFrequency = 1f;
-                slimeFrequency = 1f;
+            case 20: //10min 0.8 here
+                torchFrequency = 120f;
+                batFrequency = 0.8f;
+                ghostFrequency = 0.8f;
+                slimeFrequency = 0.8f;
                 break;
-            case 28:
-                torchFrequency = 240;
+            case 30: //15min
+                torchFrequency = 240f;
                 batFrequency = 0.3f;
                 ghostFrequency = 0.3f;
                 slimeFrequency = 0.3f;
@@ -203,7 +208,6 @@ public class DynamicSpawner : MonoBehaviour
         SpawnTorch();
     }
     
-
     private void OnDestroy()
     {
         StopAllCoroutines();

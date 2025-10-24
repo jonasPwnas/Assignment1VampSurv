@@ -158,7 +158,7 @@ namespace Player
             {
                 m_movementMultiplier = 1f;
             }
-            else
+            else if(movementDirection.magnitude < 0.1f )
             {
                 m_movementMultiplier = 0.5f;
             }

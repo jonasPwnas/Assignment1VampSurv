@@ -5,8 +5,18 @@ public class XpPickup : MonoBehaviour
 {
     private bool m_pickedUp = false;
     private float m_xpValue = 1f;
-    
-    //Add logic to place itself on the ground on spawn/gotten from the pool
+    private SphereCollider m_collider;
+
+    public void SpawnedFromChest()
+    {
+        m_collider = GetComponent<SphereCollider>();
+        m_collider.enabled = false;
+    }
+
+    public void EnablePickup()
+    {
+        m_collider.enabled = true;
+    }
     
     private void OnTriggerEnter(Collider other)
     {
@@ -15,14 +25,6 @@ public class XpPickup : MonoBehaviour
             m_pickedUp = true;
             other.GetComponent<IGainXp>().GainXp(m_xpValue);
             Destroy(gameObject);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (m_pickedUp)
-        {
-            
         }
     }
 }

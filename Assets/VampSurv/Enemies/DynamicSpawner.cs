@@ -18,6 +18,7 @@ public class DynamicSpawner : MonoBehaviour
     [SerializeField] private float randomEnemyFrequency = 3.5f;
     [SerializeField] private GameObject destructibleTorch;
     [SerializeField] private float torchFrequency = 40f;
+    [SerializeField] private GameObject xpChest;
     
     private void OnEnable()
     {
@@ -178,6 +179,8 @@ public class DynamicSpawner : MonoBehaviour
         Vector3 spawnPos = transform.position + Quaternion.AngleAxis(Random.Range(-90f, 90f), Vector3.up) * transform.forward * distance;
         spawnPos.y = -1.7f; //should probably check this or something? IF I use something other than a plane..
         Instantiate(destructibleTorch, spawnPos, Quaternion.identity);
+        Vector3 chestPos = spawnPos + new Vector3(-2f, 0f, -2f);
+        Instantiate(xpChest, chestPos, Quaternion.LookRotation(spawnPos));
         StartCoroutine(TorchSpawnWait(torchFrequency));
     }
     

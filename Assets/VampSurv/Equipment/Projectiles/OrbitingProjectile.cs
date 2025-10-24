@@ -41,13 +41,17 @@ public class OrbitingProjectile : ProjectileBehavior
     
     private void OnDisable()
     {
-        baseProjectilePool.ReturnToPool(this);
+        projectilePool.ReturnToPool(this);
     }
     
-    public override void LaunchProjectile(Vector3 spawnPosition, Transform target, BaseProjectilePool projectilePool, float damage)
+    public override void SetPool(BaseProjectilePool baseProjectilePool)
+    {
+        projectilePool = baseProjectilePool;
+    }
+    
+    public override void LaunchProjectile(Vector3 spawnPosition, Transform target, float damage)
     {
         transform.position = spawnPosition;
-        baseProjectilePool = projectilePool;
         gameObject.SetActive(true);
         StartCoroutine(RotateForDuration(13f));
     }

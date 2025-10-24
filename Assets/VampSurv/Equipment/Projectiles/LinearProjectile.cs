@@ -21,7 +21,7 @@ public class LinearProjectile : ProjectileBehavior
 
     private void OnDisable()
     {
-        baseProjectilePool.ReturnToPool(this);
+        projectilePool.ReturnToPool(this);
     }
     
     public override void DisableProjectile()
@@ -35,8 +35,13 @@ public class LinearProjectile : ProjectileBehavior
         m_projectilePool = Instantiate(genericParticlePool, Vector3.zero, Quaternion.identity).GetComponent<ParticleSystemPool>();
         m_projectilePool.SetParticleSystemPrefab(projectileData.projectileImpactSystem);
     }
-    
-    public override void LaunchProjectile(Vector3 spawnPosition, Transform target, BaseProjectilePool projectilePool, float damage)
+
+    public override void SetPool(BaseProjectilePool baseProjectilePool)
+    {
+        projectilePool = baseProjectilePool;
+    }
+
+    public override void LaunchProjectile(Vector3 spawnPosition, Transform target, float damage)
     {
         renderer.enabled = true;
         transform.localScale = new Vector3(projectileData.projectileUniformScale, projectileData.projectileUniformScale,
@@ -44,8 +49,7 @@ public class LinearProjectile : ProjectileBehavior
         transform.position = spawnPosition;
         m_startPosition = spawnPosition;
         m_lastPosition = spawnPosition;
-        baseProjectilePool = projectilePool;
-        transform.rotation = baseProjectilePool.transform.rotation;
+        transform.rotation = projectilePool.transform.rotation;
         gameObject.SetActive(true);
         projectileTarget = target;
         StartCoroutine(WaitThenFire());

@@ -45,6 +45,7 @@ public class LinearProjectilePool : BaseProjectilePool
         {
             ProjectileBehavior newProjectile = Instantiate(projectilePrefab, GetProjectilePosition(m_spawnOffset), 
                 Quaternion.identity).GetComponent<ProjectileBehavior>();
+            newProjectile.SetPool(this);
             StartCoroutine(LaunchAfterTime(Random.Range(0.2f, 0.6f), newProjectile, newOffset, target, m_projectileDamage));
         }
     }
@@ -79,6 +80,6 @@ public class LinearProjectilePool : BaseProjectilePool
     IEnumerator LaunchAfterTime(float time, ProjectileBehavior projectile, Vector3 spawnOffset, Transform target, float damage)
     {
         yield return new WaitForSeconds(time);
-        projectile.LaunchProjectile(GetProjectilePosition(spawnOffset), target, this, damage);
+        projectile.LaunchProjectile(GetProjectilePosition(spawnOffset), target, damage);
     }
 }

@@ -30,17 +30,14 @@ public class PersistentAudioPlayer : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
         DOTween.Init();
-    }
-
-    private void Start()
-    {
+        
         m_audioSource = GetComponent<AudioSource>();
         if (isGameplay)
         {
             SetIsGameplay();
         }
     }
-
+    
     public void OnPlayerDied()
     {
         StartCoroutine(WaitThenFadeVolume(0f, 0.7f));

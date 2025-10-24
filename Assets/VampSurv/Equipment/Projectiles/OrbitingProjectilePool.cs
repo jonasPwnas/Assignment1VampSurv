@@ -42,6 +42,7 @@ public class OrbitingProjectilePool : BaseProjectilePool
         {
             ProjectileBehavior newProjectile = Instantiate(projectilePrefab, GetProjectilePosition(), 
                 Quaternion.identity).GetComponent<ProjectileBehavior>();
+            newProjectile.SetPool(this);
             StartCoroutine(LaunchAfterTime(offset, newProjectile, target, m_projectileDamage));
         }
     }
@@ -76,6 +77,6 @@ public class OrbitingProjectilePool : BaseProjectilePool
     IEnumerator LaunchAfterTime(float time, ProjectileBehavior projectile, Transform target, float damage)
     {
         yield return new WaitForSeconds(time);
-        projectile.LaunchProjectile(GetProjectilePosition(), target, this, damage);
+        projectile.LaunchProjectile(GetProjectilePosition(), target, damage);
     }
 }

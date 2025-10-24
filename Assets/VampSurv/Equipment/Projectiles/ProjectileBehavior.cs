@@ -5,12 +5,13 @@ public abstract class ProjectileBehavior : MonoBehaviour
     public ProjectileData projectileData;
     [HideInInspector] public Transform projectileTarget;
     [HideInInspector] public Collider[] colliders;
-    [HideInInspector] public BaseProjectilePool baseProjectilePool;
+    [HideInInspector] public BaseProjectilePool projectilePool;
     [HideInInspector] public GameObject meshChild;
     [HideInInspector] public GameObject trailChild;
     [HideInInspector] public MeshRenderer renderer;
     
-    public abstract void LaunchProjectile(Vector3 spawnPosition, Transform target, BaseProjectilePool projectilePool, float damage);
+    public abstract void SetPool(BaseProjectilePool baseProjectilePool);
+    public abstract void LaunchProjectile(Vector3 spawnPosition, Transform target, float damage);
     public abstract void DisableProjectile();
 
     private void Start()
